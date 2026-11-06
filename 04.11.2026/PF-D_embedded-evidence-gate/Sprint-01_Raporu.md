@@ -1,0 +1,38 @@
+# Engineering Evidence & Quality Gate — Sprint-1
+
+**Durum:** PLAN / NOT_RUN. **Yürütme yetkisi:** YOK; kullanıcıdan ayrı onay gerekli.
+
+## Amaç
+Kanıt manifesti şeması ve durum sözlüğü.
+
+## Girdiler ve bağımlılıklar
+- Kaynaklar, lisans ve beklenen davranış sözleşmesi doğrulanmalı.
+- Kaynak: KiCad CLI, pytest, CTest, GitHub Actions.
+- Ürün sözleşmesi: Araç sürümleri; ERC/DRC ayrı JSON şemaları; çıkış kodları; hash.
+
+## Görevler
+1. Kaynak/versiyon ve varsayımları envantere kaydet.
+2. “Kanıt manifesti şeması ve durum sözlüğü” için beklenen davranışı test edilebilir alt gereksinimlere ayır.
+3. Pozitif, negatif ve sınır değer test vektörlerini tanımla.
+4. Başarı/başarısızlık ve BLOCKED/NOT_RUN kanıtlarını raporla.
+5. Lisans, donanım ve entegrasyon bağımlılıklarını güncelle.
+
+## Kabul kriterleri
+- Her gereksinimin bir kaynak dayanağı ve en az bir test orakılı bulunur.
+- Her testin beklenen sonucu önceden tanımlanır; çalıştırılmadıysa NOT_RUN kalır.
+- Kaynak commit ve araç sürümleri manifestte kayıtlıdır.
+- Gerçek cihaz performansı, yalnız sentetik veriye dayanarak doğrulanmış sayılmaz.
+
+## Öngörülen teslimatlar (henüz üretilmedi)
+- `requirements-traceability.md`
+- `test-vectors.json`
+- `verification-report.md`
+- `evidence-manifest.json`
+
+## Riskler / blokajlar
+- Referans sürüm değişebilir; SHA sabitlenmeli.
+- Test orakılı ve lisans koşulları doğrulanmalı.
+- Fiziksel doğrulama gerektiren sonuçlar donanımsız ortamda UNVERIFIED kalır.
+
+## Codex devir notu
+Bu belge uygulanabilir sprint planıdır, başlatma komutu değildir. Kullanıcı açık onay verene kadar yalnız salt-okunur araştırma yapılabilir.

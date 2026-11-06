@@ -1,0 +1,32 @@
+# Rapor paketi manifesti
+
+- Tarih: 06.11.2026
+- 5 standart rapor + 4 repo genel planı + 16 sprint raporu
+- Durum: yalnız planlama / NOT_RUN
+- GitHub/Drive yüklemesi yapılmadı.
+
+- `01_Is_Akisi_Raporu.md`
+- `02_Gorev_Akisi_Raporu.md`
+- `03_Codex_Handoff_Raporu.md`
+- `04_Claude_Arastirma_Raporu.md`
+- `05_Referans_ve_Urun_Izlenebilirlik.md`
+- `IoT_sensor-telemetry-replay/00_Repo_Sprint_Plani.md`
+- `IoT_sensor-telemetry-replay/Sprint-01_Raporu.md`
+- `IoT_sensor-telemetry-replay/Sprint-02_Raporu.md`
+- `IoT_sensor-telemetry-replay/Sprint-03_Raporu.md`
+- `IoT_sensor-telemetry-replay/Sprint-04_Raporu.md`
+- `PF-A_motion-event-engine/00_Repo_Sprint_Plani.md`
+- `PF-A_motion-event-engine/Sprint-01_Raporu.md`
+- `PF-A_motion-event-engine/Sprint-02_Raporu.md`
+- `PF-A_motion-event-engine/Sprint-03_Raporu.md`
+- `PF-A_motion-event-engine/Sprint-04_Raporu.md`
+- `PF-D_embedded-evidence-gate/00_Repo_Sprint_Plani.md`
+- `PF-D_embedded-evidence-gate/Sprint-01_Raporu.md`
+- `PF-D_embedded-evidence-gate/Sprint-02_Raporu.md`
+- `PF-D_embedded-evidence-gate/Sprint-03_Raporu.md`
+- `PF-D_embedded-evidence-gate/Sprint-04_Raporu.md`
+- `PF-E_gyro-register-validation/00_Repo_Sprint_Plani.md`
+- `PF-E_gyro-register-validation/Sprint-01_Raporu.md`
+- `PF-E_gyro-register-validation/Sprint-02_Raporu.md`
+- `PF-E_gyro-register-validation/Sprint-03_Raporu.md`
+- `PF-E_gyro-register-validation/Sprint-04_Raporu.md`
