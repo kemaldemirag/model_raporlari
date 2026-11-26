@@ -1,0 +1,40 @@
+Ürün-1 — K1-03 Edge.Cuts doğrulama eki
+21.11.2026 Model Raporları / Ürün-1 · 26.11.2026
+
+K1 kabul matrisinde K1-03, açık veya belirsiz kart çevriminin BLOCK / PCB_OUTLINE_CLOSED olarak raporlanmasını ve ilgili segmentlerin kanıta eklenmesini bekliyor. Mevcut satır Planlandı durumunda.
+
+Deney
+KiCad 9.0.2 ile üç giriş senaryosu, aynı çalışma ortamında A/B çıktı dizinlerine çalıştırıldı. Temiz sentetik kartın Edge.Cuts katmanında 20 × 10 mm kapalı bir dikdörtgen var. Açık kopyada yalnızca bir segmentin son noktası (10, 10) mm'den (10, 11) mm'ye taşındı. Üçüncü çağrı, eksik PCB girişinin davranışını ölçtü.
+
+Vaka                 A/B çıkış kodu   Ham rapor
+Kapalı çevre         0 / 0            0 ihlal
+1 mm açık çevre      5 / 5            3 invalid_outline, her biri error
+Eksik PCB            3 / 3            JSON oluşmadı, logda Failed to load board
+
+Açık örnekte KiCad bir açık şekil ve iki self-intersecting mesajı yazdı. Fixture geometrisine yalnızca bir açıklık eklendi. Mesajları üç bağımsız kusur olarak saymak deney tasarımına aykırı olur. Ham JSON üç kaydı ve segment UUID'lerini belgelemeye devam eder.
+
+K1-03 eşlemesi
+• Sabitlenmiş KiCad sürümünde beklenen çıkış kodu ve okunabilir DRC raporu birlikte denetlenir. Rapor içindeki violations[].type == invalid_outline ve severity == error girdileri bu vaka için tek PCB_OUTLINE_CLOSED / BLOCK sonucuna bağlanır.
+• Sonuç, ham DRC JSON'unu ve ilgili tüm kayıt dizinlerini referanslar. Segment UUID'leri, koordinatlar ve birim korunur. Serbest metindeki self-intersecting ifadesi tek başına ayrı kusur doğrulaması sağlamaz.
+• Eksik veya okunamayan raporda çalıştırma hatası kaydedilir ve karar üretilmesi engellenir. Ham log ile gerçek çıkış kodu saklanır.
+• A/B karşılaştırmasında ham dosyalar korundu. Üst seviye date alanı çıkarılıp JSON anahtarları sıralandığında her iki kartın A/B raporları kendi içinde bayt düzeyinde eşleşti. İki PCB'nin koşu öncesi ve sonrası SHA-256 özetleri aynı kaldı.
+
+Yeniden çalıştırma
+Kanıt arşivini aç ve k1-03-evidence dizinine gir. Yeni bir çıktı dizini kullan.
+mkdir -p rerun
+kicad-cli version
+sha256sum -c checksums.before
+kicad-cli pcb drc --format json --severity-all --exit-code-violations --output rerun/closed.json closed.kicad_pcb >rerun/closed.log 2>&1
+echo "$?"
+kicad-cli pcb drc --format json --severity-all --exit-code-violations --output rerun/open.json open.kicad_pcb >rerun/open.log 2>&1
+echo "$?"
+sha256sum -c checksums.after
+
+Kapsam
+Bu çalışma, sentetik K1-03 ön doğrulamasıdır. Resmî K1 koşusu için plandaki sabit KiCad 10 patch sürümü, tanımlı kabul fixture'ı, temiz koşu ortamları ve ürünün normalize bulgu/manifest çıktısı gereklidir. ERC, şema–PCB parity ve exclusion politikası bu deneyde çalıştırılmadı. Matris değiştirilmedi.
+
+Kaynaklar
+https://docs.google.com/document/d/1egdmxov9A3jOvWqABOIh_fUSqEtJYOsI/edit
+https://docs.google.com/spreadsheets/d/1i290GkcBhaMOkwRMCIuWatOJWNCVaUzc/edit
+https://docs.kicad.org/9.0/en/cli/cli.pdf
+https://docs.kicad.org/10.0/en/cli/cli.html

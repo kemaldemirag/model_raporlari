@@ -1,0 +1,19 @@
+{
+  "cell_id": "SYNTH-CELL-001",
+  "experiment_id": "SYNTH-DISCHARGE-001",
+  "synthetic": true,
+  "scope": "one_cell_one_discharge",
+  "nominal_capacity_Ah": null,
+  "format_id": "B",
+  "columns": {
+    "time": "elapsed_ms",
+    "current": "current_mA",
+    "voltage": "voltage_mV"
+  },
+  "units": {
+    "time": "ms",
+    "current": "mA",
+    "voltage": "mV"
+  },
+  "current_sign": "positive_discharge"
+}

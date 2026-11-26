@@ -1,0 +1,114 @@
+{
+  "surum": "1.0",
+  "tarih": "2026-11-15",
+  "urunler": [
+    {
+      "kimlik": "U01",
+      "urun": "Tek kameralı saha kalibrasyonu",
+      "onerilen_repo": "camera-calibration-dewarping"
+    },
+    {
+      "kimlik": "U02",
+      "urun": "Windows için hologram inceleme yazılımı",
+      "onerilen_repo": "lensless-holography-workbench"
+    },
+    {
+      "kimlik": "U03",
+      "urun": "Optik çözünürlük ve tekrar kurulum testi",
+      "onerilen_repo": "optical-remount-verification"
+    },
+    {
+      "kimlik": "U04",
+      "urun": "Kıyı suyunda parçacık ölçüm raporu",
+      "onerilen_repo": "coastal-particle-validation"
+    },
+    {
+      "kimlik": "U05",
+      "urun": "Hava örneklerinde biriken parçacık sayacı",
+      "onerilen_repo": "air-deposition-counter"
+    }
+  ],
+  "test_durumlari": {
+    "TEKRARLANDI": 2,
+    "BEKLİYOR": 4,
+    "SAHA VERİSİ GEREKİR": 6
+  },
+  "kaynak_sayisi": 19,
+  "tekrar_kosumu": {
+    "girdi_sayisi": 11,
+    "ortam": {
+      "python": "3.12.14",
+      "numpy": "2.3.5",
+      "pillow": "13.0.0",
+      "matplotlib": "3.10.8"
+    },
+    "sonuc": {
+      "hologram": {
+        "gradient_peak_um": 0,
+        "contrast_peak_um": 0,
+        "input_shape": [
+          512,
+          512
+        ],
+        "roi": "merkez 256 × 256",
+        "planes": 21
+      },
+      "perspective": {
+        "views": 7,
+        "n_test": 217,
+        "rms_px": 0.5811008373426997,
+        "p95_px": 1.334420354253144,
+        "max_px": 1.7804176308511281
+      }
+    },
+    "arsivle_eslesti": true
+  },
+  "arsivdeki_betik_sha256": "19b14df3c90556bd7ae404e28803991a100520057593054f3bd478e65c8fab25",
+  "dosyalar": [
+    {
+      "ad": "15.11.2026_01_Urun_Cikarimi_v1.docx",
+      "boyut": 318112,
+      "sha256": "ec0c8b39d809a26710cfc658d681d8cbb96f21486b115477b5b7453e175593a3"
+    },
+    {
+      "ad": "15.11.2026_01_Urun_Cikarimi_v1.pdf",
+      "boyut": 200882,
+      "sha256": "76674f6d7b0fc60da45b256cd5c4c0c1930521eab7bb43be26f917b650acc2f6"
+    },
+    {
+      "ad": "15.11.2026_02_Is_Akisi_ve_Kabul_Plani_v1.docx",
+      "boyut": 42934,
+      "sha256": "39f5b355323b71ff4c26c2ca5ee53bed2e25549d5b57b34e49564033e8eaf91b"
+    },
+    {
+      "ad": "15.11.2026_02_Is_Akisi_ve_Kabul_Plani_v1.pdf",
+      "boyut": 138147,
+      "sha256": "6210344dfe8d99eb8b4203cbc4ae72ccf1f4ccc0b0cbd3a22e466c191773cf4d"
+    },
+    {
+      "ad": "15.11.2026_03_Referans_Kaynak_Yukleme_v1.docx",
+      "boyut": 42333,
+      "sha256": "0e841ec7fc01df913851c1423558e79193ec6557b6cfacbc7cf353b5c4d3aaa6"
+    },
+    {
+      "ad": "15.11.2026_03_Referans_Kaynak_Yukleme_v1.pdf",
+      "boyut": 112517,
+      "sha256": "67f04456c18d9b8798dad95c2afdeea825906b20446631f8b5e5bfd03edeef80"
+    },
+    {
+      "ad": "15.11.2026_README.txt",
+      "boyut": 965,
+      "sha256": "5331519d5c8ab860c32c2f3d0e2dd2cb06bffec5f9c6af8d7b429049f94f1758"
+    },
+    {
+      "ad": "15.11.2026_kaynak_envanteri.csv",
+      "boyut": 4354,
+      "sha256": "00f62f4fceacbf51747e7477a8c6092f88a49adb13d8f534e559a8c0e090ecca"
+    },
+    {
+      "ad": "15.11.2026_urun_test_matrisi.csv",
+      "boyut": 4442,
+      "sha256": "8325f191e0ba4a5413777e2a8badf5a3e244f1e49d4cee388edcf14b53208399"
+    }
+  ]
+}

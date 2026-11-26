@@ -1,0 +1,63 @@
+# CODEX HANDOFF — Katkı Yaptığım Repolar (Current)
+
+Tarih: 2026-11-01
+Kaynak liste: https://github.com/stars/kemaldemirag/lists/katk%C4%B1-yapt%C4%B1%C4%9F%C4%B1m-repolar-current/
+
+## Amaç
+Kaynak GitHub listesindeki üç repoyu, standart tarih bazlı yerel çalışma alanında başlık uyumunu koruyarak klonla, envanterle ve doğrula. Yeni GitHub repoları oluşturma; push, PR, fork veya uzak depo değiştirme işlemi yapma.
+
+## Doğrulanmış liste (2026-11-01)
+- jamieiles/80x86 — 80186 compatible SystemVerilog CPU core and FPGA reference design — https://github.com/jamieiles/80x86
+- brianbennett/fpga_nes — FPGA-based Nintendo Entertainment System Emulator — https://github.com/brianbennett/fpga_nes
+- Miceuz/i2c-moisture-sensor — I2C based soil moisture sensor — https://github.com/Miceuz/i2c-moisture-sensor
+
+## Çalışma alanı
+Kök: `01.11.2026-Katki-Yaptigim-Repolar-Current/`
+
+```
+01.11.2026-Katki-Yaptigim-Repolar-Current/
+├── 001-Kayıt Notları ve Dokümantasyon/
+│   ├── 001-Kayıt Notları/
+│   ├── 002-Proje Dokümantasyonu/
+│   └── 003-Referans Kaynaklar/
+│       ├── 001-Oynatma Listesi İçerikleri/
+│       ├── 002-PDF'ler/
+│       ├── 003-Repolar/
+│       ├── 004-Müşteri Referansları/
+│       └── 005-İş İlanı/
+├── 002-Proje Çıktıları/
+│   ├── 001-CPU-ve-FPGA-Mimarisi/
+│   │   └── 80x86/
+│   ├── 002-FPGA-Sistem-Tasarimi/
+│   │   └── fpga_nes/
+│   └── 003-Algilayici-Arayuzleri/
+│       └── i2c-moisture-sensor/
+├── 003-Proje Kayıtları/
+│   ├── 001-Görsel Kayıtlar/
+│   ├── 002-Teknik Çıktı Kayıtları/
+│   └── 003-Video Kayıtlar/
+├── README.md
+└── PROJECT-MANIFEST.json
+```
+
+Not: Klasör başlıkları listedeki repo açıklamalarından türetilmiş teknik sınıflandırmadır; GitHub listesinin kendi alt başlıkları değildir. Türkçe karakterli standart üst klasör isimlerini aynen koru. Çıktı alt klasörlerini yukarıdaki gibi kullan.
+
+## Codex yürütme talimatları
+1. İşlem öncesinde mevcut çalışma dizinini, disk alanını, git sürümünü ve hedef klasörün varlığını kontrol et. Mevcut veriyi silme, üzerine yazma veya taşıma.
+2. GitHub listesini mümkünse yeniden oku; listede farklı repo sayısı veya erişim sorunu varsa raporla, sessizce kapsam değiştirme.
+3. Yukarıdaki klasör ağacını oluştur. Kullanıcıdan hedef ana dizin verilmemişse çalıştığın izinli çalışma dizini altında oluştur; masaüstü veya Drive'a otomatik yönlendirme yapma.
+4. Her kaynak repo için `git ls-remote <url> HEAD` ile erişimi kontrol et. Başarısızsa kayda geçir ve diğer repolara devam et.
+5. Repo hedef klasörü boş/yok ise `git clone <url> <hedef>` çalıştır. Mevcut repo varsa remote URL ve çalışma ağacı durumunu incele; otomatik reset, pull, clean veya overwrite yapma.
+6. Her repo için varsayılan branch, HEAD commit, origin URL, lisans dosyası, README, temel diller, test/build yönergeleri ve varsa submodule/LFS bilgilerini kaydet. Submodule/LFS indirmelerini otomatik başlatma; ihtiyaç varsa öner.
+7. `001-Kayıt Notları ve Dokümantasyon/003-Referans Kaynaklar/003-Repolar/REPO_INDEX.md` içine kaynak URL, yerel konum, sınıflandırma, commit SHA ve erişim durumunu yaz.
+8. `001-Kayıt Notları ve Dokümantasyon/002-Proje Dokümantasyonu/CODEX_HANDOFF.md` dosyasına bu talimatların kopyasını koy. `README.md` ve `PROJECT-MANIFEST.json` oluştur.
+9. `003-Proje Kayıtları/002-Teknik Çıktı Kayıtları/CLONE_REPORT.md` içinde yapılan/atlanan işlemleri, hata mesajlarını, doğrulama sonuçlarını ve sonraki önerileri raporla.
+10. Repo içindeki kaynak kodları bu kurulum aşamasında değiştirme; commit, push, PR, fork, GitHub repo creation, git remote set-url, git clean ve git reset --hard YASAK. Upstream katkı yalnızca kullanıcıdan ayrı açık onayla yapılabilir.
+11. Kapanışta 3/3 doğrulama tablosu sun: kaynak repo, hedef, klonlama durumu, HEAD SHA, çalışma ağacı temizliği. Başarısız adımları başarı gibi gösterme.
+
+## Tamamlanma ölçütleri
+- Üç repo için erişim ve klonlama durumu açıkça raporlanmış.
+- Başlık–repo eşleşmeleri korunmuş.
+- Standart üç ana klasör ve manifest oluşturulmuş.
+- Hiçbir uzak GitHub deposunda değişiklik yapılmamış.
+- Yerel kaynak repo dosyaları değiştirilmemiş.

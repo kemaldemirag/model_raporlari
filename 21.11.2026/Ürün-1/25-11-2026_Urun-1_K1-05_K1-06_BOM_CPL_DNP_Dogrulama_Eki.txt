@@ -1,0 +1,36 @@
+ÜRÜN-1 — K1-05 VE K1-06 BOM / CPL / DNP DOĞRULAMA EKİ
+Model Raporları / 21.11.2026 / Ürün-1
+Araştırma tarihi: 25.11.2026
+
+Dayanak
+K1 Fixture ve Kabul Matrisi: https://docs.google.com/spreadsheets/d/1i290GkcBhaMOkwRMCIuWatOJWNCVaUzc/edit
+K1-05, BOM–CPL referans uyuşmazlığını; K1-06, DNP parçanın CPL'ye sızmasını hedefliyor.
+
+KiCad 10 dışa aktarım sözleşmesi
+1. Her iki dışa aktarımda aynı aktif varyantı açıkça seç. kicad-cli sch export bom işlemi şemadan, kicad-cli pcb export pos karttan üretim yapar.
+2. DNP kanıtı için aktif varyantın DNP alanı içeren filtrelenmemiş BOM görünümünü veya planın yetkili varyant kaydını sakla. Üretime gidecek BOM ve CPL üzerinde uygun dışlama seçeneklerini uygula. BOM'da Exclude from BOM işaretli sembollerin tamamının görüneceğini varsayma. KiCad 10 kılavuzu --include-excluded-from-bom seçeneğinin etkisiz olduğunu belirtir.
+3. CPL karşılaştırmasında CSV, taraf, birim ve orijin üretici profiliyle açıkça sabitlenir. Örneğin JLCPCB CPL belgesi referans, X/Y, rotasyon ve taraf alanlarını tarif eder. Profil dışına çıkıldığında ayrı geometri bulgusu üretilebilir.
+4. Gruplu BOM referanslarını belirli ayırıcıyla tekillere aç. Aralık kullanımını kapat veya ayrıştırma kuralını açıkça sabitle. Küme karşılaştırmasından önce CPL tekrarlarını yakala.
+https://docs.kicad.org/10.0/en/cli/cli.html
+https://jlcpcb.com/help/article/pick-place-file-for-pcb-assembly
+
+Önerilen kural ayrımı
+BOM_CPL_REFERENCE_PARITY: Profil ve varyant kapsamında yerleştirilecek referanslar ile CPL arasındaki eksik/fazla öğeleri raporla.
+VARIANT_DNP_PLACEMENT: Yetkili varyantta DNP olarak işaretli olup CPL'de bulunan referansları raporla.
+Aynı DNP satırı için tek birincil bulgu istendiğinden bilinen DNP'yi genel fazla referans listesinden çıkar. Ham CPL kaydını ve genel küme farkını kanıt olarak koru. Varyant kanıtı yoksa bu kontrolü BLOCKED olarak kaydet.
+KiBot isteğe bağlı yardımcıdır. v1.9.1 notlarında KiCad 10 varyant değişkenleri için sınırlı destek belirtilir. Native dışa aktarımla eşdeğerlik, seçilen sürüm ve vaka üzerinde sınanmalıdır.
+https://github.com/INTI-CMNB/KiBot/releases
+
+Bu turda çalıştırılan sentetik kural deneyi
+Beklenen yerleştirme = R1, C1. Varyant DNP = R2.
+Temiz CPL: R1 C1 → fark yok.
+Eksik CPL: R1 → eksik C1.
+Fazla CPL: R1 C1 J9 → fazla J9.
+DNP sızıntısı: R1 C1 R2 → DNP R2, genel fazla referans yok.
+Tekrarlı CPL: R1 C1 C1 → tekrar C1.
+Varyant kanıtı yok → BLOCKED.
+Altı sentetik beklenti sağlandı. Ham sonuç:
+[{"id":"clean","missing":[],"extra":[],"dnp":[],"duplicates":[]},{"id":"missing","missing":["C1"],"extra":[],"dnp":[],"duplicates":[]},{"id":"extra","missing":[],"extra":["J9"],"dnp":[],"duplicates":[]},{"id":"dnp","missing":[],"extra":[],"dnp":["R2"],"duplicates":[]},{"id":"duplicate","missing":[],"extra":[],"dnp":[],"duplicates":["C1"]},{"id":"no_variant","status":"BLOCKED"}]
+
+Kanıt sınırı
+Bu koşu bellekte hazırlanmış referans listeleriyle kural davranışını sınadı. Gerçek CSV ayrıştırma, KiCad CLI dışa aktarımı, iki temiz tekrar, kaynak hash kontrolü ve bağımsız K1 incelemesi yürütülmedi. K1 kabul matrisi ve resmi karar bu ekle değiştirilmedi.

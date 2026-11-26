@@ -1,0 +1,13 @@
+15.11.2026 • Beş ürün için Model Raporları • v1.0
+
+01  Ürün Çıkarımı — ilk teklif, ana geliştirme ürünü ve üç saha ürünü.
+02  İş Akışı ve Kabul Planı — 12 test, tekrar koşumu ve çalışma alanı.
+03  Referans Kaynak Yükleme — 001–005 klasörleri, ürün ve kaynak eşlemesi.
+
+DOCX düzenlenebilir asıldır. PDF aynı sürümün okuma kopyasıdır.
+CSV dosyaları UTF-8 (BOM) kodlamalı ve virgül ayrımlıdır. Test sonuçları ürünün bütününe değil, belirtilen prosedüre aittir.
+
+Ekler: 19 satırlık kaynak envanteri ve 12 satırlık ürün-test matrisi. TESLIM_MANIFESTI.json dosya boyutlarını, SHA-256 özetlerini ve iki deneyin sayısal tekrar sonucunu içerir. Manifest kendi özetini ve ZIP dosyasının özetini içermez.
+
+Deneylerin asıl betik, parametre ve indirme listesi K03 paketindedir. Tam komutlar 02 numaralı rapordadır.
+https://drive.google.com/file/d/1swb3LcnBP64Owhf0y-6dOORokWarYEX-/view

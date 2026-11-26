@@ -1,0 +1,3408 @@
+{
+  "schema_version": "1.0",
+  "created_date_utc": "2026-11-15",
+  "target_repository": "kemaldemirag/shelf-load-monitor",
+  "target_ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+  "research_status": "SOURCE_REVIEW_ONLY",
+  "target_tests_run_this_research": false,
+  "physical_tests_run": false,
+  "github_mutations": false,
+  "list_snapshot": {
+    "observed_on": "2026-11-15",
+    "source": "Live GitHub Stars page via browser",
+    "url": "https://github.com/stars/kemaldemirag/lists/12-11-2026/",
+    "page_counts": [
+      30,
+      19
+    ],
+    "repos": [
+      "DillanMcDonald/kicad-ci",
+      "INTI-CMNB/KiBot",
+      "INTI-CMNB/kicad_ci_test",
+      "yaqwsx/KiKit",
+      "Creality3DPrinting/CR-10",
+      "xuhao1/VINS-Fisheye",
+      "nscheuer/Generalized_ADCS",
+      "nasa/GMAT",
+      "salilab/systems-tests",
+      "RetroReversing/retroReversing",
+      "ArjunFrancis/FREE-AI-RESOURCES",
+      "FractonicMind/TernaryMoralLogic",
+      "OLIMEX/BB-PWR-3608",
+      "paulscottrobson/rp2350pc",
+      "bigtreetech/BIGTREETECH-SKR-mini-E3",
+      "D-sorganization/Tools",
+      "espressif/kicad-libraries",
+      "rgoulter/keyboard-labs",
+      "devbisme/kicad-3rd-party-tools",
+      "mundodisco8/LED_Dimmer",
+      "paulrouget/gtk",
+      "kuldeep-zigg/PCBProjects",
+      "makinity/MyPortfolio",
+      "codacy-open-source-projects-scans/gtk3",
+      "snhobbs/openEMS-Project",
+      "foukouda/OPEN_WEIGHT",
+      "MacNite/HiveHub",
+      "OpenModbus/OM-64DO",
+      "OLIMEX/ESP32-C6-EVB",
+      "Isno-Open/OpenSuperRF",
+      "greatscottgadgets/hackrf",
+      "Kampi/BeeLight",
+      "ZSWatch/Watch-DevKit-HW",
+      "riatlabs/cdc-badge",
+      "arlyon/rust-matter-led",
+      "meshmy/jungle-buoy",
+      "scottbez1/splitflap",
+      "eshelton328/forge",
+      "hatlabs/SH-RPi-hardware",
+      "hatlabs/SH-ESP32-hardware",
+      "greatscottgadgets/cynthion-hardware",
+      "matthuszagh/fmcw",
+      "ZSWatch/Watch-HW",
+      "riatlabs/cdc-badge-nametag",
+      "hatlabs/SH-RPi-firmware",
+      "hatlabs/SH-RPi-daemon",
+      "slimcdk/wisweep",
+      "inoa-io/satellite",
+      "ammygo/open-vibration-node"
+    ]
+  },
+  "workflow_estimation_method": "Task breakdown with low/central/high active hours; commit elapsed time used only as change-scope and integration-risk evidence, never labor-time measurement.",
+  "workflows": [
+    {
+      "id": "WF01",
+      "title": "G1 için ölçüm zinciri ve karar paketi",
+      "short": "Ölçüm zinciri / G1",
+      "filename": "S01_WF01_Olcum_Zinciri_G1.pdf",
+      "status": "Karar hazırlığına başlanabilir",
+      "priority": "P1",
+      "hours": [
+        12,
+        20,
+        32
+      ],
+      "confidence": "Orta",
+      "requirements": "S01-REQ-001–007; özellikle ölçüm, besleme ve açılış davranışı",
+      "goal": "Ölçüm elektroniğini seçmeden önce, kaynak projelerin hangi varsayımlarla çalıştığını S01 gereksinimlerine bağlayan, değerlendirilebilir bir karar paketi hazırlamak.",
+      "existing": "S01’in ideal sensör modeli, kalibrasyonu ve hata bütçesi var. 0–50 kg, 2 mV/V köprü, 10 Hz örnekleme, 1 Hz kayıt ve 12 V giriş şartı belirli. ADC, MCU, fiziksel USB, depolama ve 5 V uyarma seçimi henüz kesinleştirilmiş değil. [1, 2]",
+      "gap": "Kaynak kartlardan bileşen almak yeterli değil: 12 V girişten köprü/ADC/MCU beslemelerine, yerleşme süresinden geçerli ölçüm bayrağına uzanan kararların aynı gereksinim tablosunda gerekçelendirilmesi gerekiyor.",
+      "synthesis": [
+        [
+          "foukouda/OPEN_WEIGHT",
+          "AD7190 ve ratiometrik ölçüm, besleme ve yerleşme modeli karşılaştırma girdisidir. Kaynağın 3,3 V giriş → boost → 5 VA yolu S01’in 12 V giriş devresi değildir."
+        ],
+        [
+          "MacNite/HiveHub",
+          "ADC hazır olma, eksik okuma, AFE iç kalibrasyonu ve geçerli örnek ayrımı. Ham sıfır reddi, kesilmiş ortalama ve sabit ısınma değerleri ADC’ye özgüdür."
+        ],
+        [
+          "shelf-load-monitor",
+          "Gereksinimler, mevcut aritmetik ortalama ve dara sözleşmesi karar sınırını belirler. Bir upstream kart veya MCU bu raporla seçilmiş olmaz."
+        ]
+      ],
+      "mapping": [
+        [
+          "Mevcut",
+          "configs/baseline.json; docs/architecture.md; docs/error-budget-method.md",
+          "Temel varsayımlar ve kanıt sınırları."
+        ],
+        [
+          "Yeni öneri",
+          "docs/afe-decision-matrix.md",
+          "ADC, uyarma, güç, filtre, USB ve depolama karar tablosu."
+        ],
+        [
+          "Yeni öneri",
+          "provenance/OPEN_WEIGHT-review.md; provenance/HiveHub-review.md",
+          "Kaynak SHA, dosya lisansı, uygulanabilirlik ve model sınırları."
+        ],
+        [
+          "Yeni öneri",
+          "docs/hardware-validation-plan.md",
+          "Kararları kapatmak için gereken ölçüm ve doğrulamalar."
+        ]
+      ],
+      "steps": [
+        "Her kaynak için SHA, dosya düzeyi kullanım şartı ve model sınırını kaydet. OPEN_WEIGHT README ile kök LICENSE farklı donanım/yazılım ifadeleri taşıdığı için dosya kopyalamadan önce kapsamı netleştir.",
+        "AD7190 ile HX711/NAU7802 mimari örneklerini gereksinim satırları üzerinden karşılaştır: besleme, giriş/uyarma aralığı, örnek hızı, filtre gecikmesi, referans, arayüz ve geçerli ölçüm işareti.",
+        "Koşullu 5 V uyarma varsayımında 50 kg tam skala 10 mV, 10 g adım 2 µV, 100 g hata 20 µV eder. Bunları gerçek gürültü ölçümü gibi sunmadan hata bütçesine bağla. [2]",
+        "Açılışta besleme/ADC hazırlığı, iç ofset kalibrasyonu ve kalıcı kullanıcı darasını ayrı işlemler olarak tanımla. Yeniden enerji geldiğinde raftaki yük yeni sıfır kabul edilmez.",
+        "Her karar satırını seçildi / gerekçeli aday / kanıt bekliyor durumlarından biriyle kapat. Yerleşme, gürültü, sıcaklık, USB ve state için hangi fiziksel ölçümün gerektiğini yaz."
+      ],
+      "contract": "Mevcut 10 Hz → 1 Hz aritmetik ortalama ve ham örnek izi korunur. ADC profili seçilmeden raw==0 geçersiz ilan edilmez, doygunluk sınırı veya kesilmiş ortalama taşınmaz. 24 bit etiketinden ±100 g doğruluk sonucu çıkarılmaz. [1, 3, 4]",
+      "acceptance": [
+        "Yedi gereksinimin her biri bir karar veya açık kanıt eksikliğiyle eşlenir.",
+        "12 V giriş, köprü uyarma, ADC zamanlama, fiziksel USB ve kalıcı durum sahibi için belirsizlikler görünürdür.",
+        "İç ADC kalibrasyonu ile kullanıcı darası ayrıdır; otomatik açılış darası önerilmez.",
+        "Simülasyon/model sonuçları ile fiziksel kabul ayrılır; karar paketi devre onayı veya ürün PASS sonucu üretmez."
+      ],
+      "boundary": "Bu süre kaynak incelemesi ve karar hazırlığı içindir. Yeni LTspice koşumu, şema/PCB çizimi, satın alma, devre kurma veya fiziksel karakterizasyon dahil değildir. Tam simülasyon yeniden üretimi ayrıca kapsamlandırılmalıdır.",
+      "tasks": [
+        [
+          "Kaynak, dosya lisansı ve model sınırlarını sabitle",
+          2,
+          3,
+          5
+        ],
+        [
+          "S01 gereksinimleriyle aday AFE/güç yollarını eşle",
+          3,
+          5,
+          8
+        ],
+        [
+          "Yerleşme, ölçüm geçerliliği, filtre ve dara farklarını değerlendir",
+          3,
+          5,
+          8
+        ],
+        [
+          "Karar matrisi ve fiziksel kanıt açıklarını yaz",
+          2,
+          4,
+          7
+        ],
+        [
+          "Teknik gözden geçirme ve izlenebilirliği tamamla",
+          2,
+          3,
+          4
+        ]
+      ],
+      "commit_notes": [
+        [
+          "OPEN_WEIGHT",
+          "151717f → 477515e",
+          "29.09.2026 17:22:27 → 08.10.2026 11:21:08 UTC",
+          "8 gün 17 sa 58 dk 41 sn",
+          "İlk beş LTspice devresi ve sonuç araçlarından, 25 ms pencerenin 600 ms’ye uzatılmasına ve ray FFT işlenmesine geçiliyor. Yerleşme penceresini ayrıca değerlendirme gerekçesi."
+        ],
+        [
+          "HiveHub",
+          "dee6cf0 → 0d4fe8a",
+          "15.07.2026 13:38:04 → 06.08.2026 06:46:40 UTC",
+          "21 gün 17 sa 08 dk 36 sn",
+          "Doğrulanmış okumadan Warming/Ready ve iç kalibrasyon sırasına uzanan değişiklikler; kaynak bekleme süresi S01 için doğrulanmış değer değildir."
+        ]
+      ],
+      "duration_note": "12/20/32 saat aktif karar hazırlığı. Commitler arasındaki günler bekleme, başka işler ve gözden geçirmeyi de içerebilir; süre tahmini bunların toplamından alınmadı.",
+      "dependencies": "Donanım gerekmez. Elektronik tasarımın başlamasından önce G1 kararları kapatılmalıdır; bu rapor G1 onayı vermez.",
+      "sources": [
+        {
+          "label": "[1] S01 gereksinimleri",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/requirements.yaml",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "requirements.yaml"
+        },
+        {
+          "label": "[2] Varsayımsal ideal sinyal ölçeği",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/reports/baseline-calculated/sensor-model.json",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "reports/baseline-calculated/sensor-model.json"
+        },
+        {
+          "label": "[3] OPEN_WEIGHT mimarisi ve model sınırları",
+          "url": "https://github.com/foukouda/OPEN_WEIGHT/blob/38bf8e4ea0e2894471f5328db7af47c99938035c/README.md",
+          "repository": "foukouda/OPEN_WEIGHT",
+          "ref": "38bf8e4ea0e2894471f5328db7af47c99938035c",
+          "path": "README.md"
+        },
+        {
+          "label": "[4] ADC’ye özgü filtre ve geçerlilik kuralları",
+          "url": "https://github.com/MacNite/HiveHub/blob/84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1/firmware/include/scale_math.h",
+          "repository": "MacNite/HiveHub",
+          "ref": "84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1",
+          "path": "firmware/include/scale_math.h"
+        },
+        {
+          "label": "[5] Hazır olma ve iç kalibrasyon sırası",
+          "url": "https://github.com/MacNite/HiveHub/blob/84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1/firmware/src/scale_bus.cpp",
+          "repository": "MacNite/HiveHub",
+          "ref": "84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1",
+          "path": "firmware/src/scale_bus.cpp"
+        }
+      ]
+    },
+    {
+      "id": "WF02",
+      "title": "Sıcaklık, kalibrasyon ve hata kanıtı",
+      "short": "Sıcaklık ve kalibrasyon",
+      "filename": "S01_WF02_Sicaklik_ve_Kalibrasyon.pdf",
+      "status": "Yazılım çalışmasına başlanabilir; gerçek katsayı için ölçüm gerekli",
+      "priority": "P1",
+      "hours": [
+        20,
+        32,
+        52
+      ],
+      "confidence": "Yazılım için orta",
+      "requirements": "S01-REQ-003, 006 ve 007",
+      "goal": "Mevcut OLS kalibrasyonunu koruyarak, sıcaklık etkisini ayrı ve izlenebilir bir türetilmiş düzeltme/kanıt katmanı halinde incelemek.",
+      "existing": "CalibrationPoint zaten temperature_c ve position alanlarını taşıyor; raw→kg OLS, histerezis ve hata bütçesi uygulanmış. Eksik olan temel kalibrasyon değil, sıcaklık etkisinin kontrollü veriyle ayrılması ve düzeltmenin kanıtıdır. [1, 2]",
+      "gap": "Raf yükü ile sıcaklık aynı anda değişebilir. Normal kullanımda toplanan bütün veriye doğrudan sıcaklık–ağırlık regresyonu uygulamak gerçek ürün ekleme/çıkarma etkisini silebilir.",
+      "synthesis": [
+        [
+          "MacNite/HiveHub / tempcomp.py",
+          "Ham veriyi koruyan, ayrı uygulanabilen saf düzeltme işlevleri. Sunucu/veritabanı kurulumu bu yöntem için gerekmez."
+        ],
+        [
+          "HiveHub sıcaklık belgesi",
+          "Katsayı tahmini sabit fiziksel yük ister. Kaynağın alpha=0,3 ayarı 10 dakikalık ölçüme göre açıklanmıştır; S01’e sayısal olarak aynen taşınamaz."
+        ],
+        [
+          "shelf-load-monitor",
+          "Mevcut kalibrasyon hashleri, sıcaklık/konum alanları, deney planı ve hata bileşenleri korunur. Düzeltme yeni kanıt kaydıyla ilişkilendirilir."
+        ]
+      ],
+      "mapping": [
+        [
+          "Mevcut",
+          "calibration.py; error_budget.py; docs/calibration-procedure.md",
+          "Temel kalibrasyon, histerezis ve belirsizlik modeli."
+        ],
+        [
+          "Yeni öneri",
+          "src/shelf_load_monitor/temperature_compensation.py",
+          "Ayrı, isteğe bağlı düzeltme ve uygun veri seçimi."
+        ],
+        [
+          "Yeni öneri",
+          "tests/fixtures/temperature-evidence/",
+          "Kontrollü sıcaklık/yük/konum ve bozuk veri örnekleri."
+        ],
+        [
+          "Yeni öneri",
+          "reports/temperature-evidence/",
+          "Ham ve düzeltilmiş artıklar; veri ve model hashleri."
+        ]
+      ],
+      "steps": [
+        "Kanıt kaydını temel kalibrasyon SHA’sı, sıcaklık kaynağı, referans sıcaklık, veri aralığı, yöntem sürümü ve eğitim verisi hashine bağla. Ham sayımları ve düzeltilmemiş ağırlığı sakla.",
+        "Bilinen sabit yük altında artık hatayı, yani kalibre ağırlık eksi referans kütleyi modelle. Yük değişen kayıtları eğitimden dışla; yüksek R² tek başına uygun veri kanıtı değildir.",
+        "Filtre gerekliyse zaman damgasına bağlı alpha=1−exp(−Δt/τ) kullan; τ için ölçülmemiş değeri varsayım diye etiketle. Düzensiz aralık ve eksik sıcaklık davranışını açıkça tanımla.",
+        "10/25/40 °C ve merkez+dört köşe kapsamını gösteren sentetik fixture’lar hazırla. Yük basamağı, eksik/eski sıcaklık, zaman boşluğu ve yükleme/boşaltma yönlerini kapsa. Eğitimden ayrı koşum/yük bloklarıyla doğrula.",
+        "Ham ve düzeltilmiş artık hatayı sıcaklık, konum ve yük bazında raporla. Geçersiz sıcaklıkta düzeltme uygulanmadığını açıkça işaretle; USB’nin önceden hashlenmiş yükünü sessizce değiştirme."
+      ],
+      "contract": "Temel raw_count → kg kalibrasyonu ve onun hash bağı korunur. Düzeltme sonucu ayrı türetilmiş kayıttır. Sentetik katsayıyla elde edilen iyileşme ürün doğruluğu sayılmaz; merkez ve köşe farkları sıcaklık formülüyle örtülemez.",
+      "acceptance": [
+        "Bilinen sentetik katsayı kontrollü veriden tanımlı sayısal toleransla geri kazanılır; ayrı doğrulama verisinde beklenen artıklar görülür.",
+        "Gerçek yük basamağı düzeltme sonrasında korunur; yük ve sıcaklığın birlikte değiştiği uygun olmayan eğitim kümesi reddedilir.",
+        "Ham değerler ve kalibrasyon digest’i izlenebilir kalır; eksik/eski sıcaklık sahte düzeltilmiş değer üretmez.",
+        "Geçersiz τ, artmayan zaman, NaN/Infinity, sıfır sıcaklık yayılımı ve yetersiz veri reddedilir; fiziksel kabul NOT_RUN olarak kalır."
+      ],
+      "boundary": "Gerçek katsayı, sensör yerleşimi, termal denge süresi ve ±100 g kabulü ancak fiziksel veriyle belirlenir. Mevcut RSS yaklaşık 86,0 g; bileşen büyüklükleri toplamı 220 g, fakat sıkı bir worst-case sınırı değildir. Bütçe çıktısı EXCEEDS_PRELIMINARY_BUDGET durumundadır. [2]",
+      "tasks": [
+        [
+          "Kanıt/sürüm/provenans sözleşmesini mevcut kalibrasyona bağla",
+          3,
+          5,
+          8
+        ],
+        [
+          "Saf düzeltme modeli ve zaman adımlı filtreyi uygula",
+          4,
+          6,
+          10
+        ],
+        [
+          "Kontrollü yük, sıcaklık ve konum fikstürlerini hazırla",
+          4,
+          6,
+          10
+        ],
+        [
+          "Kalibrasyon/hata bütçesi/rapor katmanına bağla",
+          4,
+          7,
+          12
+        ],
+        [
+          "Ayrı doğrulama verisi, negatif senaryolar ve teknik inceleme",
+          5,
+          8,
+          12
+        ]
+      ],
+      "commit_notes": [
+        [
+          "HiveHub",
+          "c7de557 → fbe35c7",
+          "09.06.2026 05:49:41 → 10:24:00 UTC",
+          "4 sa 34 dk 19 sn",
+          "Saf model, API, migration, belge ve testlerden sonra sıcaklığa EMA ekleniyor. S01 uyarlamasında eğitim uygunluğu, zaman adımı, ham veri izi ve negatif senaryolar ayrı iş kalemleridir."
+        ]
+      ],
+      "duration_note": "20/32/52 saat, yazılım ve sentetik kanıt katmanı içindir. Fiziksel sıcaklıkta bekletme, kütle izlenebilirliği ve gerçek katsayının doğrulanma takvimi dahil değildir.",
+      "dependencies": "Mevcut OLS üzerine başlanabilir. Gerçek ölçümlerde kullanım için WF01 kararları, sensör yerleşimi ve kontrollü yük/sıcaklık deneyi gerekir.",
+      "sources": [
+        {
+          "label": "[1] Var olan sıcaklık/konum alanları ve OLS",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/src/shelf_load_monitor/calibration.py",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "src/shelf_load_monitor/calibration.py"
+        },
+        {
+          "label": "[2] Varsayımsal hata bütçesinin gerçek durumu",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/reports/baseline-calculated/error-budget.json",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "reports/baseline-calculated/error-budget.json"
+        },
+        {
+          "label": "[3] Saf sıcaklık düzeltmesi ve katsayı tahmini",
+          "url": "https://github.com/MacNite/HiveHub/blob/84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1/server/tempcomp.py",
+          "repository": "MacNite/HiveHub",
+          "ref": "84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1",
+          "path": "server/tempcomp.py"
+        },
+        {
+          "label": "[4] Sabit yük ve EMA varsayımları",
+          "url": "https://github.com/MacNite/HiveHub/blob/84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1/docs/temperature-compensation.md",
+          "repository": "MacNite/HiveHub",
+          "ref": "84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1",
+          "path": "docs/temperature-compensation.md"
+        },
+        {
+          "label": "[5] S01 fiziksel kalibrasyon kayıt planı",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/docs/calibration-procedure.md",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "docs/calibration-procedure.md"
+        }
+      ]
+    },
+    {
+      "id": "WF03",
+      "title": "Kayıpsız USB host alıcısı ve yerel arşiv",
+      "short": "USB host ve arşiv",
+      "filename": "S01_WF03_USB_Host_ve_Arsiv.pdf",
+      "status": "Sahte byte akışıyla başlanabilir",
+      "priority": "P1",
+      "hours": [
+        16,
+        28,
+        44
+      ],
+      "confidence": "Orta",
+      "requirements": "S01-REQ-004, 005 ve 007",
+      "goal": "Mevcut NDJSON üreticisinin çıktısını parçalı akış halinde alıp, aynı baytları ve bütün kanıt alanlarını kayıpsız saklayan bir host katmanı eklemek.",
+      "existing": "S01 canonical UTF-8/LF NDJSON çerçeveleri, SHA-256 zinciri, decode_frame_line ve tam akış doğrulayıcısı içeriyor. Mevcut fixture dört çerçeve ve 20 ham örnek üretir. Genel zincir doğrulayıcısı ise en az üç çerçeveyi kabul eder; protokolün bütünü dört çerçeveye sabitlenmiş değildir. [1, 2]",
+      "gap": "Gerçek bir byte akışı tek JSON satırı sınırlarında gelmeyebilir. Parça birleştirme, kesik oturum, tekrar gönderme, kapasite ve disk yazma hataları için alıcı/arşiv davranışı henüz kurulmamış.",
+      "synthesis": [
+        [
+          "MacNite/HiveHub",
+          "Yeniden gönderimde kalıcı kimlik ve idempotency; büyük kayıt sınırı ve şema dönüşümünde veri kaybı dersleri."
+        ],
+        [
+          "shelf-load-monitor",
+          "Mevcut katı çerçeve ayrıştırıcısı ve hash zinciri yeniden kullanılır. HiveHub’ın ölçüm alanları veya Postgres altyapısı taşınmaz."
+        ],
+        [
+          "riatlabs/cdc-badge-nametag",
+          "Koşullu USB/PlatformIO örneği, hazır kabul testi değil. Debug metninin aynı kanala karışması S01’in strict NDJSON sözleşmesiyle uyumsuzdur."
+        ]
+      ],
+      "mapping": [
+        [
+          "Mevcut",
+          "src/shelf_load_monitor/usb_protocol.py; usb_export.py",
+          "Canonical frame, tek satır ayrıştırma ve zincir doğrulama."
+        ],
+        [
+          "Yeni öneri",
+          "src/shelf_load_monitor/host_stream.py",
+          "Artımlı byte alımı ve sınırlı satır tamponu."
+        ],
+        [
+          "Yeni öneri",
+          "src/shelf_load_monitor/host_archive.py",
+          "Ham byte saklama, kimlik, tekrar ve readback."
+        ],
+        [
+          "Yeni öneri",
+          "scripts/run_host_capture.py; reports/host-capture/",
+          "Dosya/sahte akış CLI ve doğrulama çıktısı."
+        ]
+      ],
+      "steps": [
+        "Byte parçalarını LF’ye kadar tamponla; bölünmüş UTF-8 ve tek okumada çok çerçeveyi ele al. Tam satırda mevcut decode_frame_line, oturum sonunda zincir doğrulaması kullan. Tamamlanmamış satır belleğini 1 MiB çerçeve sınırına göre kısıtla.",
+        "Orijinal baytları değişmeden arşivle; indekslenmiş/çözülmüş görünümü ayrı tut. 20 ham sayım, kalibrasyon/state/config hashleri ve veri sınıfı alanları readback sırasında eşleşsin.",
+        "Sabit fixture oturum adından ayrı arşiv kimliği tanımla. Aynı oturum/çerçeve sıra numarası ve aynı digest tekrarında kayıt çoğalmasın; aynı kimlikte farklı digest çakışma saysın.",
+        "EOF satır ortasında veya SESSION_END öncesinde gelirse oturumu eksik işaretle. Tamamlanma çerçevesi uydurma. Yeniden bağlanmada oturum kimliği ve devam davranışı açık olsun.",
+        "Fiziksel USB seçmeden dosya ve sahte byte akışıyla çalıştırılabilir CLI sağla. Doğrudan HiveHub modeli kullanmak yerine S01 şemasını koruyan arşiv/readback kontrolü kur."
+      ],
+      "contract": "HiveHub MeasurementIn modelindeki extra=ignore ve model_dump dönüşümü, şemaya eklenmemiş S01 kanıt alanlarını düşürebilir. Arşivde data_class, kaynak hashleri ve kabul işaretleri açıkça korunmalı. Mevcut 1.0 conformance fixture’ının dört çerçevelik kapsamı değiştirilmez. [1, 3, 4]",
+      "acceptance": [
+        "Bir byte’tan çok çerçeveye kadar farklı parçalamalarda aynı canonical baytlar ve 20 ham örnek geri okunur.",
+        "Aynı kimlik/digest ile replay idempotenttir; değişmiş digest çakışma üretir. Yeni gerçek oturum yanlışlıkla eski fixture ile birleştirilmez.",
+        "Yarım satır, kesik oturum, fazla büyük satır ve disk yazma hatası başarılı arşiv sonucu oluşturmaz.",
+        "BOM, CRLF, boş satır, bozuk hash/sıra ve bilinmeyen alanlar mevcut doğrulayıcıyla reddedilir; bütün kanıt alanları readback sırasında korunur."
+      ],
+      "boundary": "Bu iş fiziksel USB sınıfını, VID/PID’yi, baud değerini veya Windows sürücü uyumunu belirlemez. Sahte akış başarısı fiziksel throughput ya da depolama dayanıklılığı ölçümü değildir.",
+      "tasks": [
+        [
+          "Artımlı byte/çerçeve tüketicisi ve sınırları",
+          3,
+          5,
+          8
+        ],
+        [
+          "Ham byte arşivi, kimlik, tekrar gönderme ve readback",
+          4,
+          7,
+          11
+        ],
+        [
+          "Kesinti, parça sınırı, bozulma ve doluluk senaryoları",
+          5,
+          9,
+          14
+        ],
+        [
+          "CLI, kanıt çıktısı ve protokol dokümantasyonu",
+          4,
+          7,
+          11
+        ]
+      ],
+      "commit_notes": [
+        [
+          "HiveHub",
+          "cf2bdce → d0760c0",
+          "28.06.2026 13:50:12 → 23.07.2026 16:50:39 UTC",
+          "25 gün 03 sa 00 dk 27 sn",
+          "Büyük JSON için SD satır sınırından measurement_id ve tekrar gönderim tekilliğine uzanan değişiklikler. Kapasite ile tekrar kimliği farklı hata sınıflarıdır."
+        ],
+        [
+          "shelf-load-monitor",
+          "3a5ce42 → 3f16769",
+          "14.11.2026 18:47:37 → 15.11.2026 06:23:58 UTC",
+          "11 sa 36 dk 21 sn",
+          "USB üretimi ve persistence birlikte eklenmiş. Yeni tüketici/arşiv işi bu hazır üreticiyi yeniden yazmaz."
+        ]
+      ],
+      "duration_note": "16/28/44 saat, yerel host alıcı/arşiv ve CLI içindir. HiveHub sunucusu, web paneli, üretim saklama politikası ve gerçek USB sürücüsü bu kapsamda yoktur.",
+      "dependencies": "Mevcut USB sözleşmesi yeterli; WF05’in gerçek aday NDJSON çıktısıyla birlikte doğrulanabilir. Fiziksel aktarım WF01 sonrası ayrı entegrasyondur.",
+      "sources": [
+        {
+          "label": "[1] S01 çerçeve ve zincir doğrulaması",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/src/shelf_load_monitor/usb_protocol.py",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "src/shelf_load_monitor/usb_protocol.py"
+        },
+        {
+          "label": "[2] Uygulama protokolü ve mevcut fixture",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/docs/usb-export-protocol.md",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "docs/usb-export-protocol.md"
+        },
+        {
+          "label": "[3] Şemada bilinmeyen alan davranışı",
+          "url": "https://github.com/MacNite/HiveHub/blob/84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1/server/schemas.py",
+          "repository": "MacNite/HiveHub",
+          "ref": "84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1",
+          "path": "server/schemas.py"
+        },
+        {
+          "label": "[4] Şema dönüşümü ve tekrar kayıt davranışı",
+          "url": "https://github.com/MacNite/HiveHub/blob/84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1/server/measurements.py",
+          "repository": "MacNite/HiveHub",
+          "ref": "84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1",
+          "path": "server/measurements.py"
+        },
+        {
+          "label": "[5] Seri kanal örneği; üretim kanıtı değildir",
+          "url": "https://github.com/riatlabs/cdc-badge-nametag/blob/c72979b41aff39ee992681f30e7b9d8cb25548c9/lib/cdc-badge/serial_port.cpp",
+          "repository": "riatlabs/cdc-badge-nametag",
+          "ref": "c72979b41aff39ee992681f30e7b9d8cb25548c9",
+          "path": "lib/cdc-badge/serial_port.cpp"
+        }
+      ]
+    },
+    {
+      "id": "WF04",
+      "title": "Güç olayı, ölçüm ve kalıcı durum koordinasyonu",
+      "short": "Güç olayı koordinasyonu",
+      "filename": "S01_WF04_Guc_Olaylari_ve_Durum.pdf",
+      "status": "Host olay modeliyle başlanabilir",
+      "priority": "P2",
+      "hours": [
+        12,
+        20,
+        32
+      ],
+      "confidence": "Host modelinde orta",
+      "requirements": "S01-REQ-004, 005 ve 007",
+      "goal": "Var olan altı kurtarma senaryosunu yeniden kurmak yerine, güç olayı sırasında ölçüm penceresi, USB oturumu ve durum yazımının birlikte nasıl davranacağını tanımlamak.",
+      "existing": "S01 kalıcı state/hash/kalibrasyon bağı, otomatik darasız açılış ve altı kesinti-kurtarma senaryosunu içeriyor. Bunlar host dosya sistemi modelidir; fiziksel flash veya gerçek güç kesintisi doğrulaması değildir. [1, 2]",
+      "gap": "Güç kaybı örnekleme penceresinin ortasında, state commit sınırında veya USB oturumu tamamlanmadan gerçekleşebilir. Bu bileşenler arasındaki ortak olay sırası için ek davranış kanıtı gerekir.",
+      "synthesis": [
+        [
+          "hatlabs/SH-RPi-firmware + daemon",
+          "Açık durum/olay geçişleri ve hata sınırları. Raspberry Pi kapanma komutu, süperkapasitör devresi ve I²C register düzeni hedefe taşınmaz."
+        ],
+        [
+          "MacNite/HiveHub",
+          "Powered/configured/warming/ready ayrımı ile AFE iç kalibrasyonu. Kullanıcı darası ayrı kalıcı bir kavramdır."
+        ],
+        [
+          "shelf-load-monitor",
+          "startup ve persistence doğrulayıcıları otorite olarak korunur; yeni katman örnekleme, oturum ve durum olaylarını koordine eder."
+        ]
+      ],
+      "mapping": [
+        [
+          "Mevcut",
+          "persistence_recovery.py; startup.py; runtime_state.py",
+          "Kurtarma ve açılış sözleşmeleri."
+        ],
+        [
+          "Mevcut",
+          "acquisition.py; usb_protocol.py",
+          "Tam örnek penceresi ve oturum zinciri."
+        ],
+        [
+          "Yeni öneri",
+          "src/shelf_load_monitor/power_events.py",
+          "Saf olay koordinatörü ve sahte saat adaptörü."
+        ],
+        [
+          "Yeni öneri",
+          "tests/fixtures/power-events/; reports/power-events/",
+          "Bileşenler arası olay dizileri ve kaynaklı sonuçlar."
+        ]
+      ],
+      "steps": [
+        "Güç kaybı/geri gelme, örnek sınırı, state generation değişimi, USB bitişi ve ADC hazır olma olaylarının izinli sıralarını yaz. Commit edilmemiş, eksik ve geçerli durumları ayır.",
+        "Mevcut startup/persistence doğrulayıcılarını yeniden kullan; deterministik koordinatör ve sahte saat ekle. Altı mevcut recovery sonucu bu katmanın girdisi olur.",
+        "10 örneklik pencerenin önce/orta/son noktalarında ve state replace öncesi/sonrasında güç olayları üret. Eksik pencere tam 1 Hz ölçüm diye raporlanmasın.",
+        "USB SESSION_END gelmeden kesilen akışın eksik kaldığını, yeni oturumun açık kimlikle başladığını ve host arşivde kabul edilmiş örneklerin çoğalmadığını göster.",
+        "ADC hazır değil veya iç kalibrasyon başarısızsa geçerli sıfır kilogram üretme. Saklı kullanıcı darasını koru; fiziksel yerleşme süresini başka projeden sabit sayı olarak alma."
+      ],
+      "contract": "Mevcut altı senaryo korunur: replace öncesi/sonrası kesinti, tamamlanan commit, yetim geçici dosya, bozuk etkin durum ve kalibrasyon uyuşmazlığı. Açılışta otomatik dara yoktur; bozuk state/kalibrasyon eşleşmezliğinde fail-closed davranış sürer. [1, 2]",
+      "acceptance": [
+        "10 örnekten az veriyle tam pencere iddiası üretilmez; kesik oturum tamamlanmış diye gösterilmez.",
+        "Enerji geri geldiğinde saklı dara ve kabul edilen eski/yeni generation sözleşmesi korunur.",
+        "Bozuk etkin durum veya kalibrasyon uyuşmazlığında açılış reddedilir; kendiliğinden sıfırlama veya sessiz geri dönüş yapılmaz.",
+        "Yanlış sıradaki, yinelenen ve eksik olaylar görünür sonuç üretir. Model sonucu HOST_FILESYSTEM_SIMULATION_ONLY sınırında kalır."
+      ],
+      "boundary": "Gerçek güç kesme düzeneği, enerji rezervi, MCU flash/EEPROM sürücüsü, yazma bariyerleri, aşınma ve gerçek ADC ısınma ölçümü kapsam dışıdır. SH-RPi daemon’un sudo poweroff davranışı S01’e ait bir gereksinim değildir.",
+      "tasks": [
+        [
+          "Yeni olay sırası/sınır sözleşmesi; mevcut altı senaryoyla fark",
+          2,
+          3,
+          5
+        ],
+        [
+          "Saf koordinatör ve sahte saat/olay adaptörü",
+          3,
+          5,
+          8
+        ],
+        [
+          "Ölçüm+oturum+durum çapraz kesinti fikstürleri",
+          4,
+          7,
+          11
+        ],
+        [
+          "Conformance/evidence bağlantısı ve kapsam incelemesi",
+          3,
+          5,
+          8
+        ]
+      ],
+      "commit_notes": [
+        [
+          "SH-RPi-firmware",
+          "81dbc0c → ffbb39b",
+          "13.12.2022 17:38:10 → 15.12.2022 10:52:58 UTC",
+          "1 gün 17 sa 14 dk 48 sn",
+          "Request handler ayrımından sonra register yönlendirme bit kaydırması ve case değerleri düzeltiliyor. Olay/protokol adaptörüne negatif senaryo ayırma gerekçesi."
+        ],
+        [
+          "HiveHub",
+          "dee6cf0 → 0d4fe8a",
+          "15.07.2026 13:38:04 → 06.08.2026 06:46:40 UTC",
+          "21 gün 17 sa 08 dk 36 sn",
+          "Doğru okuma ile analog hazır olma farklı aşamalar; iç AFE kalibrasyonu kullanıcı darası yerine geçmez."
+        ]
+      ],
+      "duration_note": "12/20/32 saat, yeni bileşenler arası olay modeli içindir. Mevcut altı recovery senaryosunu baştan yazma işi eklenmedi. Fiziksel cihaz kurtarma süresi bu aralıktan çıkarılamaz.",
+      "dependencies": "Mevcut runtime/persistence yeterli. WF03 oturum ve arşiv uç durumlarını birlikte sınamayı sağlar. Gerçek backend ve hazır olma süreleri WF01 sonrası seçilir.",
+      "sources": [
+        {
+          "label": "[1] Altı mevcut kurtarma senaryosu",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/docs/persistence-recovery.md",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "docs/persistence-recovery.md"
+        },
+        {
+          "label": "[2] Açılışta otomatik dara olmaması",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/src/shelf_load_monitor/startup.py",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "src/shelf_load_monitor/startup.py"
+        },
+        {
+          "label": "[3] Güç olayları için durum makinesi örneği",
+          "url": "https://github.com/hatlabs/SH-RPi-firmware/blob/4646cc5dd4f5ff60ee702254bc6c63044ddb5639/src/state_machine.cpp",
+          "repository": "hatlabs/SH-RPi-firmware",
+          "ref": "4646cc5dd4f5ff60ee702254bc6c63044ddb5639",
+          "path": "src/state_machine.cpp"
+        },
+        {
+          "label": "[4] Host kapanma koordinasyonu örneği",
+          "url": "https://github.com/hatlabs/SH-RPi-daemon/blob/ca6f23a2d2af77d5f676f308cafcc21bb41adf10/src/shrpi/state_machine.py",
+          "repository": "hatlabs/SH-RPi-daemon",
+          "ref": "ca6f23a2d2af77d5f676f308cafcc21bb41adf10",
+          "path": "src/shrpi/state_machine.py"
+        },
+        {
+          "label": "[5] Hazır olma ve iç kalibrasyon ayrımı",
+          "url": "https://github.com/MacNite/HiveHub/blob/84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1/firmware/src/scale_bus.cpp",
+          "repository": "MacNite/HiveHub",
+          "ref": "84a82d2eb45d3fd13ee743ff6ab388e7f8d0a6f1",
+          "path": "firmware/src/scale_bus.cpp"
+        }
+      ]
+    },
+    {
+      "id": "WF05",
+      "title": "Çalışan aday ve bağımsız uygunluk gözlemi",
+      "short": "Çalışan aday",
+      "filename": "S01_WF05_Calisan_Aday_ve_Uygunluk.pdf",
+      "status": "Şimdi başlanabilir",
+      "priority": "P0",
+      "hours": [
+        24,
+        40,
+        64
+      ],
+      "confidence": "Orta–düşük",
+      "requirements": "S01-REQ-003, 004, 005 ve 007",
+      "goal": "Statik bir aday dosyasının karşılaştırılmasından, girdileri işleyen ve gerçek çıktı dosyaları üreten ayrı bir programın davranış kanıtına geçmek.",
+      "existing": "firmware_conformance.py aday gözlemlerini JSON dosyasından okuyor. Beş kontrol, kaynak ve hash bağları, negatif testler ve yeniden üretim testleri var. Beklenen runtime değerleri mevcut rapordan alınıyor; aday süreç bu araç tarafından başlatılmıyor. [1, 2]",
+      "gap": "Adayın gerçekten çalıştığını ve beyan ettiği USB/state hashlerinin ürettiği baytlardan geldiğini gösteren yürütme ve gözlem katmanı eksik. Sadece program çalıştırıp aynı statik özeti yazdırmak bu boşluğu kapatmaz.",
+      "synthesis": [
+        [
+          "shelf-load-monitor",
+          "Mevcut 1.0 profil, beş kontrol ve sentetik girdiler ana sözleşmedir. Yeni çerçeve eklemek yerine mevcut karşılaştırıcı yeniden kullanılır."
+        ],
+        [
+          "eshelton328/forge",
+          "Hafif, başarısızlığı görünür kılan doğrulama kapısı yöntem olarak alınır; pytest veya kart tasarımı hedefe taşınmaz. WF06 ile ortak rapor paketi kurulur."
+        ],
+        [
+          "Listedeki diğer alan projeleri",
+          "VINS, ADCS, GMAT veya RF kütüphaneleri bu davranış sözleşmesine katkı sağlamadığı için bağımlılık yapılmaz."
+        ]
+      ],
+      "mapping": [
+        [
+          "Mevcut",
+          "configs/firmware-conformance.json; src/shelf_load_monitor/firmware_conformance.py",
+          "Profil ve karşılaştırıcı korunur."
+        ],
+        [
+          "Yeni öneri",
+          "tools/host_candidate/; scripts/run_candidate_execution.py",
+          "Ayrı süreçte çalışan aday ve koşucu."
+        ],
+        [
+          "Yeni öneri",
+          "src/shelf_load_monitor/candidate_observer.py",
+          "Gerçek log, NDJSON ve state dosyalarından gözlem üretir."
+        ],
+        [
+          "Yeni öneri",
+          "reports/candidate-execution/",
+          "Aday gözlemi, ayrı execution manifesti ve mutasyon sonuçları."
+        ]
+      ],
+      "steps": [
+        "Girdi paketini aynı SHA üzerinde sabitle: kalibrasyon, başlangıç durumu, 20 zamanlı ham örnek ve altı persistence senaryosu. Beklenen raporlar ile statik aday fixture’ı adayın giriş paketine girmez.",
+        "Bağımsız bir host programını ayrı süreçte çalıştır. İlk sürüm Python olabilir; referansın kalibrasyon, toplama ve USB üretici işlevlerini doğrudan çağırması bağımsızlık amacını zayıflatır.",
+        "Gerçek örnek/kayıt loglarını, NDJSON baytlarını ve state/recovery sonuçlarını yakala. Dış gözlemleyici bu dosyaların hashlerini kendisi hesaplasın.",
+        "Gözlemleyici mevcut aday JSON şemasını üretsin. Çalıştırılan komut, aday/girdi hashleri, interpreter sürümü, çıkış kodu ve çıktı hashleri ayrı candidate-execution-manifest.json dosyasına yazılsın.",
+        "Mevcut uygunluk aracını çalıştır; beş kontrolün eşleşmesini göster. Ardından çalışan adayın kodunda kontrollü bozulmalar oluşturarak zincirin bunları gerçekten yakaladığını kanıtla."
+      ],
+      "contract": "S01-FIRMWARE-CONFORMANCE-1 / 1.0 ve EXACT_CANONICAL_VALUE_AND_SHA256 korunur: 20 örnek, 2 kayıt, 4 USB çerçevesi, 6 recovery senaryosu. Mevcut candidate_status değeri ve alan kümesi korunur; yürütme bilgisi sidecar’a gider. Geniş zamanlama/jitter veya fixed-point davranışı ayrı sürümlenmiş profil konusu olur. [1, 2]",
+      "acceptance": [
+        "Normal aday gerçekten çalışır; beş kontrol MATCH verir. Timeout, exception, boş çıktı veya eksik dosya başarı sayılmaz.",
+        "Hashler, gerçek aday NDJSON/state dosyalarından üretilir; adayın kendi özet beyanı tek başına kanıt olmaz.",
+        "BOOT, CADENCE, RAW_TRACE, USB_CHAIN ve RECOVERY için aday davranışındaki en az bir mutasyon yakalanır. Bir mutasyon birden fazla kontrolü etkileyebilir.",
+        "İki temiz koşumun deterministik çıktıları eşleşir; mevcut testler geçer. Sonuç SIMULATED, ürün kabulü NOT_RUN olarak kalır."
+      ],
+      "boundary": "Bu bir host davranış kanıtıdır. MCU firmware’i, fiziksel USB aktarımı, ADC doğruluğu veya flash atomikliği kanıtlanmış olmaz. Mevcut analitik OLS ve raw_counts[0] değişikliği testleri zaten vardır; öneri onları tekrar yazmak değildir.",
+      "tasks": [
+        [
+          "Sözleşme ve aday girişlerini sabitleme",
+          2,
+          3,
+          5
+        ],
+        [
+          "Süreç runner'ı ve gerçek dosya gözlemleyicisi",
+          4,
+          7,
+          10
+        ],
+        [
+          "Bağımsız aday runtime/kalibrasyon yolu",
+          3,
+          5,
+          8
+        ],
+        [
+          "Canonical USB çıktı ve hash uyumu",
+          4,
+          6,
+          11
+        ],
+        [
+          "Altı host persistence kesinti senaryosu",
+          4,
+          7,
+          11
+        ],
+        [
+          "Beş davranış mutantı ve bağımsız sayısal kontrol",
+          4,
+          7,
+          11
+        ],
+        [
+          "Temiz tekrar, kaynak izi, teslim paketi",
+          3,
+          5,
+          8
+        ]
+      ],
+      "commit_notes": [
+        [
+          "shelf-load-monitor",
+          "3f16769 → db6bdca",
+          "15.11.2026 06:23:58 → 08:28:44 UTC",
+          "2 sa 04 dk 46 sn",
+          "USB/persistence diliminin üstüne statik uygunluk aracı eklenmiş. Yeni süreç koşucusu, gerçek çıktı gözlemi ve davranış mutasyonları bu değişikliğin kapsamına dahil değil."
+        ],
+        [
+          "shelf-load-monitor",
+          "709b95c → 3a5ce42",
+          "14.11.2026 12:19:24 → 18:47:37 UTC",
+          "6 sa 28 dk 13 sn",
+          "Runtime, kalıcı durum, örnekleme ve testlerin birlikte ele alınması; bağımsız aday için de ayrı runtime ve kanıt iş kalemleri ayrılmasının dayanağı."
+        ]
+      ],
+      "duration_note": "24/40/64 saat, ayrı host süreç ve mevcut exact profil içindir. Float işlem sırası ve canonical JSON türleri entegrasyon riskidir; profili sessizce toleranslı hale getirmek süre kısaltma yöntemi değildir.",
+      "dependencies": "Mevcut 0.5.0 kaynakları yeterli. WF06 CI, işi izlenebilir kılar; gerçek ADC/MCU seçimi beklenmez.",
+      "sources": [
+        {
+          "label": "[1] Mevcut aday okuyucusu ve karşılaştırıcı",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/src/shelf_load_monitor/firmware_conformance.py",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "src/shelf_load_monitor/firmware_conformance.py"
+        },
+        {
+          "label": "[2] Uygunluk profili ve giriş bağlantıları",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/configs/firmware-conformance.json",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "configs/firmware-conformance.json"
+        },
+        {
+          "label": "[3] Statik aday gözlem fixture’ı",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/tests/fixtures/firmware-candidate-reference.json",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "tests/fixtures/firmware-candidate-reference.json"
+        },
+        {
+          "label": "[4] Mevcut negatif aday değişikliği testi",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/tests/integration/test_firmware_conformance.py",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "tests/integration/test_firmware_conformance.py"
+        },
+        {
+          "label": "[5] Forge doğrulama kapısı örneği",
+          "url": "https://github.com/eshelton328/forge/blob/f5952447056aa64482155acc8abfc78d8a3ce74f/.github/workflows/pytest.yml",
+          "repository": "eshelton328/forge",
+          "ref": "f5952447056aa64482155acc8abfc78d8a3ce74f",
+          "path": ".github/workflows/pytest.yml"
+        }
+      ]
+    },
+    {
+      "id": "WF06",
+      "title": "Yazılım CI ve yeniden üretilebilir kanıt paketi",
+      "short": "Yazılım CI",
+      "filename": "S01_WF06_Yazilim_CI_ve_Kanit.pdf",
+      "status": "Şimdi başlanabilir",
+      "priority": "P0",
+      "hours": [
+        12,
+        16,
+        20
+      ],
+      "confidence": "Orta",
+      "requirements": "Bütün gereksinimlerin yazılım izlenebilirliği; ürün kabulü ayrı",
+      "goal": "Mevcut testleri ve beş çıktı üreticisini tek bir otomatik kapıda çalıştırmak; başarısızlıkları ve kaynak–çıktı ilişkisini görünür kılmak.",
+      "existing": "Python ≥3.11, standart kütüphane unittest çalıştırıcısı, beş üretim komutu, manifestler ve deterministik çıktı testleri var. İncelenen ağaçta .github iş akışı yok. README’nin 117/117 beyanı bu araştırmada yeniden koşulmuş bir test sonucu değildir. [1, 2]",
+      "gap": "Mevcut güçlü kontrollerin her değişiklikte birlikte yürütülmesini, çıktıların yeniden üretimini ve paket bütünlüğünü zorunlu kılan otomasyon eksik.",
+      "synthesis": [
+        [
+          "eshelton328/forge",
+          "Küçük Python doğrulama işi, sınırlı izin, süre sınırı ve başarısızlık görünürlüğü."
+        ],
+        [
+          "DillanMcDonald/kicad-ci",
+          "Bağımlı kontrol aşamaları ve başarısız koşumda rapor saklama yöntemi. Kaynak README ile gerçek workflow farkında kod esas alındı."
+        ],
+        [
+          "shelf-load-monitor",
+          "Kendi unittest çalıştırıcısı, beş CLI, manifestler ve kanıt sınıfları. KiCad/pytest kurulumu bu iş için gerekmez."
+        ]
+      ],
+      "mapping": [
+        [
+          "Mevcut",
+          "scripts/run_tests.py ve run_baseline/runtime_replay/usb_export/persistence_recovery/firmware_conformance.py",
+          "Mevcut komutlar sıralı kullanılır."
+        ],
+        [
+          "Yeni öneri",
+          ".github/workflows/software-validation.yml",
+          "Test ve kanıt paketi işi."
+        ],
+        [
+          "Yeni öneri",
+          "scripts/ci/validate_artifact_bundle.py",
+          "Envanter, hash, kaynak SHA ve durum denetimi."
+        ],
+        [
+          "Yeni öneri",
+          "artifacts/software-validation/; docs/software-validation.md",
+          "Koşum özeti, yeniden üretim yönergesi ve tanılar."
+        ]
+      ],
+      "steps": [
+        "Geçici temiz çalışma kopyasında, seçili Python sürümüyle python scripts/run_tests.py çalıştır. Test keşfinin sıfır testle başarıya dönmediğini de denetle.",
+        "baseline → runtime replay → USB export → persistence recovery → firmware conformance sırasını koru. Bağımlılıkları hazır olmadan sonraki aşamayı başarılı sayma.",
+        "Yalnız --output seçeneğini değiştirme: sonraki config kaynakları repository_root üzerinden çözümleniyor. İlk sürümde temiz çalışma dizini ve varsayılan yolları kullan; alternatifte bütün girdi referanslarını birlikte yönlendir.",
+        "Üretilen dosya envanterini, kaynak SHA’sını, kalibrasyon bağlarını ve SHA-256 değerlerini doğrula. İkinci temiz koşumla deterministik bayt eşitliğini denetle.",
+        "Kontrollü bozuk fixture/çıktı ile hattın hata verdiğini göster. Hata halinde tanıları sakla; ürün kabul alanlarını otomatik olarak yükseltme."
+      ],
+      "contract": "CI sonucu yazılım doğrulamasıdır. CALCULATED/SIMULATED, product_acceptance=NOT_RUN, physical_validation=PHYSICAL_VALIDATION_REQUIRED ve sentetik veri işaretleri aynen korunur. Sadece uygunluk MATCH sonucunda başarı; CLI uyumsuzluk kodu 3 göz ardı edilmez.",
+      "acceptance": [
+        "Bulunan bütün mevcut testler geçer; test kümesi boştan büyüktür.",
+        "Beş üretici bağımlılık sırasıyla başarılı çalışır; beklenen çıktı envanteri ve hashler doğrulanır.",
+        "Kontrollü veri bozulması işi başarısız yapar; tanı paketi yine erişilebilir olur.",
+        "Aynı SHA/girdi için temiz tekrar deterministik sonuç verir; fiziksel kabul durumu değişmez."
+      ],
+      "boundary": "Hattı çalıştırmadan “CI yeşil” denemez. Bu araştırma bir uygulama planıdır; hedef repoya workflow eklenmedi ve mevcut testler yeniden çalıştırılmadı.",
+      "tasks": [
+        [
+          "CI ortamı ve işi",
+          4,
+          5,
+          6
+        ],
+        [
+          "Çıktı zinciri ve manifest denetimi",
+          4,
+          5,
+          6
+        ],
+        [
+          "Kontrollü başarısızlık kontrolü",
+          2,
+          3,
+          4
+        ],
+        [
+          "Yönerge ve temiz tekrar kanıtı",
+          2,
+          3,
+          4
+        ]
+      ],
+      "commit_notes": [
+        [
+          "kicad-ci",
+          "f28bae2 → cbe03a8",
+          "16.04.2026 03:32:32 → 17.04.2026 04:19:40 UTC",
+          "24 sa 47 dk 08 sn",
+          "İlk iskeletin ardından CLI, yollar, raporlar ve QA düzeltmeleri geliyor. Kurulum kadar başarısızlık davranışına da zaman ayırma gerekçesi."
+        ],
+        [
+          "forge",
+          "9946e79",
+          "02.05.2026 21:03:32 UTC",
+          "Tek ilgili commit",
+          "Python kapısının kapsamı incelendi. Bu dosya için ikinci bir commit uydurulmadı; süre kanıtı değişiklik içeriğiyle sınırlı."
+        ]
+      ],
+      "duration_note": "12–20 saat; merkez 16 saat. Yeni uygulama mantığı yazmaktan çok mevcut komutların doğru sırada, doğru kaynaklarla ve gözlenebilir hatalarla işletilmesidir.",
+      "dependencies": "Mevcut kaynaklar yeterli. Repository yazma ve Actions çalıştırma, sonraki uygulama adımının yetkisi içinde ayrıca ele alınır; bu araştırmada değişiklik yapılmaz.",
+      "sources": [
+        {
+          "label": "[1] Standart kütüphane test çalıştırıcısı",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/scripts/run_tests.py",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "scripts/run_tests.py"
+        },
+        {
+          "label": "[2] Beş CLI ve mevcut sonuç beyanı",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/README.md",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "README.md"
+        },
+        {
+          "label": "[3] Kaynak dosyası bağımlılıkları",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/configs/firmware-conformance.json",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "configs/firmware-conformance.json"
+        },
+        {
+          "label": "[4] Forge Python kapısı",
+          "url": "https://github.com/eshelton328/forge/blob/f5952447056aa64482155acc8abfc78d8a3ce74f/.github/workflows/pytest.yml",
+          "repository": "eshelton328/forge",
+          "ref": "f5952447056aa64482155acc8abfc78d8a3ce74f",
+          "path": ".github/workflows/pytest.yml"
+        },
+        {
+          "label": "[5] Bağımlı işler ve rapor yükleme",
+          "url": "https://github.com/DillanMcDonald/kicad-ci/blob/000d5ce6712eb041aa3b7fc16d8f89f2847e49cc/.github/workflows/kicad-ci.yml",
+          "repository": "DillanMcDonald/kicad-ci",
+          "ref": "000d5ce6712eb041aa3b7fc16d8f89f2847e49cc",
+          "path": ".github/workflows/kicad-ci.yml"
+        }
+      ]
+    },
+    {
+      "id": "WF07",
+      "title": "Koşullu ECAD ve üretim paketi kapısı",
+      "short": "ECAD kapısı",
+      "filename": "S01_WF07_ECAD_ve_Uretim_Kapisi.pdf",
+      "status": "Gerçek şema ve PCB girdisi bekleniyor",
+      "priority": "P2",
+      "hours": [
+        16,
+        22,
+        28
+      ],
+      "confidence": "Girdiler hazırsa orta",
+      "requirements": "S01-REQ-002, 005 ve G1 donanım kararları; fiziksel doğruluk ayrı",
+      "goal": "Gerçek raf kartı oluştuğunda, tasarım kontrolleri ile üretim dosyalarını aynı kaynak sürümüne bağlayan tekrarlanabilir bir kapı kurmak.",
+      "existing": "hardware/README.md henüz kaynak tasarım ve üretim paketi bulunmadığını söylüyor. Tam ağaçta .kicad_sch, .kicad_pcb ve .kicad_pro yok. KiBot’a verilecek gerçek S01 tasarımı bugün mevcut değil. [1]",
+      "gap": "Eksik ilk girdi kart tasarımının kendisidir. Bu akış kartı tasarlama işini kapsamaz; tasarım hazır olduğunda doğrulama ve üretim otomasyonunu kapsar.",
+      "synthesis": [
+        [
+          "INTI-CMNB/KiBot + kicad_ci_test",
+          "ERC, DRC, şema–PCB tutarlılığı, doküman ve üretim çıktıları; alt dizin ve dış kütüphane yapılandırmaları."
+        ],
+        [
+          "DillanMcDonald/kicad-ci + forge",
+          "Engelleyici kontroller, üretici kural profili ve hata tanıları; kritik bağlantılara özgü ek negatif denetim."
+        ],
+        [
+          "yaqwsx/KiKit + espressif/kicad-libraries",
+          "Panel yalnız üretim ihtiyacında; Espressif kütüphanesi yalnız uyumlu parça/MCU seçilirse. İkisi de bugün zorunlu bağımlılık değil."
+        ]
+      ],
+      "mapping": [
+        [
+          "Ön koşul",
+          "hardware/shelf-load-monitor/*.kicad_sch, *.kicad_pcb, *.kicad_pro",
+          "Gerçek tasarım dosyaları; bu süreye dahil değil."
+        ],
+        [
+          "Yeni öneri",
+          "hardware/shelf-load-monitor/board.yml; shelf-load-monitor.kibot.yaml",
+          "Araç, üretici ve çıktı sözleşmesi."
+        ],
+        [
+          "Yeni öneri",
+          ".github/workflows/ecad-validation.yml; reports/ecad/",
+          "Kontroller ve kaynaklı raporlar."
+        ],
+        [
+          "Yeni öneri",
+          "artifacts/manufacturing/",
+          "Gerber/drill, BOM, yerleşim ve hash manifesti."
+        ]
+      ],
+      "steps": [
+        "G1 kararları ve gerçek şema/PCB hazır olduğunda araç/kütüphane sürümlerini tek uyumlu kümeye sabitle. Kaynak örneklerinde KiCad 8, 9 ve 10 ortamları farklıdır; latest etiketlerini karıştırma.",
+        "Girdi dosyalarını ve kütüphaneleri doğrula. ERC, DRC ve şema–PCB parity kontrolünü açıkça etkinleştir; bilinçli muafiyetleri gerekçeleriyle kaydet.",
+        "Seçilen üretici kurallarına göre Gerber/drill, BOM ve yerleşim dosyalarını üret. Kaynak tasarımın kurallarını kalıcı olarak değiştiren yan etkileri önle.",
+        "Gerçek bir bozuk bağlantı/şema uyuşmazlığı örneğiyle ilgili kontrolün başarısız olduğunu göster. Forge’daki pad–bakır teması kontrolü örnek alınabilir; tüm net iletkenliği veya akım kapasitesi kanıtı gibi sunulamaz.",
+        "Çıktıları kaynak SHA, araç sürümleri ve SHA-256 manifestiyle paketle. Aynı girdiden temiz tekrar üret; bu kapının sonucunu fiziksel raf doğruluğundan ayrı raporla."
+      ],
+      "contract": "Girdi yoksa BLOCKED_INPUT; boş tasarım veya eksik dosyayla PASS yok. Üretim paketindeki referanslar gerçek PCB bileşenleriyle eşleşmeli. Dijital tasarım kontrolü, ±100 g doğruluğu, USB davranışını veya üretim verimini tek başına doğrulamaz.",
+      "acceptance": [
+        "Gerekli gerçek şema, PCB, proje ve kütüphaneler vardır ve açılabilir.",
+        "Muaf tutulmamış engelleyici ERC/DRC/parity bulgusu yoktur; negatif örnek beklenen kontrolü bozar.",
+        "BOM/yerleşim referansları PCB ile eşleşir; bütün çıktıların kaynak SHA’sı ve hashleri vardır.",
+        "Araç sürümü sabittir; iki temiz üretim beklenen deterministik çıktıları verir."
+      ],
+      "boundary": "Şema/PCB tasarımı, parça satın alma, üretim, montaj ve fiziksel deney bu 16–28 saate dahil değildir. Bu girdilerin hazır olacağı tarih bilinmediği için teslim takvimi başlatılamaz.",
+      "tasks": [
+        [
+          "Araç ve kütüphane sürüm kilidi",
+          4,
+          5,
+          6
+        ],
+        [
+          "ERC/DRC ve üretici yapılandırması",
+          4,
+          6,
+          8
+        ],
+        [
+          "Çıktı manifesti ve adlandırma",
+          4,
+          5,
+          6
+        ],
+        [
+          "Negatif kontrol ve temiz tekrar",
+          4,
+          6,
+          8
+        ]
+      ],
+      "commit_notes": [
+        [
+          "kicad_ci_test",
+          "b2abc75 → 460225e",
+          "21.02.2025 12:41:36 → 13:03:48 UTC",
+          "22 dk 12 sn",
+          "Komut seçeneği açıklamasından açık parity yapılandırmasına geçiş; küçük ayar değişikliği, tüm hattın süresi değil."
+        ],
+        [
+          "KiBot",
+          "3521348 → df09af5",
+          "14.04.2026 11:54:23 → 13:12:17 UTC",
+          "1 sa 17 dk 54 sn",
+          "Kütüphane tablosu düzeltmesi 3D hedefleri bozduğu için geri alınıyor; sürüm uyumu için regresyon payı gerekli."
+        ],
+        [
+          "forge",
+          "ad268c0 → 76e7469",
+          "18.07.2026 23:12:39 → 23:14:52 UTC",
+          "2 dk 13 sn",
+          "Yazarın fiziksel güç arızası için bağlantı düzeltmesi ve ardından Gerber yenilemesi. Aralık, arızayı teşhis etme süresi değildir."
+        ]
+      ],
+      "duration_note": "16/22/28 saat, gerçek kart kaynakları hazır olduktan sonra. İsteğe bağlı KiKit paneli ayrıca 12–20 saat: panel kuralları, üretilebilirlik, bölge dolguları ve tekrar DRC. Panel bu yedi akışın zorunlu kapsamına eklenmedi.",
+      "dependencies": "G1 karar paketi (WF01), gerçek devre ve mekanik tasarım, seçili üretici kuralları. Çizim üretimi için ayrı kapsam ve süre gerekir.",
+      "sources": [
+        {
+          "label": "[1] S01 donanım kaynaklarının mevcut durumu",
+          "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/hardware/README.md",
+          "repository": "kemaldemirag/shelf-load-monitor",
+          "ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+          "path": "hardware/README.md"
+        },
+        {
+          "label": "[2] KiBot DRC ve parity davranışı",
+          "url": "https://github.com/INTI-CMNB/KiBot/blob/b81caf648b7eaf687b14c4290cc7e50d66eede33/kibot/pre_drc.py",
+          "repository": "INTI-CMNB/KiBot",
+          "ref": "b81caf648b7eaf687b14c4290cc7e50d66eede33",
+          "path": "kibot/pre_drc.py"
+        },
+        {
+          "label": "[3] Alt dizin ve parity örneği",
+          "url": "https://github.com/INTI-CMNB/kicad_ci_test/blob/b2ed41910c1acc11ca662d456346554f7b3d26b2/test_subdir/test_subdir.kibot.yaml",
+          "repository": "INTI-CMNB/kicad_ci_test",
+          "ref": "b2ed41910c1acc11ca662d456346554f7b3d26b2",
+          "path": "test_subdir/test_subdir.kibot.yaml"
+        },
+        {
+          "label": "[4] Forge pad–bakır denetimi",
+          "url": "https://github.com/eshelton328/forge/blob/f5952447056aa64482155acc8abfc78d8a3ce74f/scripts/ci/check_copper_connectivity.py",
+          "repository": "eshelton328/forge",
+          "ref": "f5952447056aa64482155acc8abfc78d8a3ce74f",
+          "path": "scripts/ci/check_copper_connectivity.py"
+        },
+        {
+          "label": "[5] Koşullu panelleme örnekleri",
+          "url": "https://github.com/yaqwsx/KiKit/blob/2aa564ff6019560e18553b2c7d16c875fa417d63/docs/panelization/examples.md",
+          "repository": "yaqwsx/KiKit",
+          "ref": "2aa564ff6019560e18553b2c7d16c875fa417d63",
+          "path": "docs/panelization/examples.md"
+        }
+      ]
+    }
+  ],
+  "target_sources": [
+    {
+      "path": "requirements.yaml",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/requirements.yaml",
+      "blob_sha": "8fbd37cab389cfb5fe2bd27e0e5212d743497e7c"
+    },
+    {
+      "path": "PROJECT-MANIFEST.json",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/PROJECT-MANIFEST.json",
+      "blob_sha": "c41a2625d325d68e809cad16cafc6fd5018a84c0"
+    },
+    {
+      "path": "configs/baseline.json",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/configs/baseline.json",
+      "blob_sha": "08f168de2acacde24c6c149610b8da44a989ab72"
+    },
+    {
+      "path": "tests/test-plan.csv",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/tests/test-plan.csv",
+      "blob_sha": "4a807bf55e1c2215862f29c36df13951ad7d24fa"
+    },
+    {
+      "path": "docs/architecture.md",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/docs/architecture.md",
+      "blob_sha": "ba2dfbe7b4ce77822308b1f4c1bdddda205360e2"
+    },
+    {
+      "path": "docs/development-status.md",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/docs/development-status.md",
+      "blob_sha": "65c473f323f0cc97bd97096cbeb1ea95c472afb7"
+    },
+    {
+      "path": "reports/baseline-calculated/error-budget.json",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/reports/baseline-calculated/error-budget.json",
+      "blob_sha": "ec0cbec9cfd4b827dd95b17ac0758ba901284348"
+    },
+    {
+      "path": "reports/baseline-calculated/sensor-model.json",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/reports/baseline-calculated/sensor-model.json",
+      "blob_sha": "2a1128dc13cd713096bd36a2737af8e4ccdeef53"
+    },
+    {
+      "path": "docs/calibration-procedure.md",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/docs/calibration-procedure.md",
+      "blob_sha": "89b3f491e82eefdc6da8694e180d4fb662806640"
+    },
+    {
+      "path": "docs/error-budget-method.md",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/docs/error-budget-method.md",
+      "blob_sha": "f26078424b50530039b310be36432607ef718884"
+    },
+    {
+      "path": "interfaces/README.md",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/interfaces/README.md",
+      "blob_sha": "ec8a4a10fede8ec147ea4f435e400436805f9ced"
+    },
+    {
+      "path": "firmware/README.md",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/firmware/README.md",
+      "blob_sha": "1e175de716ed12bc46be4d90e1ce1d3f53d97052"
+    },
+    {
+      "path": "provenance/R01-review.md",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/provenance/R01-review.md",
+      "blob_sha": "8f27f19501b50c0e43c7eb68856b4dc73d4bc53f"
+    },
+    {
+      "path": "docs/usb-export-protocol.md",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/docs/usb-export-protocol.md",
+      "blob_sha": "34ee5f8d75d4166c598c516aa39a9170c30d7618"
+    },
+    {
+      "path": "docs/persistence-recovery.md",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/docs/persistence-recovery.md",
+      "blob_sha": "6fb84a0c7e854044e75fc87db1b2752f923879af"
+    },
+    {
+      "path": "docs/firmware-conformance.md",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/blob/db6bdcada9cd447ad411c175115b13aac2cfcf22/docs/firmware-conformance.md",
+      "blob_sha": "6651dd5b7178356f50bc1a5bbb826029585a1a40"
+    }
+  ],
+  "repository_relevance": {
+    "observed_on": "2026-11-15",
+    "target_repository": "kemaldemirag/shelf-load-monitor",
+    "target_ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+    "list_source": "https://github.com/stars/kemaldemirag/lists/12-11-2026/",
+    "inventory_source_file": "analysis/list_snapshot.json",
+    "coverage": {
+      "listed_repositories": 49,
+      "mapped_repositories": 49,
+      "missing": [],
+      "duplicates": [],
+      "list_order_preserved": true
+    },
+    "category_definitions": {
+      "primary": "Yedi hedef iş akışından en az birinde somut kaynak/örüntü görevi kaynak içeriğiyle eşlenmiş; hazır bağımlılık, kod kopyalama veya fiziksel ürün uygunluğu anlamına gelmez.",
+      "conditional": "Donanım/G1 girdisi, belirli kullanım ihtiyacı veya yeterli kaynak kanıtı bekliyor; sırf listede olduğu için entegrasyon önerilmez.",
+      "out_of_scope": "Mevcut yedi S01 akışına alınmadı; projenin genel değeri veya hiçbir bileşeninin başka amaçla kullanılamayacağı hakkında hüküm değildir."
+    },
+    "scan_depth_definitions": {
+      "source_inspected": "Bu araştırma ekibinin README, kod, yapılandırma veya commit diffi içeriği okuması doğrulandı; çalışma zamanı testi yapıldığı anlamına gelmez.",
+      "list_metadata_only": "Liste üyeliği/adı ve bazı kayıtlarda metadata/ağaç/commit listesi düzeyinde; ayrıntılı kaynak içeriği incelemesi teyit edilmedi."
+    },
+    "workflow_definitions": {
+      "g1_measurement_chain": "G1 ölçüm zinciri ve ADC/AFE/uyarma seçenekleri",
+      "temperature_calibration_evidence": "Sıcaklık ve kalibrasyon kanıtı",
+      "usb_host": "USB uygulama/host veri alımı",
+      "power_events": "Güç olayları ve kalıcı durum koordinasyonu",
+      "executable_candidate": "Çalıştırılabilir aday ve dış gözlemleyici",
+      "software_ci": "Mevcut yazılım modelleri için CI ve kanıt paketi",
+      "conditional_ecad": "Gerçek donanım tasarımı sağlandıktan sonra ECAD kontrol/üretim kapısı"
+    },
+    "constraints": [
+      "Hedef statik raf ürünüdür; hareketli/titreşimli raf ilk sürüm dışındadır.",
+      "Veri arayüzü USB'dir; RF, Matter veya Modbus gereksinimi eklenmez.",
+      "MCU/ADC ve fiziksel USB sınıfı seçilmemiştir; Espressif/RPi platformu varsayılmaz.",
+      "hardware/ yalnız ayrılmış alandır; gerçek KiCad girdisi olmadan ERC/DRC PASS iddiası yapılamaz.",
+      "Derin incelenmeyen belirsiz repo adları conditional/insufficient_evidence olarak tutulur.",
+      "Bu harita bir tarama/öncelik kaydıdır; 49 reponun tamamında derin kod incelemesi yapıldığı iddiası değildir."
+    ],
+    "summary": {
+      "primary": 4,
+      "conditional": 30,
+      "out_of_scope": 15,
+      "source_inspected": 13,
+      "list_metadata_only": 36
+    },
+    "rows": [
+      {
+        "list_index": 1,
+        "repository": "DillanMcDonald/kicad-ci",
+        "url": "https://github.com/DillanMcDonald/kicad-ci",
+        "classification": "primary",
+        "workflow_keys": [
+          "software_ci"
+        ],
+        "reason_tr": "Kontrol sırası, hata durumunda rapor saklama ve kaynak sürümüne bağlı çıktı paketleme örüntüsü mevcut S01 Python CI hattına uyarlanabilir.",
+        "scan_depth": "source_inspected",
+        "inspection_notes_tr": "Workflow, ERC/DRC betikleri, README ve ilgili commit diffleri incelendi.",
+        "evidence_status": "source_content_reviewed"
+      },
+      {
+        "list_index": 2,
+        "repository": "INTI-CMNB/KiBot",
+        "url": "https://github.com/INTI-CMNB/KiBot",
+        "classification": "conditional",
+        "workflow_keys": [
+          "conditional_ecad"
+        ],
+        "reason_tr": "Gerçek şema ve PCB sağlandıktan sonra ERC/DRC, şema-PCB tutarlılığı ve üretim çıktıları için kullanılabilir; hedefte bugün bu girdiler yok.",
+        "scan_depth": "source_inspected",
+        "inspection_notes_tr": "README, pre_drc/panel yapılandırmaları, ağaç ve düzeltme diffleri incelendi.",
+        "evidence_status": "source_content_reviewed"
+      },
+      {
+        "list_index": 3,
+        "repository": "INTI-CMNB/kicad_ci_test",
+        "url": "https://github.com/INTI-CMNB/kicad_ci_test",
+        "classification": "conditional",
+        "workflow_keys": [
+          "conditional_ecad"
+        ],
+        "reason_tr": "Alt klasör ve kütüphane düzeniyle ECAD kontrol örneği sağlar; S01 kart dosyaları hazır olmadan yalnız referans örnektir.",
+        "scan_depth": "source_inspected",
+        "inspection_notes_tr": "README, iki yapılandırma ve workflow, parity commit diffi incelendi.",
+        "evidence_status": "source_content_reviewed"
+      },
+      {
+        "list_index": 4,
+        "repository": "yaqwsx/KiKit",
+        "url": "https://github.com/yaqwsx/KiKit",
+        "classification": "conditional",
+        "workflow_keys": [
+          "conditional_ecad"
+        ],
+        "reason_tr": "Panelleme ancak doğrulanmış S01 PCB ve çoklu üretim ihtiyacı oluştuğunda anlamlıdır; ilk yedi akış içinde zorunlu teslimat değildir.",
+        "scan_depth": "source_inspected",
+        "inspection_notes_tr": "Panelleme/kurulum dokümanları, CI sürüm matrisi ve pcbnew/netclass diffleri incelendi.",
+        "evidence_status": "source_content_reviewed"
+      },
+      {
+        "list_index": 5,
+        "repository": "Creality3DPrinting/CR-10",
+        "url": "https://github.com/Creality3DPrinting/CR-10",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01 raf yükü ölçümünün kalibrasyon, toplama ve conformance gereksinimlerini doğrudan sağlamaz; mevcut hedefte yazıcı tasarımına veya arşiv dönüşüm projesine geçmek kapsamı dağıtır.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Mevcut ortak kayıtta repo metadata'sı ve commit listesi var; bu turda ayrıntılı kaynak dosyası okuması teyit edilmedi.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "Creality3DPrinting/CR-10",
+          "status": "readme_reviewed",
+          "review_depth": "readme_reviewed_and_prior_source_inspected",
+          "recommendation": "out_of_scope",
+          "purpose_tr": "CR-10 üç boyutlu yazıcısının mekanik, devre, BOM ve firmware arşividir; README donanım/yazılım için GPLv3, dokümantasyon için CC BY-SA 4.0 bildirir.",
+          "s01_contribution_tr": "S01 raf yükü ölçümünün kalibrasyon, toplama ve conformance gereksinimlerini doğrudan sağlamaz; mevcut hedefte yazıcı tasarımına veya arşiv dönüşüm projesine geçmek kapsamı dağıtır.",
+          "source": {
+            "path": "README.md",
+            "blob_sha": "fd5886c7105dc793a8cd1e7769595dc891c54c12",
+            "blob_url": "https://github.com/Creality3DPrinting/CR-10/blob/master/README.md",
+            "immutable_blob_api_url": "https://api.github.com/repos/Creality3DPrinting/CR-10/git/blobs/fd5886c7105dc793a8cd1e7769595dc891c54c12"
+          },
+          "note": "Amaç ve S01 uygunluğu taraması; bu aşamada yeni kod/diff incelemesi veya test çalıştırması yapılmadı."
+        }
+      },
+      {
+        "list_index": 6,
+        "repository": "xuhao1/VINS-Fisheye",
+        "url": "https://github.com/xuhao1/VINS-Fisheye",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01 ham yük sayımı ve dara/kalibrasyon zincirine görsel odometri gerekmediğinden ROS/kamera bağımlılıkları eklenmemelidir.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Mevcut ortak kayıtta repo metadata'sı ve commit listesi var; bu turda ayrıntılı kaynak dosyası okuması teyit edilmedi.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "xuhao1/VINS-Fisheye",
+          "status": "readme_reviewed",
+          "review_depth": "readme_reviewed_and_prior_source_inspected",
+          "recommendation": "out_of_scope",
+          "purpose_tr": "Çift fisheye kamera ve IMU için VINS-Fusion tabanlı görsel ataletsel kestirim ve derinlik yazılımıdır; CPU ve CUDA yolları anlatılır.",
+          "s01_contribution_tr": "S01 ham yük sayımı ve dara/kalibrasyon zincirine görsel odometri gerekmediğinden ROS/kamera bağımlılıkları eklenmemelidir.",
+          "source": {
+            "path": "README.md",
+            "blob_sha": "8054eaaa36425f43fceaa7919bf108ad37970fa9",
+            "blob_url": "https://github.com/xuhao1/VINS-Fisheye/blob/master/README.md",
+            "immutable_blob_api_url": "https://api.github.com/repos/xuhao1/VINS-Fisheye/git/blobs/8054eaaa36425f43fceaa7919bf108ad37970fa9"
+          },
+          "note": "Amaç ve S01 uygunluğu taraması; bu aşamada yeni kod/diff incelemesi veya test çalıştırması yapılmadı."
+        }
+      },
+      {
+        "list_index": 7,
+        "repository": "nscheuer/Generalized_ADCS",
+        "url": "https://github.com/nscheuer/Generalized_ADCS",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "Bağımsız sayısal referans kullanma yaklaşımı öğretici olsa da S01'in OLS ve runtime doğrulamasına ADCS bağımlılığı veya ayrı uydu ürünü eklemek gerekmez.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Mevcut ortak kayıtta repo metadata'sı ve commit listesi var; bu turda ayrıntılı kaynak dosyası okuması teyit edilmedi.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "nscheuer/Generalized_ADCS",
+          "status": "readme_reviewed",
+          "review_depth": "readme_reviewed_and_prior_source_inspected",
+          "recommendation": "out_of_scope",
+          "purpose_tr": "Küçük uyduların yönelim kestirimi ve kontrolü için Python simülasyon, filtre, sensör ve eyleyici modelleme çerçevesidir.",
+          "s01_contribution_tr": "Bağımsız sayısal referans kullanma yaklaşımı öğretici olsa da S01'in OLS ve runtime doğrulamasına ADCS bağımlılığı veya ayrı uydu ürünü eklemek gerekmez.",
+          "source": {
+            "path": "README.md",
+            "blob_sha": "96802b4e1738f77a2b0c4bbe99c410a9562904e6",
+            "blob_url": "https://github.com/nscheuer/Generalized_ADCS/blob/main/README.md",
+            "immutable_blob_api_url": "https://api.github.com/repos/nscheuer/Generalized_ADCS/git/blobs/96802b4e1738f77a2b0c4bbe99c410a9562904e6"
+          },
+          "note": "Amaç ve S01 uygunluğu taraması; bu aşamada yeni kod/diff incelemesi veya test çalıştırması yapılmadı."
+        }
+      },
+      {
+        "list_index": 8,
+        "repository": "nasa/GMAT",
+        "url": "https://github.com/nasa/GMAT",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01'de yörünge/ephemeris girdisi bulunmadığından GMAT-ADCS adaptörü ve uzay koordinat dönüşümleri kapsam dışındadır.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Mevcut ortak kayıtta repo metadata'sı ve commit listesi var; bu turda ayrıntılı kaynak dosyası okuması teyit edilmedi.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "nasa/GMAT",
+          "status": "readme_reviewed",
+          "review_depth": "readme_reviewed_and_prior_source_inspected",
+          "recommendation": "out_of_scope",
+          "purpose_tr": "GMAT uzay görevi tasarımı, seyrüsefer ve optimizasyon için betik veya GUI üzerinden kullanılan bir görev analiz sistemidir.",
+          "s01_contribution_tr": "S01'de yörünge/ephemeris girdisi bulunmadığından GMAT-ADCS adaptörü ve uzay koordinat dönüşümleri kapsam dışındadır.",
+          "source": {
+            "path": "application/README.txt",
+            "blob_sha": "f5f367c000782f9ad7261bfec8c54a7e98eb73d3",
+            "blob_url": "https://github.com/nasa/GMAT/blob/main/application/README.txt",
+            "immutable_blob_api_url": "https://api.github.com/repos/nasa/GMAT/git/blobs/f5f367c000782f9ad7261bfec8c54a7e98eb73d3"
+          },
+          "note": "Amaç ve S01 uygunluğu taraması; bu aşamada yeni kod/diff incelemesi veya test çalıştırması yapılmadı."
+        }
+      },
+      {
+        "list_index": 9,
+        "repository": "salilab/systems-tests",
+        "url": "https://github.com/salilab/systems-tests",
+        "classification": "conditional",
+        "workflow_keys": [],
+        "reason_tr": "S01 için yalnız kaynak sürümüyle test sonucu ilişkilendirme düzeni incelenebilir; cluster, pickle ve veritabanı hattını taşımak mevcut tek-host doğrulama ihtiyacına gereksiz altyapı ekler.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Ad/liste üyeliği düzeyinde; içerik tabanlı uygunluk kanıtı yok.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "salilab/systems-tests",
+          "status": "readme_reviewed",
+          "review_depth": "readme_reviewed",
+          "recommendation": "conditional",
+          "purpose_tr": "IMP uygulamalarını hesaplama kümesinde dal ve git hash'i seçerek çalıştıran, sonuçları toplayıp MySQL veritabanına aktaran Python betikleridir.",
+          "s01_contribution_tr": "S01 için yalnız kaynak sürümüyle test sonucu ilişkilendirme düzeni incelenebilir; cluster, pickle ve veritabanı hattını taşımak mevcut tek-host doğrulama ihtiyacına gereksiz altyapı ekler.",
+          "source": {
+            "path": "README.md",
+            "blob_sha": "89ae1fafac8fba3cba96f0b1a746847ed21dc26f",
+            "blob_url": "https://github.com/salilab/systems-tests/blob/main/README.md",
+            "immutable_blob_api_url": "https://api.github.com/repos/salilab/systems-tests/git/blobs/89ae1fafac8fba3cba96f0b1a746847ed21dc26f"
+          },
+          "note": "Amaç ve S01 uygunluğu taraması; bu aşamada yeni kod/diff incelemesi veya test çalıştırması yapılmadı."
+        }
+      },
+      {
+        "list_index": 10,
+        "repository": "RetroReversing/retroReversing",
+        "url": "https://github.com/RetroReversing/retroReversing",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01'in yük ölçümü ve hedef-bağımsız conformance kapsamına gerekli bir sensör modeli, firmware adayı veya doğrulama bağımlılığı sağlamaz.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Kapsam seçimi liste düzeyindedir; kodun genel yeniden kullanım değeri hakkında hüküm değildir.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "RetroReversing/retroReversing",
+          "status": "readme_reviewed",
+          "review_depth": "readme_reviewed",
+          "recommendation": "out_of_scope",
+          "purpose_tr": "Retro oyun geliştirme ve tersine mühendislik kaynaklarını Jekyll/GitHub Pages sitesinde derleyen; ayrıca dosya inceleme eklentileri barındıran projedir.",
+          "s01_contribution_tr": "S01'in yük ölçümü ve hedef-bağımsız conformance kapsamına gerekli bir sensör modeli, firmware adayı veya doğrulama bağımlılığı sağlamaz.",
+          "source": {
+            "path": "README.md",
+            "blob_sha": "cd8ce9497499866c7d38c32d942b904b0fb1154b",
+            "blob_url": "https://github.com/RetroReversing/retroReversing/blob/master/README.md",
+            "immutable_blob_api_url": "https://api.github.com/repos/RetroReversing/retroReversing/git/blobs/cd8ce9497499866c7d38c32d942b904b0fb1154b"
+          },
+          "note": "Amaç ve S01 uygunluğu taraması; bu aşamada yeni kod/diff incelemesi veya test çalıştırması yapılmadı."
+        }
+      },
+      {
+        "list_index": 11,
+        "repository": "ArjunFrancis/FREE-AI-RESOURCES",
+        "url": "https://github.com/ArjunFrancis/FREE-AI-RESOURCES",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01 için uygulanabilir yük ölçüm modülü veya test girdisi sağlamadığından mühendislik sentezinin kaynak bileşeni olarak seçilmemelidir.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Liste/ad düzeyinde; somut kaynak dosyası veya API doğrulanmadı.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "ArjunFrancis/FREE-AI-RESOURCES",
+          "status": "readme_reviewed",
+          "review_depth": "readme_reviewed",
+          "recommendation": "out_of_scope",
+          "purpose_tr": "AI/ML dersleri, makaleleri, araçları ve veri kümelerini konuya göre derleyen bir öğrenme kaynakları koleksiyonudur.",
+          "s01_contribution_tr": "S01 için uygulanabilir yük ölçüm modülü veya test girdisi sağlamadığından mühendislik sentezinin kaynak bileşeni olarak seçilmemelidir.",
+          "source": {
+            "path": "README.md",
+            "blob_sha": "dfd1356674790f05018d3d967eb11959704e2f2e",
+            "blob_url": "https://github.com/ArjunFrancis/FREE-AI-RESOURCES/blob/main/README.md",
+            "immutable_blob_api_url": "https://api.github.com/repos/ArjunFrancis/FREE-AI-RESOURCES/git/blobs/dfd1356674790f05018d3d967eb11959704e2f2e"
+          },
+          "note": "Amaç ve S01 uygunluğu taraması; bu aşamada yeni kod/diff incelemesi veya test çalıştırması yapılmadı."
+        }
+      },
+      {
+        "list_index": 12,
+        "repository": "FractonicMind/TernaryMoralLogic",
+        "url": "https://github.com/FractonicMind/TernaryMoralLogic",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01'in deterministik sayım, kalibrasyon ve dosya bütünlüğü sözleşmelerine bu yönetişim yapısını taşımak somut bir gereksinimi karşılamaz.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "FractonicMind/TernaryMoralLogic",
+          "status": "readme_reviewed",
+          "review_depth": "readme_reviewed",
+          "recommendation": "out_of_scope",
+          "purpose_tr": "README projeyi belirsizlikte inceleme/duraklama ve denetlenebilir karar kayıtları öneren bir AI yönetişimi çerçevesi olarak tanımlar.",
+          "s01_contribution_tr": "S01'in deterministik sayım, kalibrasyon ve dosya bütünlüğü sözleşmelerine bu yönetişim yapısını taşımak somut bir gereksinimi karşılamaz.",
+          "source": {
+            "path": "readme.md",
+            "blob_sha": "450476bc8866af782968269db6d38eefedc76833",
+            "blob_url": "https://github.com/FractonicMind/TernaryMoralLogic/blob/main/readme.md",
+            "immutable_blob_api_url": "https://api.github.com/repos/FractonicMind/TernaryMoralLogic/git/blobs/450476bc8866af782968269db6d38eefedc76833"
+          },
+          "note": "Amaç ve S01 uygunluğu taraması; bu aşamada yeni kod/diff incelemesi veya test çalıştırması yapılmadı."
+        }
+      },
+      {
+        "list_index": 13,
+        "repository": "OLIMEX/BB-PWR-3608",
+        "url": "https://github.com/OLIMEX/BB-PWR-3608",
+        "classification": "conditional",
+        "workflow_keys": [
+          "g1_measurement_chain",
+          "power_events",
+          "conditional_ecad"
+        ],
+        "reason_tr": "S01'in güç mimarisi onaylanıp yükseltilmiş gerilim gereksinimi ortaya çıkarsa referans olabilir; mevcut 5 V uyarma varsayımı bu yükselticiyi kullanmak için yeterli gerekçe değildir.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "İçerik/elektriksel değerler doğrulanmadı; yalnız koşullu kaynak adayı.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "OLIMEX/BB-PWR-3608",
+          "status": "readme_reviewed",
+          "review_depth": "readme_reviewed",
+          "recommendation": "conditional",
+          "purpose_tr": "README, KiCad ile tasarlanan ve 5 V girişten 12 V/1 A veya 24 V/0,5 A çıkış üreten bir DC-DC breadboard güç kartı tanımlar; README başlığında BB-PWR-2608 yazması ayrıca kimlik tutarsızlığıdır.",
+          "s01_contribution_tr": "S01'in güç mimarisi onaylanıp yükseltilmiş gerilim gereksinimi ortaya çıkarsa referans olabilir; mevcut 5 V uyarma varsayımı bu yükselticiyi kullanmak için yeterli gerekçe değildir.",
+          "source": {
+            "path": "README.md",
+            "blob_sha": "89e083ea5caf65b19c1619a72d3513a50334911e",
+            "blob_url": "https://github.com/OLIMEX/BB-PWR-3608/blob/master/README.md",
+            "immutable_blob_api_url": "https://api.github.com/repos/OLIMEX/BB-PWR-3608/git/blobs/89e083ea5caf65b19c1619a72d3513a50334911e"
+          },
+          "note": "Amaç ve S01 uygunluğu taraması; bu aşamada yeni kod/diff incelemesi veya test çalıştırması yapılmadı."
+        }
+      },
+      {
+        "list_index": 14,
+        "repository": "paulscottrobson/rp2350pc",
+        "url": "https://github.com/paulscottrobson/rp2350pc",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01 için MCU henüz seçilmediğinden bu kartı hedef kabul etmek veya görüntü/ses altyapısını taşımak uygun değildir; README ayrıca eski HSTX-USB kararlılık sorununu belirtir.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "paulscottrobson/rp2350pc",
+          "status": "readme_reviewed",
+          "review_depth": "readme_reviewed",
+          "recommendation": "out_of_scope",
+          "purpose_tr": "Olimex RP2350PC için USB hub, SD, görüntü ve ses arayüzlerini kapsayan kullanıcı kütüphanesidir; README projenin rp2350-modules ile değiştirildiğini bildirir.",
+          "s01_contribution_tr": "S01 için MCU henüz seçilmediğinden bu kartı hedef kabul etmek veya görüntü/ses altyapısını taşımak uygun değildir; README ayrıca eski HSTX-USB kararlılık sorununu belirtir.",
+          "source": {
+            "path": "README.md",
+            "blob_sha": "0fca75341fc5eac95a36b13aaecde5315cbe5da5",
+            "blob_url": "https://github.com/paulscottrobson/rp2350pc/blob/main/README.md",
+            "immutable_blob_api_url": "https://api.github.com/repos/paulscottrobson/rp2350pc/git/blobs/0fca75341fc5eac95a36b13aaecde5315cbe5da5"
+          },
+          "note": "Amaç ve S01 uygunluğu taraması; bu aşamada yeni kod/diff incelemesi veya test çalıştırması yapılmadı."
+        }
+      },
+      {
+        "list_index": 15,
+        "repository": "bigtreetech/BIGTREETECH-SKR-mini-E3",
+        "url": "https://github.com/bigtreetech/BIGTREETECH-SKR-mini-E3",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01'in yük hücresi ölçüm zinciri ve host aday doğrulaması için yazıcı step motor kontrol kartını ürün temeli yapmak desteklenmiş bir gereksinime dayanmaz.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "bigtreetech/BIGTREETECH-SKR-mini-E3",
+          "status": "readme_reviewed",
+          "review_depth": "readme_reviewed",
+          "recommendation": "out_of_scope",
+          "purpose_tr": "SKR Mini E3 üç boyutlu yazıcı kontrol kartlarının donanım belgeleri ve Marlin firmware yapılandırmaları için kaynak deposudur.",
+          "s01_contribution_tr": "S01'in yük hücresi ölçüm zinciri ve host aday doğrulaması için yazıcı step motor kontrol kartını ürün temeli yapmak desteklenmiş bir gereksinime dayanmaz.",
+          "source": {
+            "path": "README.md",
+            "blob_sha": "a6c5d3ffad4c6a4481778b93a8b78a80d66ef941",
+            "blob_url": "https://github.com/bigtreetech/BIGTREETECH-SKR-mini-E3/blob/master/README.md",
+            "immutable_blob_api_url": "https://api.github.com/repos/bigtreetech/BIGTREETECH-SKR-mini-E3/git/blobs/a6c5d3ffad4c6a4481778b93a8b78a80d66ef941"
+          },
+          "note": "Amaç ve S01 uygunluğu taraması; bu aşamada yeni kod/diff incelemesi veya test çalıştırması yapılmadı."
+        }
+      },
+      {
+        "list_index": 16,
+        "repository": "D-sorganization/Tools",
+        "url": "https://github.com/D-sorganization/Tools",
+        "classification": "conditional",
+        "workflow_keys": [],
+        "reason_tr": "S01 kayıtlarını incelemek için data_processor/data_explorer veya hassasiyet analizi aracı ileride ayrı yardımcı olabilir; önce deterministik çekirdek çıktı tamamlanmalı ve bütün PyQt uygulama kümesi bağımlılık olarak alınmamalıdır.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "D-sorganization/Tools",
+          "status": "readme_reviewed",
+          "review_depth": "readme_reviewed",
+          "recommendation": "conditional",
+          "purpose_tr": "Mühendislik hesaplayıcıları, sinyal/zaman serisi işleme, veri görüntüleme ve dosya yönetimi araçlarını ortak Python kitaplıklarıyla birleştiren bir monorepodur.",
+          "s01_contribution_tr": "S01 kayıtlarını incelemek için data_processor/data_explorer veya hassasiyet analizi aracı ileride ayrı yardımcı olabilir; önce deterministik çekirdek çıktı tamamlanmalı ve bütün PyQt uygulama kümesi bağımlılık olarak alınmamalıdır.",
+          "source": {
+            "path": "README.md",
+            "blob_sha": "2008fcf64a4ca2c7b48a794fec163dc682575e14",
+            "blob_url": "https://github.com/D-sorganization/Tools/blob/main/README.md",
+            "immutable_blob_api_url": "https://api.github.com/repos/D-sorganization/Tools/git/blobs/2008fcf64a4ca2c7b48a794fec163dc682575e14"
+          },
+          "note": "Amaç ve S01 uygunluğu taraması; bu aşamada yeni kod/diff incelemesi veya test çalıştırması yapılmadı."
+        }
+      },
+      {
+        "list_index": 17,
+        "repository": "espressif/kicad-libraries",
+        "url": "https://github.com/espressif/kicad-libraries",
+        "classification": "conditional",
+        "workflow_keys": [
+          "conditional_ecad"
+        ],
+        "reason_tr": "Yalnız G1'de Espressif parçası seçilirse ve KiCad sürümü uyumlu sabitlenirse kütüphane girdisi olur; bugün MCU seçimi yapılmış değildir.",
+        "scan_depth": "source_inspected",
+        "inspection_notes_tr": "README, güncel commit listesi ve LICENSE.md okundu; güncel README KiCad 10 hedefliyor.",
+        "evidence_status": "source_content_reviewed"
+      },
+      {
+        "list_index": 18,
+        "repository": "rgoulter/keyboard-labs",
+        "url": "https://github.com/rgoulter/keyboard-labs",
+        "classification": "conditional",
+        "workflow_keys": [],
+        "reason_tr": "KiCad PCB verisinden OpenSCAD plaka/kasa üretimi ve sürümlü Gerber/BOM örneği, S01 kartı ile mekanik ölçüler kesinleşince koşullu referanstır; klavye firmware'i ölçüm zincirine doğrudan aktarılmaz.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "rgoulter/keyboard-labs",
+          "classification": "conditional",
+          "purpose_tr": "Klavye PCB'leri, firmware, üretim dosyaları ve parametrik kasalar içeren açık donanım koleksiyonu.",
+          "reason_tr": "KiCad PCB verisinden OpenSCAD plaka/kasa üretimi ve sürümlü Gerber/BOM örneği, S01 kartı ile mekanik ölçüler kesinleşince koşullu referanstır; klavye firmware'i ölçüm zincirine doğrudan aktarılmaz.",
+          "workflow_keys": [
+            "S07"
+          ],
+          "readme_status": "readme_reviewed",
+          "primary_document_status": "not_needed",
+          "document_path": "README.MD",
+          "document_type": "readme",
+          "blob_sha": "0fda0344fe9ec4f855b91b491ec23900a6327790",
+          "source_url": "https://github.com/rgoulter/keyboard-labs/blob/master/README.MD",
+          "content_addressed_source_url": "https://api.github.com/repos/rgoulter/keyboard-labs/git/blobs/0fda0344fe9ec4f855b91b491ec23900a6327790",
+          "scan_depth": "source_inspected",
+          "inspection_scope": "README only; no implementation or diff inspection in this triage",
+          "evidence_summary_tr": "README, pcb/ içindeki KiCad kaynaklarını, releases Gerber'lerini ve .kicad_pcb→OpenSCAD betiğini açıklar."
+        }
+      },
+      {
+        "list_index": 19,
+        "repository": "devbisme/kicad-3rd-party-tools",
+        "url": "https://github.com/devbisme/kicad-3rd-party-tools",
+        "classification": "conditional",
+        "workflow_keys": [
+          "conditional_ecad"
+        ],
+        "reason_tr": "S01 için gerçek KiCad kartı ve sürüm gereksinimi belirlendiğinde araç keşfine yardımcı olur; katalogdaki araçların uyumluluğu ayrıca doğrulanmalıdır.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Liste/ad düzeyinde; belirli araç doğrulanmadı.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "devbisme/kicad-3rd-party-tools",
+          "classification": "conditional",
+          "purpose_tr": "KiCad şema, BOM, footprint, yerleşim, üretim ve sürümleme araçlarını tanıtan üçüncü taraf araç kataloğu.",
+          "reason_tr": "S01 için gerçek KiCad kartı ve sürüm gereksinimi belirlendiğinde araç keşfine yardımcı olur; katalogdaki araçların uyumluluğu ayrıca doğrulanmalıdır.",
+          "workflow_keys": [
+            "S07"
+          ],
+          "readme_status": "readme_reviewed",
+          "primary_document_status": "not_needed",
+          "document_path": "README.md",
+          "document_type": "readme",
+          "blob_sha": "36e3ca829fdf2723d0b8d8cc4aa91c211033f270",
+          "source_url": "https://github.com/devbisme/kicad-3rd-party-tools/blob/master/README.md",
+          "content_addressed_source_url": "https://api.github.com/repos/devbisme/kicad-3rd-party-tools/git/blobs/36e3ca829fdf2723d0b8d8cc4aa91c211033f270",
+          "scan_depth": "source_inspected",
+          "inspection_scope": "README only; no implementation or diff inspection in this triage",
+          "evidence_summary_tr": "README, KiBot/KiKit ve BOM/üretim araçlarını listeler; araçların sürümler arasında çalışmayabileceğini belirtir."
+        }
+      },
+      {
+        "list_index": 20,
+        "repository": "mundodisco8/LED_Dimmer",
+        "url": "https://github.com/mundodisco8/LED_Dimmer",
+        "classification": "conditional",
+        "workflow_keys": [],
+        "reason_tr": "README'deki KiBot CI/CD ve Unity testi yaklaşımı S01'in koşullu ECAD kapısına örnek olabilir; LED kontrolü ve Silicon Labs platformu S01 gereksinimi değildir.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Ad temelli kapsam elemesi; devrenin ayrıntıları incelenmedi.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "mundodisco8/LED_Dimmer",
+          "classification": "conditional",
+          "purpose_tr": "BGM220P modülünü kullanan PWM LED dimmer, KiCad donanımı ve Silicon Labs firmware projesi.",
+          "reason_tr": "README'deki KiBot CI/CD ve Unity testi yaklaşımı S01'in koşullu ECAD kapısına örnek olabilir; LED kontrolü ve Silicon Labs platformu S01 gereksinimi değildir.",
+          "workflow_keys": [
+            "S07"
+          ],
+          "readme_status": "readme_reviewed",
+          "primary_document_status": "not_needed",
+          "document_path": "Readme.md",
+          "document_type": "readme",
+          "blob_sha": "2962ca892a6e704eae8313cfb9b2dfdb25fac2d1",
+          "source_url": "https://github.com/mundodisco8/LED_Dimmer/blob/master/Readme.md",
+          "content_addressed_source_url": "https://api.github.com/repos/mundodisco8/LED_Dimmer/git/blobs/2962ca892a6e704eae8313cfb9b2dfdb25fac2d1",
+          "scan_depth": "source_inspected",
+          "inspection_scope": "README only; no implementation or diff inspection in this triage",
+          "evidence_summary_tr": "README, KiCad, Unity ve CI/CD'nin ana aracı olarak KiBot'u adlandırır."
+        }
+      },
+      {
+        "list_index": 21,
+        "repository": "paulrouget/gtk",
+        "url": "https://github.com/paulrouget/gtk",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01'in mevcut USB host ve kanıt üretim akışları GTK arayüzü gerektirmediğinden bu GUI araç takımı yedi iş akışında kullanılmaz.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "paulrouget/gtk",
+          "classification": "out_of_scope",
+          "purpose_tr": "GTK çapraz platform grafik kullanıcı arayüzü araç takımının macos dalı.",
+          "reason_tr": "S01'in mevcut USB host ve kanıt üretim akışları GTK arayüzü gerektirmediğinden bu GUI araç takımı yedi iş akışında kullanılmaz.",
+          "workflow_keys": [],
+          "readme_status": "readme_reviewed",
+          "primary_document_status": "not_needed",
+          "document_path": "README.md",
+          "document_type": "readme",
+          "blob_sha": "d9d18da8f541e998254089c5e1efdf7891f5b3f7",
+          "source_url": "https://github.com/paulrouget/gtk/blob/macos/README.md",
+          "content_addressed_source_url": "https://api.github.com/repos/paulrouget/gtk/git/blobs/d9d18da8f541e998254089c5e1efdf7891f5b3f7",
+          "scan_depth": "source_inspected",
+          "inspection_scope": "README only; no implementation or diff inspection in this triage",
+          "evidence_summary_tr": "README, widget tabanlı GTK GUI araç takımını ve Meson/Ninja derleme bağımlılıklarını anlatır."
+        }
+      },
+      {
+        "list_index": 22,
+        "repository": "kuldeep-zigg/PCBProjects",
+        "url": "https://github.com/kuldeep-zigg/PCBProjects",
+        "classification": "conditional",
+        "workflow_keys": [
+          "conditional_ecad"
+        ],
+        "reason_tr": "Gereksinimden tasarım kontrol listesine izlenebilirlik S01 için koşullu fikir kaynağıdır; VMC kuralları ve EasyEDA çıktıları G1 ölçüm zinciri veya eksik kart tasarımının yerine geçmez.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "kuldeep-zigg/PCBProjects",
+          "classification": "conditional",
+          "purpose_tr": "Vending machine controller gereksinimlerinden checklist, BOM, netlist ve EasyEDA taslakları üreten PCB Copilot projesi.",
+          "reason_tr": "Gereksinimden tasarım kontrol listesine izlenebilirlik S01 için koşullu fikir kaynağıdır; VMC kuralları ve EasyEDA çıktıları G1 ölçüm zinciri veya eksik kart tasarımının yerine geçmez.",
+          "workflow_keys": [
+            "S01",
+            "S07"
+          ],
+          "readme_status": "readme_reviewed",
+          "primary_document_status": "not_needed",
+          "document_path": "README.md",
+          "document_type": "readme",
+          "blob_sha": "b32c722eea95e0704cd5477c954bd0c936a87b49",
+          "source_url": "https://github.com/kuldeep-zigg/PCBProjects/blob/main/README.md",
+          "content_addressed_source_url": "https://api.github.com/repos/kuldeep-zigg/PCBProjects/git/blobs/b32c722eea95e0704cd5477c954bd0c936a87b49",
+          "scan_depth": "source_inspected",
+          "inspection_scope": "README only; no implementation or diff inspection in this triage",
+          "evidence_summary_tr": "README, /ai/board_requests/ girdileri, /ai/master.md kayıtları ve md-to-schematic/ai-easyeda-compiler çıktıları tanımlar."
+        }
+      },
+      {
+        "list_index": 23,
+        "repository": "makinity/MyPortfolio",
+        "url": "https://github.com/makinity/MyPortfolio",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "Ana index.html içeriği kişisel portfolyo sunduğu için S01 ölçüm, USB, güç, regresyon veya ECAD iş akışına somut girdi sağlamaz.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "makinity/MyPortfolio",
+          "classification": "out_of_scope",
+          "purpose_tr": "Bir web geliştiricinin kişisel portfolyo, proje galerisi, iletişim ve sohbet arayüzü sitesi.",
+          "reason_tr": "Ana index.html içeriği kişisel portfolyo sunduğu için S01 ölçüm, USB, güç, regresyon veya ECAD iş akışına somut girdi sağlamaz.",
+          "workflow_keys": [],
+          "readme_status": "unavailable",
+          "primary_document_status": "reviewed",
+          "document_path": "index.html",
+          "document_type": "primary_page_html",
+          "blob_sha": "e144846ae51750dcf8f413c82b5c07039d984fa1",
+          "source_url": "https://github.com/makinity/MyPortfolio/blob/main/index.html",
+          "content_addressed_source_url": "https://api.github.com/repos/makinity/MyPortfolio/git/blobs/e144846ae51750dcf8f413c82b5c07039d984fa1",
+          "scan_depth": "source_inspected",
+          "inspection_scope": "Root listing and primary index.html page content only",
+          "evidence_summary_tr": "Kökte README yok; index.html başlığı Maki Dev, bölümleri About Me, Tech Stack, Gallery, Projects, Resume ve Contact."
+        }
+      },
+      {
+        "list_index": 24,
+        "repository": "codacy-open-source-projects-scans/gtk3",
+        "url": "https://github.com/codacy-open-source-projects-scans/gtk3",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "README'nin tanımladığı dondurulmuş tarama kopyası S01'e somut adaptör sağlamaz ve temizlenmiş geçmişi iş akışı sürelerini commit aralıklarından değerlendirmeye uygun değildir.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "codacy-open-source-projects-scans/gtk3",
+          "classification": "out_of_scope",
+          "purpose_tr": "Codacy statik analizi için geçmişi temizlenmiş, dondurulmuş gtk3 depo görüntüsü.",
+          "reason_tr": "README'nin tanımladığı dondurulmuş tarama kopyası S01'e somut adaptör sağlamaz ve temizlenmiş geçmişi iş akışı sürelerini commit aralıklarından değerlendirmeye uygun değildir.",
+          "workflow_keys": [],
+          "readme_status": "readme_reviewed",
+          "primary_document_status": "not_needed",
+          "document_path": "README.md",
+          "document_type": "readme",
+          "blob_sha": "742555bbd1dff82ee2aa37a2244321b8ca64bbcf",
+          "source_url": "https://github.com/codacy-open-source-projects-scans/gtk3/blob/main/README.md",
+          "content_addressed_source_url": "https://api.github.com/repos/codacy-open-source-projects-scans/gtk3/git/blobs/742555bbd1dff82ee2aa37a2244321b8ca64bbcf",
+          "scan_depth": "source_inspected",
+          "inspection_scope": "README only; no implementation or diff inspection in this triage",
+          "evidence_summary_tr": "README açıkça frozen state, history is cleared ve static code analysis with Codacy açıklamalarını içerir."
+        }
+      },
+      {
+        "list_index": 25,
+        "repository": "snhobbs/openEMS-Project",
+        "url": "https://github.com/snhobbs/openEMS-Project",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01'in mevcut statik yük ve USB gereksinimlerinde tanımlı bir elektromanyetik alan simülasyonu bulunmadığından openEMS yedi iş akışına eklenmez.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "İçerik ayrıntıları incelenmedi; ileride ayrı EMC gereksinimi oluşması bu kararı değiştirebilir.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "snhobbs/openEMS-Project",
+          "classification": "out_of_scope",
+          "purpose_tr": "Octave/Matlab/Python arayüzlü, FDTD yöntemiyle elektromanyetik alan çözen openEMS proje deposu.",
+          "reason_tr": "S01'in mevcut statik yük ve USB gereksinimlerinde tanımlı bir elektromanyetik alan simülasyonu bulunmadığından openEMS yedi iş akışına eklenmez.",
+          "workflow_keys": [],
+          "readme_status": "readme_reviewed",
+          "primary_document_status": "not_needed",
+          "document_path": "readme.md",
+          "document_type": "readme",
+          "blob_sha": "ddc3f5d308ae14cd7fce41322ed98ee62b56ce7a",
+          "source_url": "https://github.com/snhobbs/openEMS-Project/blob/master/readme.md",
+          "content_addressed_source_url": "https://api.github.com/repos/snhobbs/openEMS-Project/git/blobs/ddc3f5d308ae14cd7fce41322ed98ee62b56ce7a",
+          "scan_depth": "source_inspected",
+          "inspection_scope": "README only; no implementation or diff inspection in this triage",
+          "evidence_summary_tr": "README, 3D FDTD elektromanyetik alan çözücüsünü ve alan çıktıları/işleme arayüzlerini tanımlar."
+        }
+      },
+      {
+        "list_index": 26,
+        "repository": "foukouda/OPEN_WEIGHT",
+        "url": "https://github.com/foukouda/OPEN_WEIGHT",
+        "classification": "primary",
+        "workflow_keys": [
+          "g1_measurement_chain",
+          "power_events"
+        ],
+        "reason_tr": "İncelenen AD7190 ve besleme/AFE çalışması, G1 ölçüm zinciri seçeneklerini ve güç varsayımlarını somut karşılaştırmaya dönüştürür.",
+        "scan_depth": "source_inspected",
+        "inspection_notes_tr": "Araştırma ekibi README/kod/commit, LTspice ilk simülasyon ve 600 ms düzeltmesini inceledi.",
+        "evidence_status": "source_content_reviewed"
+      },
+      {
+        "list_index": 27,
+        "repository": "MacNite/HiveHub",
+        "url": "https://github.com/MacNite/HiveHub",
+        "classification": "primary",
+        "workflow_keys": [
+          "g1_measurement_chain",
+          "temperature_calibration_evidence",
+          "usb_host"
+        ],
+        "reason_tr": "İncelenen ölçüm, sıcaklık OLS/EMA, ham veri ve şema/idempotency örüntüleri kalibrasyon kanıtına ve host veri alımına kaynak olabilir.",
+        "scan_depth": "source_inspected",
+        "inspection_notes_tr": "Araştırma ekibi README/kod/commit; NAU7802 başlangıç/filtre, sıcaklık ve ham veri yollarını inceledi.",
+        "evidence_status": "source_content_reviewed"
+      },
+      {
+        "list_index": 28,
+        "repository": "OpenModbus/OM-64DO",
+        "url": "https://github.com/OpenModbus/OM-64DO",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "İncelenen Modbus dijital çıkış uygulaması S01'in USB üzerinden yük ölçümü gereksinimini karşılayan bir iş akışı değildir.",
+        "scan_depth": "source_inspected",
+        "inspection_notes_tr": "README ve stm32/Core/Src/app.c araştırma ekibince okundu.",
+        "evidence_status": "source_content_reviewed"
+      },
+      {
+        "list_index": 29,
+        "repository": "OLIMEX/ESP32-C6-EVB",
+        "url": "https://github.com/OLIMEX/ESP32-C6-EVB",
+        "classification": "conditional",
+        "workflow_keys": [
+          "g1_measurement_chain",
+          "conditional_ecad"
+        ],
+        "reason_tr": "S01 MCU'su seçilmediği için kart ancak G1 platform seçiminde koşullu adaydır; README'nin kablosuz yetenekleri USB hedefini değiştirmek veya yük hücresi AFE uyumunu varsaymak için gerekçe değildir.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence; MCU seçimi yok.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "OLIMEX/ESP32-C6-EVB",
+          "classification": "conditional",
+          "purpose_tr": "WiFi6, Bluetooth5LE ve Zigbee/Matter destekli ESP32-C6 değerlendirme kartı.",
+          "reason_tr": "S01 MCU'su seçilmediği için kart ancak G1 platform seçiminde koşullu adaydır; README'nin kablosuz yetenekleri USB hedefini değiştirmek veya yük hücresi AFE uyumunu varsaymak için gerekçe değildir.",
+          "workflow_keys": [
+            "S01"
+          ],
+          "readme_status": "readme_reviewed",
+          "primary_document_status": "not_needed",
+          "document_path": "README.md",
+          "document_type": "readme",
+          "blob_sha": "886a03c63956710091f35143be3666e2f340b929",
+          "source_url": "https://github.com/OLIMEX/ESP32-C6-EVB/blob/main/README.md",
+          "content_addressed_source_url": "https://api.github.com/repos/OLIMEX/ESP32-C6-EVB/git/blobs/886a03c63956710091f35143be3666e2f340b929",
+          "scan_depth": "source_inspected",
+          "inspection_scope": "README only; no implementation or diff inspection in this triage",
+          "evidence_summary_tr": "README, ESP32-C6 değerlendirme kartını ve kablosuz protokollerini tanımlar; AFE/kalibrasyon açıklamaz."
+        }
+      },
+      {
+        "list_index": 30,
+        "repository": "Isno-Open/OpenSuperRF",
+        "url": "https://github.com/Isno-Open/OpenSuperRF",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "Alt-GHz radyo ve panjur/Home Assistant kullanımına odaklanan kart S01'in statik raf ve USB veri yolu kapsamına girmez; USB-C konnektörü doğrudan ölçüm protokolü uyumu göstermez.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Ad temelli kapsam elemesi; RF yetenekleri hakkında ayrıntılı kaynak hükmü yok.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "Isno-Open/OpenSuperRF",
+          "classification": "out_of_scope",
+          "purpose_tr": "ESP32-S3 ve iki CC1101 ile 433/868 MHz alt-GHz radyo uygulamaları için açık donanım kartı.",
+          "reason_tr": "Alt-GHz radyo ve panjur/Home Assistant kullanımına odaklanan kart S01'in statik raf ve USB veri yolu kapsamına girmez; USB-C konnektörü doğrudan ölçüm protokolü uyumu göstermez.",
+          "workflow_keys": [],
+          "readme_status": "readme_reviewed",
+          "primary_document_status": "not_needed",
+          "document_path": "README.md",
+          "document_type": "readme",
+          "blob_sha": "9464f9932a07823122f3e41904619de13efa0d02",
+          "source_url": "https://github.com/Isno-Open/OpenSuperRF/blob/main/README.md",
+          "content_addressed_source_url": "https://api.github.com/repos/Isno-Open/OpenSuperRF/git/blobs/9464f9932a07823122f3e41904619de13efa0d02",
+          "scan_depth": "source_inspected",
+          "inspection_scope": "README only; no implementation or diff inspection in this triage",
+          "evidence_summary_tr": "README, ESP32-S3, çift CC1101, LC diplexer, RF anteni ve OpenProfalux kullanımını tanımlar."
+        }
+      },
+      {
+        "list_index": 31,
+        "repository": "greatscottgadgets/hackrf",
+        "url": "https://github.com/greatscottgadgets/hackrf",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01'de RF alma/verme gereksinimi olmadığı için SDR platformu ölçüm, USB host veya güç olayları iş akışına zorlanarak dahil edilmez.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Bu turda kaynak dosyaları incelenmedi; dışlama hedef kapsamına dayanıyor.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "greatscottgadgets/hackrf",
+          "classification": "out_of_scope",
+          "purpose_tr": "HackRF yazılım tanımlı radyo platformunun donanım tasarımları ve yazılımı.",
+          "reason_tr": "S01'de RF alma/verme gereksinimi olmadığı için SDR platformu ölçüm, USB host veya güç olayları iş akışına zorlanarak dahil edilmez.",
+          "workflow_keys": [],
+          "readme_status": "readme_reviewed",
+          "primary_document_status": "not_needed",
+          "document_path": "Readme.md",
+          "document_type": "readme",
+          "blob_sha": "747ca054963199a7ced29a61366cfd56e080af4d",
+          "source_url": "https://github.com/greatscottgadgets/hackrf/blob/main/Readme.md",
+          "content_addressed_source_url": "https://api.github.com/repos/greatscottgadgets/hackrf/git/blobs/747ca054963199a7ced29a61366cfd56e080af4d",
+          "scan_depth": "source_inspected",
+          "inspection_scope": "README only; no implementation or diff inspection in this triage",
+          "evidence_summary_tr": "README projeyi düşük maliyetli açık kaynak Software Defined Radio platformu olarak tanımlar."
+        }
+      },
+      {
+        "list_index": 32,
+        "repository": "Kampi/BeeLight",
+        "url": "https://github.com/Kampi/BeeLight",
+        "classification": "conditional",
+        "workflow_keys": [],
+        "reason_tr": "KiCad9 ve KiBot ile kart çıktısı üretimi S01 kartı hazır olduğunda koşullu ECAD örneğidir; Zigbee platformu ve çevre sensörü telemetrisi S01 sıcaklık kalibrasyonunun doğrulandığı anlamına gelmez.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "Kampi/BeeLight",
+          "classification": "conditional",
+          "purpose_tr": "nRF54L/Zephyr üzerinde Zigbee ışık ve çevre sensörü; KiCad kartı, firmware ve Zigbee2MQTT entegrasyonu.",
+          "reason_tr": "KiCad9 ve KiBot ile kart çıktısı üretimi S01 kartı hazır olduğunda koşullu ECAD örneğidir; Zigbee platformu ve çevre sensörü telemetrisi S01 sıcaklık kalibrasyonunun doğrulandığı anlamına gelmez.",
+          "workflow_keys": [
+            "S07"
+          ],
+          "readme_status": "readme_reviewed",
+          "primary_document_status": "not_needed",
+          "document_path": "README.md",
+          "document_type": "readme",
+          "blob_sha": "07b932252e01dd68602f7cae9160307275da08c8",
+          "source_url": "https://github.com/Kampi/BeeLight/blob/master/README.md",
+          "content_addressed_source_url": "https://api.github.com/repos/Kampi/BeeLight/git/blobs/07b932252e01dd68602f7cae9160307275da08c8",
+          "scan_depth": "source_inspected",
+          "inspection_scope": "README only; no implementation or diff inspection in this triage",
+          "evidence_summary_tr": "README, hardware/ KiCad projesini, kibot-launch.sh çıktı üretimini ve Zephyr/Zigbee firmware'ini açıklar."
+        }
+      },
+      {
+        "list_index": 33,
+        "repository": "ZSWatch/Watch-DevKit-HW",
+        "url": "https://github.com/ZSWatch/Watch-DevKit-HW",
+        "classification": "conditional",
+        "workflow_keys": [
+          "conditional_ecad"
+        ],
+        "reason_tr": "S01'in G1 sonrası ECAD çıktı/sürümleme işinde bir örnek olabilir; saat kartının ölçüm/güç devresi S01 çözümü değildir.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "ZSWatch/Watch-DevKit-HW",
+          "classification": "conditional",
+          "readme_status": "readme_reviewed",
+          "readme_reviewed": true,
+          "unavailable": false,
+          "review_depth": "README purpose/requirements/tooling sections only; no implementation/diff inspection in this pass",
+          "purpose_tr": "ZSWatch ekosistemi için akıllı saat geliştirme kartının KiCad tasarım ve üretim dosyaları; KiBot ile Gerber/BOM/belge ve DRAFT→PRELIMINARY→CHECKED→RELEASED sürüm aşamaları.",
+          "reason_tr": "S01'in G1 sonrası ECAD çıktı/sürümleme işinde bir örnek olabilir; saat kartının ölçüm/güç devresi S01 çözümü değildir.",
+          "condition_tr": "S01 PCB projesi ve EDA sürümü belirlendiğinde, ana rapordaki ECAD akışının alternatif kaynak incelemesi; README'deki CI iddiaları yürütülmedi.",
+          "source_commit_sha": "bede75a23fa663906a5dfdbf2f2f8dc45037da90",
+          "source_commit_committer_utc": "2026-10-30T08:30:48Z",
+          "source_path": "README.md",
+          "source_blob_url": "https://github.com/ZSWatch/Watch-DevKit-HW/blob/bede75a23fa663906a5dfdbf2f2f8dc45037da90/README.md",
+          "source_raw_url": "https://raw.githubusercontent.com/ZSWatch/Watch-DevKit-HW/bede75a23fa663906a5dfdbf2f2f8dc45037da90/README.md",
+          "reviewed_sections": [
+            "About",
+            "Directory Breakdown"
+          ],
+          "fetched_readme_chars": 2072,
+          "changes_main_workflow_map": false
+        }
+      },
+      {
+        "list_index": 34,
+        "repository": "riatlabs/cdc-badge",
+        "url": "https://github.com/riatlabs/cdc-badge",
+        "classification": "conditional",
+        "workflow_keys": [
+          "usb_host"
+        ],
+        "reason_tr": "S01 için üretim dosyaları, panelizasyon ve donanım QC dokümantasyonu örneği olabilir; keystore,kimlik rozeti ve batarya mimarisi gereksinim değildir.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence; ad üzerinden CDC sınıfı varsayılmadı.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "riatlabs/cdc-badge",
+          "classification": "conditional",
+          "readme_status": "readme_reviewed",
+          "readme_reviewed": true,
+          "unavailable": false,
+          "review_depth": "README purpose/requirements/tooling sections only; no implementation/diff inspection in this pass",
+          "purpose_tr": "ESP32-S3 ve TROPIC01 güvenli elemanlı elektronik hacker rozeti; e-paper ekran, batarya ve tuş takımı. KiKit/Make ile JLCPCB üretim çıktıları ve 1×2 panel üretimi açıklanıyor.",
+          "reason_tr": "S01 için üretim dosyaları, panelizasyon ve donanım QC dokümantasyonu örneği olabilir; keystore,kimlik rozeti ve batarya mimarisi gereksinim değildir.",
+          "condition_tr": "G1 sonrası fiziksel PCB ve panel ihtiyacı ortaya çıkarsa; imalat/firmware checklist kodu bu dar okumada incelenmedi.",
+          "source_commit_sha": "b8caf5045f9962efb385318931ae02f0a683f0ed",
+          "source_commit_committer_utc": "2026-10-31T12:49:47Z",
+          "source_path": "README.md",
+          "source_blob_url": "https://github.com/riatlabs/cdc-badge/blob/b8caf5045f9962efb385318931ae02f0a683f0ed/README.md",
+          "source_raw_url": "https://raw.githubusercontent.com/riatlabs/cdc-badge/b8caf5045f9962efb385318931ae02f0a683f0ed/README.md",
+          "reviewed_sections": [
+            "Repository contents",
+            "Firmware",
+            "Manufacturing",
+            "License and authorship"
+          ],
+          "fetched_readme_chars": 7677,
+          "changes_main_workflow_map": false
+        }
+      },
+      {
+        "list_index": 35,
+        "repository": "arlyon/rust-matter-led",
+        "url": "https://github.com/arlyon/rust-matter-led",
+        "classification": "conditional",
+        "workflow_keys": [],
+        "reason_tr": "S01'in olası Rust/ESP32 adayını seçmez; ECAD CI çıktıları ve dosya düzeni yalnız alternatif örnek olabilir. Matter,LED sürücü ve24V güç yolu S01 kapsamı değildir.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Ad temelli kapsam elemesi; ayrıntılı kod incelemesi yapılmadı.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "arlyon/rust-matter-led",
+          "classification": "conditional",
+          "readme_status": "readme_reviewed",
+          "readme_reviewed": true,
+          "unavailable": false,
+          "review_depth": "README purpose/requirements/tooling sections only; no implementation/diff inspection in this pass",
+          "purpose_tr": "Özel ESP32-C6 PCB üzerinde Rust/Embassy tabanlı Matter uyumlu beş kanallı RGBCW LED denetleyicisi;24V besleme,LED PWM ve KiCad9/KiBot ERC/DRC+üretim çıktıları.",
+          "reason_tr": "S01'in olası Rust/ESP32 adayını seçmez; ECAD CI çıktıları ve dosya düzeni yalnız alternatif örnek olabilir. Matter,LED sürücü ve24V güç yolu S01 kapsamı değildir.",
+          "condition_tr": "Hedef MCU/dil ve PCB onayından sonra ilgili araç zinciri seçilirse yeniden inceleme; mevcut Python referansa Rust/Matter bağımlılığı eklenmez.",
+          "source_commit_sha": "c37202da125faa8d645455d110313a722b55c74b",
+          "source_commit_committer_utc": "2026-05-13T16:29:46Z",
+          "source_path": "README.md",
+          "source_blob_url": "https://github.com/arlyon/rust-matter-led/blob/c37202da125faa8d645455d110313a722b55c74b/README.md",
+          "source_raw_url": "https://raw.githubusercontent.com/arlyon/rust-matter-led/c37202da125faa8d645455d110313a722b55c74b/README.md",
+          "reviewed_sections": [
+            "Hardware",
+            "Firmware architecture",
+            "Hardware CI with KiBot",
+            "Project structure",
+            "License"
+          ],
+          "fetched_readme_chars": 10568,
+          "changes_main_workflow_map": false
+        }
+      },
+      {
+        "list_index": 36,
+        "repository": "meshmy/jungle-buoy",
+        "url": "https://github.com/meshmy/jungle-buoy",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01'de LoRa,Meshtastic,dış ortam güneş/batarya veya şamandıra gövdesi gereksinimi yok; panelizasyon benzerliği yeni iş akışı açmak için yeterli değil.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "meshmy/jungle-buoy",
+          "classification": "out_of_scope",
+          "readme_status": "readme_reviewed",
+          "readme_reviewed": true,
+          "unavailable": false,
+          "review_depth": "README purpose/requirements/tooling sections only; no implementation/diff inspection in this pass",
+          "purpose_tr": "Mevcut güneş enerjili şamandıranın gövde,batarya ve güneş panelini kullanarak RAK3172/STM32WLE5 üzerinde Meshtastic LoRa düğümüne dönüşen değişim PCB'si;opsiyonel BME280.",
+          "reason_tr": "S01'de LoRa,Meshtastic,dış ortam güneş/batarya veya şamandıra gövdesi gereksinimi yok; panelizasyon benzerliği yeni iş akışı açmak için yeterli değil.",
+          "condition_tr": "Ancak kullanıcı ileride kablosuz/solar saha ürünü isterse ayrı kapsam; bugünkü12V+USB raf ölçümüne taşıma önerilmiyor.",
+          "source_commit_sha": "05ad1c3d43bee2a9c6e89a73575aa240db458bb6",
+          "source_commit_committer_utc": "2026-07-13T15:39:12Z",
+          "source_path": "README.md",
+          "source_blob_url": "https://github.com/meshmy/jungle-buoy/blob/05ad1c3d43bee2a9c6e89a73575aa240db458bb6/README.md",
+          "source_raw_url": "https://raw.githubusercontent.com/meshmy/jungle-buoy/05ad1c3d43bee2a9c6e89a73575aa240db458bb6/README.md",
+          "reviewed_sections": [
+            "Introduction",
+            "Hardware",
+            "Building",
+            "Flashing Firmware",
+            "Voltage Measurement"
+          ],
+          "fetched_readme_chars": 17304,
+          "changes_main_workflow_map": false
+        }
+      },
+      {
+        "list_index": 37,
+        "repository": "scottbez1/splitflap",
+        "url": "https://github.com/scottbez1/splitflap",
+        "classification": "conditional",
+        "workflow_keys": [],
+        "reason_tr": "USB akışı için debug/log ayrımı,host arayüzü ve gelecekte PCBA test düzeneği düzeni örnek olabilir. S01'in mevcut canonical NDJSON/SHA zinciri korunur;motor/homing davranışı veya Protobuf'a geçiş önerilmez.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Ad temelli kapsam elemesi; gösterim donanımı seçilmedi.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "scottbez1/splitflap",
+          "classification": "conditional",
+          "readme_status": "readme_reviewed",
+          "readme_reviewed": true,
+          "unavailable": false,
+          "review_depth": "README purpose/requirements/tooling sections only; no implementation/diff inspection in this pass",
+          "purpose_tr": "ESP32 tabanlı mekanik split-flap gösterge;motor+Hall sensörü kapalı çevrim kontrol,USB seri iletişim,Protobuf/CRC32/COBS çerçeveleme ve üretim/test araçları.",
+          "reason_tr": "USB akışı için debug/log ayrımı,host arayüzü ve gelecekte PCBA test düzeneği düzeni örnek olabilir. S01'in mevcut canonical NDJSON/SHA zinciri korunur;motor/homing davranışı veya Protobuf'a geçiş önerilmez.",
+          "condition_tr": "Yalnız mevcut kayıpsız host akışının alternatif kaynak notu veya gelecekte gerçek PCB test düzeneği;donanımsız rapora yeni mekanik gösterge akışı eklenmez.",
+          "source_commit_sha": "87b17c531ca57b0bf10e86754e9d6b404b11a131",
+          "source_commit_committer_utc": "2026-08-14T14:56:33Z",
+          "source_path": "README.md",
+          "source_blob_url": "https://github.com/scottbez1/splitflap/blob/87b17c531ca57b0bf10e86754e9d6b404b11a131/README.md",
+          "source_raw_url": "https://raw.githubusercontent.com/scottbez1/splitflap/87b17c531ca57b0bf10e86754e9d6b404b11a131/README.md",
+          "reviewed_sections": [
+            "Introduction",
+            "Current Status",
+            "Chainlink Driver Tester",
+            "Code/Firmware",
+            "Serial protocol",
+            "Computer Control Software",
+            "Electronics Design",
+            "License"
+          ],
+          "fetched_readme_chars": 49310,
+          "changes_main_workflow_map": false
+        }
+      },
+      {
+        "list_index": 38,
+        "repository": "eshelton328/forge",
+        "url": "https://github.com/eshelton328/forge",
+        "classification": "primary",
+        "workflow_keys": [
+          "software_ci",
+          "conditional_ecad"
+        ],
+        "reason_tr": "İncelenen Python CI, board.yml/fab kuralları ve hata kanıtı örüntüleri yazılım kontrol kapısını şimdi, ECAD kapısını kart oluştuktan sonra destekler.",
+        "scan_depth": "source_inspected",
+        "inspection_notes_tr": "README, Python workflow, fab-DRC ve bakır temas kodu ile ilgili commit diffleri okundu; kod kopyalama lisansı ayrıca kurulmuş sayılmıyor.",
+        "evidence_status": "source_content_reviewed"
+      },
+      {
+        "list_index": 39,
+        "repository": "hatlabs/SH-RPi-hardware",
+        "url": "https://github.com/hatlabs/SH-RPi-hardware",
+        "classification": "conditional",
+        "workflow_keys": [
+          "power_events",
+          "conditional_ecad"
+        ],
+        "reason_tr": "Güç kesintisi işinde sistem sınırı/host güç yönetimi örneği;S01'in MCU'su veya Raspberry Pi ana bilgisayar kararı yok. Fiziksel kart,kapatma komutu ve güvenli kapanış garantisi aktarılmaz.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Araştırma ekibi repo metadata'sı ve dosya ağacını gördü; README/kod okumadı.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "hatlabs/SH-RPi-hardware",
+          "classification": "conditional",
+          "readme_status": "readme_reviewed",
+          "readme_reviewed": true,
+          "unavailable": false,
+          "review_depth": "README purpose/requirements/tooling sections only; no implementation/diff inspection in this pass",
+          "purpose_tr": "Raspberry Pi ve uyumlu tek kartlı bilgisayarlar için güç yönetim kartının KiCad tasarımı;güç kesilince düzenli kapanış ve geri gelince otomatik açılış. Firmware ve daemon ayrı repolarda.",
+          "reason_tr": "Güç kesintisi işinde sistem sınırı/host güç yönetimi örneği;S01'in MCU'su veya Raspberry Pi ana bilgisayar kararı yok. Fiziksel kart,kapatma komutu ve güvenli kapanış garantisi aktarılmaz.",
+          "condition_tr": "Ancak ileride Raspberry Pi benzeri host seçilirse donanım gözden geçirmesi;bugünkü güç olayı koordinasyonunda yalnız ilgili firmware/daemon yaklaşımı kullanılır.",
+          "source_commit_sha": "e82e3c9823bbcf94091b22927dd2e0da9cdfac8c",
+          "source_commit_committer_utc": "2024-12-23T12:26:33Z",
+          "source_path": "README.md",
+          "source_blob_url": "https://github.com/hatlabs/SH-RPi-hardware/blob/e82e3c9823bbcf94091b22927dd2e0da9cdfac8c/README.md",
+          "source_raw_url": "https://raw.githubusercontent.com/hatlabs/SH-RPi-hardware/e82e3c9823bbcf94091b22927dd2e0da9cdfac8c/README.md",
+          "reviewed_sections": [
+            "Introduction",
+            "Repository relationships"
+          ],
+          "fetched_readme_chars": 1261,
+          "changes_main_workflow_map": false
+        }
+      },
+      {
+        "list_index": 40,
+        "repository": "hatlabs/SH-ESP32-hardware",
+        "url": "https://github.com/hatlabs/SH-ESP32-hardware",
+        "classification": "conditional",
+        "workflow_keys": [
+          "power_events",
+          "conditional_ecad"
+        ],
+        "reason_tr": "S01'in12V besleme ve USB gereksinimiyle güç/koruma/arayüz bakımından somut örtüşme var;ölçüm AFE'si,load-cell doğruluğu ve kullanılacak ESP32 kararı bu README ile doğrulanmıyor.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "hatlabs/SH-ESP32-hardware",
+          "classification": "conditional",
+          "readme_status": "readme_reviewed",
+          "readme_reviewed": true,
+          "unavailable": false,
+          "review_depth": "README purpose/requirements/tooling sections only; no implementation/diff inspection in this pass",
+          "purpose_tr": "Deniz ortamı için ESP32 geliştirme kartı;8–32V giriş,darbe/ESD/EMC koruma tasarım hedefi,izole CAN,1-Wire,I2C ve USB Micro-B programlama/seri iletişim.",
+          "reason_tr": "S01'in12V besleme ve USB gereksinimiyle güç/koruma/arayüz bakımından somut örtüşme var;ölçüm AFE'si,load-cell doğruluğu ve kullanılacak ESP32 kararı bu README ile doğrulanmıyor.",
+          "condition_tr": "G1 aday kart/koruma incelemesine ek kaynak olabilir;marine/NMEA2000/Ethernet işlevleri hedefe eklenmez. EMC ifadeleri upstream tasarım iddiası,bu araştırmada test sonucu değil.",
+          "source_commit_sha": "167981ac8c3e1a7a0104c20cf9b487b4d722fc60",
+          "source_commit_committer_utc": "2024-10-16T11:35:59Z",
+          "source_path": "README.md",
+          "source_blob_url": "https://github.com/hatlabs/SH-ESP32-hardware/blob/167981ac8c3e1a7a0104c20cf9b487b4d722fc60/README.md",
+          "source_raw_url": "https://raw.githubusercontent.com/hatlabs/SH-ESP32-hardware/167981ac8c3e1a7a0104c20cf9b487b4d722fc60/README.md",
+          "reviewed_sections": [
+            "Introduction",
+            "Features",
+            "Documentation"
+          ],
+          "fetched_readme_chars": 2845,
+          "changes_main_workflow_map": false
+        }
+      },
+      {
+        "list_index": 41,
+        "repository": "greatscottgadgets/cynthion-hardware",
+        "url": "https://github.com/greatscottgadgets/cynthion-hardware",
+        "classification": "conditional",
+        "workflow_keys": [
+          "usb_host"
+        ],
+        "reason_tr": "S01 fiziksel USB uygulaması ortaya çıktığında aygıt/protokol analizi için aday test ekipmanı;mevcut donanımsız NDJSON host tüketicisinin bağımlılığı değildir.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence; USB fiziksel sınıfı ve donanımı henüz seçilmedi.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "greatscottgadgets/cynthion-hardware",
+          "classification": "conditional",
+          "readme_status": "readme_reviewed",
+          "readme_reviewed": true,
+          "unavailable": false,
+          "review_depth": "README purpose/requirements/tooling sections only; no implementation/diff inspection in this pass",
+          "purpose_tr": "USB aygıtlarını geliştirme,test etme,izleme ve deney amacıyla açık donanım test cihazının KiCad tasarımı;LUNA/Amaranth USB gateware platformu.",
+          "reason_tr": "S01 fiziksel USB uygulaması ortaya çıktığında aygıt/protokol analizi için aday test ekipmanı;mevcut donanımsız NDJSON host tüketicisinin bağımlılığı değildir.",
+          "condition_tr": "G1 USB sınıfı ve gerçek cihaz belirlendikten sonra ihtiyaca göre;FPGA,LUNA veya Cynthion satın alma/inşa etme bugünkü kapsamda yok.",
+          "source_commit_sha": "babfb2332e1cb94ea850381e27483d200ad8a1c9",
+          "source_commit_committer_utc": "2026-11-06T00:23:39Z",
+          "source_path": "README.md",
+          "source_blob_url": "https://github.com/greatscottgadgets/cynthion-hardware/blob/babfb2332e1cb94ea850381e27483d200ad8a1c9/README.md",
+          "source_raw_url": "https://raw.githubusercontent.com/greatscottgadgets/cynthion-hardware/babfb2332e1cb94ea850381e27483d200ad8a1c9/README.md",
+          "reviewed_sections": [
+            "Introduction",
+            "Related Projects"
+          ],
+          "fetched_readme_chars": 1252,
+          "changes_main_workflow_map": false
+        }
+      },
+      {
+        "list_index": 42,
+        "repository": "matthuszagh/fmcw",
+        "url": "https://github.com/matthuszagh/fmcw",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01'de tartım köprüsü ile kütle ölçülüyor;RF menzil/anten/FPGA radar gereksinimi yok.12V ve USB ortaklığı tek başına bu zinciri ilgili kılmaz.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "Ad temelli kapsam elemesi; kaynak ayrıntıları incelenmedi.",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "matthuszagh/fmcw",
+          "classification": "out_of_scope",
+          "readme_status": "readme_reviewed",
+          "readme_reviewed": true,
+          "unavailable": false,
+          "review_depth": "README purpose/requirements/tooling sections only; no implementation/diff inspection in this pass",
+          "purpose_tr": "6GHz FMCW radar için özel PCB,FPGA gateware,PC denetim/yakalama yazılımı ve RF/SPICE simülasyonları;README.org menzil ölçümünü ve revizyon sınırlarını anlatıyor.",
+          "reason_tr": "S01'de tartım köprüsü ile kütle ölçülüyor;RF menzil/anten/FPGA radar gereksinimi yok.12V ve USB ortaklığı tek başına bu zinciri ilgili kılmaz.",
+          "condition_tr": "Ayrı mesafe/radar gereksinimi gelmedikçe kapsam dışı;formal test/EDA benzerliği için yeni radar iş akışı açılmaz.",
+          "source_commit_sha": "b60f18102a948562bfc954de2658ba5fb48c3c79",
+          "source_commit_committer_utc": "2020-09-20T22:10:23Z",
+          "source_path": "README.org",
+          "source_blob_url": "https://github.com/matthuszagh/fmcw/blob/b60f18102a948562bfc954de2658ba5fb48c3c79/README.org",
+          "source_raw_url": "https://raw.githubusercontent.com/matthuszagh/fmcw/b60f18102a948562bfc954de2658ba5fb48c3c79/README.org",
+          "reviewed_sections": [
+            "About",
+            "Capabilities",
+            "Installation",
+            "Tests and Formal Verification",
+            "PCB Design",
+            "Additional Hardware"
+          ],
+          "fetched_readme_chars": 16273,
+          "changes_main_workflow_map": false
+        }
+      },
+      {
+        "list_index": 43,
+        "repository": "ZSWatch/Watch-HW",
+        "url": "https://github.com/ZSWatch/Watch-HW",
+        "classification": "conditional",
+        "workflow_keys": [
+          "conditional_ecad"
+        ],
+        "reason_tr": "S01'in gelecekte ECAD bağımlılıklarının ve üretim eserlerinin aynı sürüme bağlanması için alternatif örnek;akıllı saat elektroniğinin doğrudan ölçüm katkısı yok.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "ZSWatch/Watch-HW",
+          "classification": "conditional",
+          "readme_status": "readme_reviewed",
+          "readme_reviewed": true,
+          "unavailable": false,
+          "review_depth": "README purpose/requirements/tooling sections only; no implementation/diff inspection in this pass",
+          "purpose_tr": "ZSWatch akıllı saat donanım/üretim tasarımı;KiCad ve KiBot CI,Gerber/BOM/belge çıktıları,sürüm aşamaları ve sabitlenmiş kicad-library altmodülü.",
+          "reason_tr": "S01'in gelecekte ECAD bağımlılıklarının ve üretim eserlerinin aynı sürüme bağlanması için alternatif örnek;akıllı saat elektroniğinin doğrudan ölçüm katkısı yok.",
+          "condition_tr": "S01 PCB oluştuğunda var olan ECAD akışı içinde yardımcı kaynak;README dışındaki CI/submodule davranışı bu turda incelenmedi.",
+          "source_commit_sha": "269a62ab42ebeac22d32288ee8dee47c3e02a352",
+          "source_commit_committer_utc": "2026-10-29T22:09:04Z",
+          "source_path": "README.md",
+          "source_blob_url": "https://github.com/ZSWatch/Watch-HW/blob/269a62ab42ebeac22d32288ee8dee47c3e02a352/README.md",
+          "source_raw_url": "https://raw.githubusercontent.com/ZSWatch/Watch-HW/269a62ab42ebeac22d32288ee8dee47c3e02a352/README.md",
+          "reviewed_sections": [
+            "About",
+            "Directory Breakdown",
+            "KiCad library"
+          ],
+          "fetched_readme_chars": 2182,
+          "changes_main_workflow_map": false
+        }
+      },
+      {
+        "list_index": 44,
+        "repository": "riatlabs/cdc-badge-nametag",
+        "url": "https://github.com/riatlabs/cdc-badge-nametag",
+        "classification": "conditional",
+        "workflow_keys": [
+          "usb_host"
+        ],
+        "reason_tr": "PlatformIO USB CDC yapılandırması ve seri kodu incelendi; debug metni strict NDJSON ile uyumsuz, bazı tarihsel testler koşulsuz doğru döndürüyor. Yalnız koşullu arayüz referansı.",
+        "scan_depth": "source_inspected",
+        "inspection_notes_tr": "Kök incelemesi: README, platformio.ini, test/README.md, test/test_connected/test_main.cpp ve lib/cdc-badge/serial_port.cpp; HEAD c72979b41aff39ee992681f30e7b9d8cb25548c9.",
+        "evidence_status": "source_content_reviewed"
+      },
+      {
+        "list_index": 45,
+        "repository": "hatlabs/SH-RPi-firmware",
+        "url": "https://github.com/hatlabs/SH-RPi-firmware",
+        "classification": "conditional",
+        "workflow_keys": [
+          "power_events"
+        ],
+        "reason_tr": "İncelenen I2C ve güç durum makinesi olay sırası/fault-injection örüntüsü sağlayabilir; RPi kapatma davranışı S01 gereksinimi olarak taşınamaz.",
+        "scan_depth": "source_inspected",
+        "inspection_notes_tr": "I2C handler, state_machine ve bugfix commitleri araştırma ekibince okundu.",
+        "evidence_status": "source_content_reviewed"
+      },
+      {
+        "list_index": 46,
+        "repository": "hatlabs/SH-RPi-daemon",
+        "url": "https://github.com/hatlabs/SH-RPi-daemon",
+        "classification": "conditional",
+        "workflow_keys": [
+          "power_events"
+        ],
+        "reason_tr": "İncelenen host güç koordinasyonu yalnız olay sözleşmesi düzeyinde örnek olabilir; I2C/RPi servisinin S01 USB hostu olduğu varsayılmamalı.",
+        "scan_depth": "source_inspected",
+        "inspection_notes_tr": "I2C, power state_machine, pyproject ve ilgili commitler araştırma ekibince okundu.",
+        "evidence_status": "source_content_reviewed"
+      },
+      {
+        "list_index": 47,
+        "repository": "slimcdk/wisweep",
+        "url": "https://github.com/slimcdk/wisweep",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "S01 raf tartımında motor,hareket,stall veya ZigBee gereksinimi yok. Genel sürümleme fikri zaten daha ilgili ECAD kaynaklarıyla karşılanıyor.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "slimcdk/wisweep",
+          "classification": "out_of_scope",
+          "readme_status": "readme_reviewed",
+          "readme_reviewed": true,
+          "unavailable": false,
+          "review_depth": "README purpose/requirements/tooling sections only; no implementation/diff inspection in this pass",
+          "purpose_tr": "WiFi/Bluetooth5/ZigBee bağlantılı NEMA17 step motor denetleyicisi;stall algılama,sessiz çalışma,5–36V besleme. README üretim dosyaları ve uyumlu eserlerin git tag'i altında birlikte sürümlenmesini anlatıyor.",
+          "reason_tr": "S01 raf tartımında motor,hareket,stall veya ZigBee gereksinimi yok. Genel sürümleme fikri zaten daha ilgili ECAD kaynaklarıyla karşılanıyor.",
+          "condition_tr": "Aktüatörlü raf veya motorlu test düzeneği ayrıca istenirse yeniden değerlendirme;bugünkü iş akışı haritasına eklenmez.",
+          "source_commit_sha": "f22ec65c9bee161bd84cd56751ced6f57ec399dd",
+          "source_commit_committer_utc": "2025-02-15T23:36:57Z",
+          "source_path": "README.md",
+          "source_blob_url": "https://github.com/slimcdk/wisweep/blob/f22ec65c9bee161bd84cd56751ced6f57ec399dd/README.md",
+          "source_raw_url": "https://raw.githubusercontent.com/slimcdk/wisweep/f22ec65c9bee161bd84cd56751ced6f57ec399dd/README.md",
+          "reviewed_sections": [
+            "Introduction",
+            "Production files",
+            "Versioning",
+            "Software uses"
+          ],
+          "fetched_readme_chars": 1675,
+          "changes_main_workflow_map": false
+        }
+      },
+      {
+        "list_index": 48,
+        "repository": "inoa-io/satellite",
+        "url": "https://github.com/inoa-io/satellite",
+        "classification": "conditional",
+        "workflow_keys": [],
+        "reason_tr": "Uzay uydusu değildir. S01'in12V girişine uygun endüstriyel koruma,modüler kart ve KiBot üretim düzeni için koşullu örnek olabilir;yük hücresi kalibrasyonu/USB uygulama protokolünün doğrudan kaynağı değildir.",
+        "scan_depth": "readme_reviewed",
+        "inspection_notes_tr": "insufficient_evidence",
+        "evidence_status": "readme_reviewed",
+        "readme_triage": {
+          "repository": "inoa-io/satellite",
+          "classification": "conditional",
+          "readme_status": "readme_reviewed",
+          "readme_reviewed": true,
+          "unavailable": false,
+          "review_depth": "README purpose/requirements/tooling sections only; no implementation/diff inspection in this pass",
+          "purpose_tr": "Sigorta panosu/endüstriyel ortam için ESP32 ve ATECC608 güvenli elemanlı,modüler DIN-ray IoT ağ geçidi;5–24V ölçüm modülleri,RS485/Modbus/CT veopsiyonel Ethernet.",
+          "reason_tr": "Uzay uydusu değildir. S01'in12V girişine uygun endüstriyel koruma,modüler kart ve KiBot üretim düzeni için koşullu örnek olabilir;yük hücresi kalibrasyonu/USB uygulama protokolünün doğrudan kaynağı değildir.",
+          "condition_tr": "DIN-ray/endüstriyel muhafaza veya modüler gateway ihtiyacı belirlenirse yeniden inceleme;S01'e RS485/Modbus, HSM, Ethernet gereksinimi eklenmez.",
+          "source_commit_sha": "ded09e32ec89ae2ede43414276e2b8c99253942e",
+          "source_commit_committer_utc": "2025-01-07T14:31:49Z",
+          "source_path": "README.md",
+          "source_blob_url": "https://github.com/inoa-io/satellite/blob/ded09e32ec89ae2ede43414276e2b8c99253942e/README.md",
+          "source_raw_url": "https://raw.githubusercontent.com/inoa-io/satellite/ded09e32ec89ae2ede43414276e2b8c99253942e/README.md",
+          "reviewed_sections": [
+            "Why",
+            "How",
+            "Modules",
+            "Casings",
+            "Development",
+            "Conventions"
+          ],
+          "fetched_readme_chars": 10364,
+          "changes_main_workflow_map": false
+        }
+      },
+      {
+        "list_index": 49,
+        "repository": "ammygo/open-vibration-node",
+        "url": "https://github.com/ammygo/open-vibration-node",
+        "classification": "out_of_scope",
+        "workflow_keys": [],
+        "reason_tr": "Kaynakları incelenmiş olsa da titreşim/VRMS ve bu fiziksel kabul hattı mevcut sabit raf sürümünün açıkça dışındadır.",
+        "scan_depth": "source_inspected",
+        "inspection_notes_tr": "tools/vrms_filter_check.py, docs/payload-spec.md ve firmware/README.md araştırma ekibince okundu.",
+        "evidence_status": "source_content_reviewed"
+      }
+    ],
+    "provenance_notes": [
+      "ECAD kaynak incelemeleri: analysis/ecad_shelf_evidence.json.",
+      "Sensor/power agent 2026-11-15 confirmation: OPEN_WEIGHT, HiveHub, SH-RPi-firmware, SH-RPi-daemon, open-vibration-node, OM-64DO contents read; SH-RPi-hardware metadata/tree only.",
+      "Legacy VINS/ADCS/CR-10/GMAT content inspection not yet independently confirmed; conservatively list_metadata_only based on analysis/vins_adcs_legacy_excluded.json.",
+      "Hedef source/contract: analysis/shelf_source_evidence.json and analysis/shelf_validation_evidence.json."
+    ],
+    "final_summary": {
+      "classification": {
+        "primary": 4,
+        "conditional": 25,
+        "out_of_scope": 20
+      },
+      "scan_depth": {
+        "source_inspected": 13,
+        "readme_reviewed": 36
+      }
+    }
+  },
+  "commits": [
+    {
+      "sha": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+      "author_date": "2026-11-15T08:28:44Z",
+      "committer_date": "2026-11-15T08:28:44Z",
+      "message": "feat(shelf-load): add firmware conformance tooling",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/commit/db6bdcada9cd447ad411c175115b13aac2cfcf22",
+      "tree": "2feef320fe009efd0ada6c297be3160db07dce7f",
+      "repository": "kemaldemirag/shelf-load-monitor"
+    },
+    {
+      "sha": "3f16769e77a30b208092e95992d3d13be24bed53",
+      "author_date": "2026-11-15T06:23:58Z",
+      "committer_date": "2026-11-15T06:23:58Z",
+      "message": "feat(shelf-load): add USB export and persistence recovery",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/commit/3f16769e77a30b208092e95992d3d13be24bed53",
+      "tree": "b685bb72d35f7f2f3be52790b2f332c644541433",
+      "repository": "kemaldemirag/shelf-load-monitor"
+    },
+    {
+      "sha": "3a5ce426fbf43f5276f8e7d89354ab85f35bf58d",
+      "author_date": "2026-11-14T18:47:37Z",
+      "committer_date": "2026-11-14T18:47:37Z",
+      "message": "feat(shelf-load): add deterministic runtime replay",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/commit/3a5ce426fbf43f5276f8e7d89354ab85f35bf58d",
+      "tree": "2daacc8747005d4ee5bc9c6b20686010656121d3",
+      "repository": "kemaldemirag/shelf-load-monitor"
+    },
+    {
+      "sha": "709b95cacce7b713d85f88036f07221493b14bc7",
+      "author_date": "2026-11-14T12:19:24Z",
+      "committer_date": "2026-11-14T12:19:24Z",
+      "message": "Initial baseline",
+      "url": "https://github.com/kemaldemirag/shelf-load-monitor/commit/709b95cacce7b713d85f88036f07221493b14bc7",
+      "tree": "af7121aca2cd1d7cf333f99033d87a581b129dac",
+      "repository": "kemaldemirag/shelf-load-monitor"
+    },
+    {
+      "repository": "DillanMcDonald/kicad-ci",
+      "sha": "f28bae2565bfe7eb1f3577b87737b446b8767d0e",
+      "url": "https://github.com/DillanMcDonald/kicad-ci/commit/f28bae2565bfe7eb1f3577b87737b446b8767d0e",
+      "author_utc": "2026-04-16T03:32:32Z",
+      "committer_utc": "2026-04-16T03:32:32Z",
+      "stats": {
+        "total": 530,
+        "additions": 530,
+        "deletions": 0
+      },
+      "subject": "feat: scaffold KiCad CI/CD pipeline (MIT-licensed)",
+      "files": [
+        ".gitattributes",
+        ".github/workflows/kicad-ci.yml",
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "example/.gitkeep",
+        "scripts/drc.sh",
+        "scripts/erc.sh",
+        "scripts/export.sh",
+        "scripts/lib/common.sh"
+      ]
+    },
+    {
+      "repository": "DillanMcDonald/kicad-ci",
+      "sha": "742f1b69f89a482dfc12c79e9c1b40446d1a1fca",
+      "url": "https://github.com/DillanMcDonald/kicad-ci/commit/742f1b69f89a482dfc12c79e9c1b40446d1a1fca",
+      "author_utc": "2026-04-16T03:38:36Z",
+      "committer_utc": "2026-04-16T03:38:36Z",
+      "stats": {
+        "total": 218,
+        "additions": 218,
+        "deletions": 0
+      },
+      "subject": "test: add minimal KiCad test project + wire up CI",
+      "files": [
+        ".gitattributes",
+        ".github/workflows/kicad-ci.yml",
+        "test-project/test.kicad_pcb",
+        "test-project/test.kicad_pro",
+        "test-project/test.kicad_sch"
+      ]
+    },
+    {
+      "repository": "DillanMcDonald/kicad-ci",
+      "sha": "37a903964e998fa4f675c8694abf346244f794c6",
+      "url": "https://github.com/DillanMcDonald/kicad-ci/commit/37a903964e998fa4f675c8694abf346244f794c6",
+      "author_utc": "2026-04-16T04:50:18Z",
+      "committer_utc": "2026-04-16T04:50:18Z",
+      "stats": {
+        "total": 22,
+        "additions": 20,
+        "deletions": 2
+      },
+      "subject": "fix: ERC two-pass strategy — warnings advisory, errors blocking",
+      "files": [
+        "scripts/erc.sh"
+      ]
+    },
+    {
+      "repository": "DillanMcDonald/kicad-ci",
+      "sha": "76df7870843c2f1da2620fab20488a2f37f8d956",
+      "url": "https://github.com/DillanMcDonald/kicad-ci/commit/76df7870843c2f1da2620fab20488a2f37f8d956",
+      "author_utc": "2026-04-17T03:03:13Z",
+      "committer_utc": "2026-04-17T03:03:13Z",
+      "stats": {
+        "total": 199,
+        "additions": 102,
+        "deletions": 97
+      },
+      "subject": "fix: QA pass — 14 issues fixed across all scripts and workflows",
+      "files": [
+        ".github/workflows/kicad-ci.yml",
+        ".github/workflows/kicad-pr-diff.yml",
+        "install.sh",
+        "scripts/export.sh",
+        "scripts/extract_testpoints.py",
+        "scripts/gen-pages.sh",
+        "scripts/gen_readme.py",
+        "scripts/ibom.sh",
+        "scripts/inject_git_meta.py",
+        "scripts/sync_revision.py"
+      ]
+    },
+    {
+      "repository": "DillanMcDonald/kicad-ci",
+      "sha": "cbe03a849ad5c745591c338cbf2bf9eb4d2e6bd9",
+      "url": "https://github.com/DillanMcDonald/kicad-ci/commit/cbe03a849ad5c745591c338cbf2bf9eb4d2e6bd9",
+      "author_utc": "2026-04-17T04:19:40Z",
+      "committer_utc": "2026-04-17T04:19:40Z",
+      "stats": {
+        "total": 86,
+        "additions": 50,
+        "deletions": 36
+      },
+      "subject": "fix: QA pass 2 — 12 issues fixed across 8 files",
+      "files": [
+        ".claude/worktrees/inspiring-booth",
+        ".claude/worktrees/sad-perlman",
+        ".claude/worktrees/upbeat-buck",
+        ".claude/worktrees/vigorous-faraday",
+        ".github/workflows/kicad-ci.yml",
+        ".github/workflows/kicad-pr-diff.yml",
+        "scripts/export.sh",
+        "scripts/gen-pages.sh",
+        "scripts/gen_readme.py",
+        "scripts/ibom.sh",
+        "scripts/sync_revision.py",
+        "templates/README.md.j2"
+      ]
+    },
+    {
+      "repository": "INTI-CMNB/kicad_ci_test",
+      "sha": "b2abc75b3003c279d2a1a11c371ce5fbb08f9720",
+      "url": "https://github.com/INTI-CMNB/kicad_ci_test/commit/b2abc75b3003c279d2a1a11c371ce5fbb08f9720",
+      "author_utc": "2025-02-21T12:41:36Z",
+      "committer_utc": "2025-02-21T12:41:36Z",
+      "stats": {
+        "total": 2,
+        "additions": 1,
+        "deletions": 1
+      },
+      "subject": "Fixed all example about run_drc",
+      "files": [
+        "README.md"
+      ]
+    },
+    {
+      "repository": "INTI-CMNB/kicad_ci_test",
+      "sha": "460225e7c84bfa0954ae871940d310fca1baf882",
+      "url": "https://github.com/INTI-CMNB/kicad_ci_test/commit/460225e7c84bfa0954ae871940d310fca1baf882",
+      "author_utc": "2025-02-21T13:03:48Z",
+      "committer_utc": "2025-02-21T13:03:48Z",
+      "stats": {
+        "total": 3,
+        "additions": 2,
+        "deletions": 1
+      },
+      "subject": "Added schematic parity check",
+      "files": [
+        "test_subdir/test_subdir.kibot.yaml"
+      ]
+    },
+    {
+      "repository": "INTI-CMNB/KiBot",
+      "sha": "3521348c6d73fda919072b2f63350ef4c4c5fa7c",
+      "url": "https://github.com/INTI-CMNB/KiBot/commit/3521348c6d73fda919072b2f63350ef4c4c5fa7c",
+      "author_utc": "2026-04-14T11:54:23Z",
+      "committer_utc": "2026-04-14T11:54:23Z",
+      "stats": {
+        "total": 35,
+        "additions": 20,
+        "deletions": 15
+      },
+      "subject": "[E/DRC][KiCad 10] Try harder to get the lib tables",
+      "files": [
+        "kibot/kicad/config.py",
+        "kibot/pre_any_xrc.py"
+      ]
+    },
+    {
+      "repository": "INTI-CMNB/KiBot",
+      "sha": "df09af5173ddfd21beeebbc41d590dd4a42a6107",
+      "url": "https://github.com/INTI-CMNB/KiBot/commit/df09af5173ddfd21beeebbc41d590dd4a42a6107",
+      "author_utc": "2026-04-14T13:12:17Z",
+      "committer_utc": "2026-04-14T13:12:17Z",
+      "stats": {
+        "total": 35,
+        "additions": 15,
+        "deletions": 20
+      },
+      "subject": "Revert \"[E/DRC][KiCad 10] Try harder to get the lib tables\"",
+      "files": [
+        "kibot/kicad/config.py",
+        "kibot/pre_any_xrc.py"
+      ]
+    },
+    {
+      "repository": "INTI-CMNB/KiBot",
+      "sha": "13118d4f837ab9a16fbb04c0bc65dd4e3a1f2ef6",
+      "url": "https://github.com/INTI-CMNB/KiBot/commit/13118d4f837ab9a16fbb04c0bc65dd4e3a1f2ef6",
+      "author_utc": "2026-04-28T10:41:18Z",
+      "committer_utc": "2026-04-28T10:41:18Z",
+      "stats": {
+        "total": 40,
+        "additions": 31,
+        "deletions": 9
+      },
+      "subject": "[DRC][Fixed] No schematic parity check",
+      "files": [
+        "CHANGELOG.md",
+        "docs/source/Changelog.rst",
+        "kibot/gs.py",
+        "kibot/pre_any_xrc.py",
+        "kibot/pre_drc.py"
+      ]
+    },
+    {
+      "repository": "yaqwsx/KiKit",
+      "sha": "3e4ba78e919376f6263d53f84b9a2443b1daf533",
+      "url": "https://github.com/yaqwsx/KiKit/commit/3e4ba78e919376f6263d53f84b9a2443b1daf533",
+      "author_utc": "2026-03-06T19:59:24Z",
+      "committer_utc": "2026-04-04T19:00:13Z",
+      "stats": {
+        "total": 5,
+        "additions": 5,
+        "deletions": 0
+      },
+      "subject": "Copy/rename netclass_assignments from source board",
+      "files": [
+        "kikit/panelize.py"
+      ]
+    },
+    {
+      "repository": "yaqwsx/KiKit",
+      "sha": "9fbe4b7e57bb62c627cb8c84a5b5dbc43a715f5a",
+      "url": "https://github.com/yaqwsx/KiKit/commit/9fbe4b7e57bb62c627cb8c84a5b5dbc43a715f5a",
+      "author_utc": "2026-03-06T22:53:51Z",
+      "committer_utc": "2026-04-04T19:00:13Z",
+      "stats": {
+        "total": 2,
+        "additions": 1,
+        "deletions": 1
+      },
+      "subject": "Accept empty netclass_assignments",
+      "files": [
+        "kikit/panelize.py"
+      ]
+    },
+    {
+      "repository": "yaqwsx/KiKit",
+      "sha": "1baab6ae20a1fb0da7c3525f621e273f5dc48500",
+      "url": "https://github.com/yaqwsx/KiKit/commit/1baab6ae20a1fb0da7c3525f621e273f5dc48500",
+      "author_utc": "2026-06-22T10:18:53Z",
+      "committer_utc": "2026-06-22T10:18:53Z",
+      "stats": {
+        "total": 49,
+        "additions": 44,
+        "deletions": 5
+      },
+      "subject": "Fix panel zone refill netclass ordering",
+      "files": [
+        "kikit/panelize.py",
+        "test/units/test_panelize.py"
+      ]
+    },
+    {
+      "repository": "yaqwsx/KiKit",
+      "sha": "e765803435ffd9ffe17bb74d5d8b4f46b0d6d883",
+      "url": "https://github.com/yaqwsx/KiKit/commit/e765803435ffd9ffe17bb74d5d8b4f46b0d6d883",
+      "author_utc": "2026-07-23T16:47:33Z",
+      "committer_utc": "2026-07-23T16:47:33Z",
+      "stats": {
+        "total": 44,
+        "additions": 39,
+        "deletions": 5
+      },
+      "subject": "Fix zone duplication on KiCad 10.0.5",
+      "files": [
+        "kikit/panel_features/copperFill.py",
+        "kikit/panelize.py",
+        "kikit/pcbnew_utils.py",
+        "test/units/test_pcbnew_utils.py"
+      ]
+    },
+    {
+      "repository": "yaqwsx/KiKit",
+      "sha": "054ac1a5be281e8d74052d3195ad5fb0a701a2ec",
+      "url": "https://github.com/yaqwsx/KiKit/commit/054ac1a5be281e8d74052d3195ad5fb0a701a2ec",
+      "author_utc": "2026-07-23T17:27:04Z",
+      "committer_utc": "2026-07-23T17:27:04Z",
+      "stats": {
+        "total": 21,
+        "additions": 19,
+        "deletions": 2
+      },
+      "subject": "Cast duplicated zones for KiCad 10.0.5",
+      "files": [
+        "kikit/pcbnew_utils.py",
+        "test/units/test_pcbnew_utils.py"
+      ]
+    },
+    {
+      "repository": "eshelton328/forge",
+      "sha": "ad268c04a01746be538a1ff84e6b9e0186a9ef9e",
+      "url": "https://github.com/eshelton328/forge/commit/ad268c04a01746be538a1ff84e6b9e0186a9ef9e",
+      "author_utc": "2026-07-18T23:12:39Z",
+      "committer_utc": "2026-07-18T23:12:39Z",
+      "stats": {
+        "total": 177,
+        "additions": 174,
+        "deletions": 3
+      },
+      "subject": "fix(esp32s3-devkit): connect VBAT to Q1 drain — board shipped with a dead battery input (#118)",
+      "files": [
+        ".github/workflows/pr-checks.yml",
+        "Makefile",
+        "boards/esp32s3-devkit/esp32s3-devkit.kicad_pcb",
+        "scripts/ci/check_copper_connectivity.py"
+      ]
+    },
+    {
+      "repository": "eshelton328/forge",
+      "sha": "76e74694e221ab00fd31d7a7ba5262078acd294f",
+      "url": "https://github.com/eshelton328/forge/commit/76e74694e221ab00fd31d7a7ba5262078acd294f",
+      "author_utc": "2026-07-18T23:14:52Z",
+      "committer_utc": "2026-07-18T23:14:52Z",
+      "stats": {
+        "total": 0,
+        "additions": 0,
+        "deletions": 0
+      },
+      "subject": "fab: regenerate esp32s3-devkit JLCPCB Gerber (#119)",
+      "files": [
+        "boards/esp32s3-devkit/fab/jlcpcb/esp32s3-devkit-gerber.zip"
+      ]
+    },
+    {
+      "repo": "foukouda/OPEN_WEIGHT",
+      "sha": "151717f479bfa1cf6247f60d294a29d648a20b1f",
+      "author_date": "2026-09-29T17:22:27Z",
+      "committer_date": "2026-09-29T17:22:27Z",
+      "stats": {
+        "total": 1729,
+        "additions": 1723,
+        "deletions": 6
+      },
+      "url": "https://github.com/foukouda/OPEN_WEIGHT/commit/151717f479bfa1cf6247f60d294a29d648a20b1f",
+      "subject": "Add LTspice simulations of the power chain and ADC input filter",
+      "files": [
+        "CHANGELOG.md",
+        "Images/Simulation/sim01_power_startup.png",
+        "Images/Simulation/sim02_ldo_startup.png",
+        "Images/Simulation/sim03_ripple.png",
+        "Images/Simulation/sim04_psrr.png",
+        "Images/Simulation/sim05_input_filter.png",
+        "README.md",
+        "Simulation/LTspice/.gitignore",
+        "Simulation/LTspice/01_Power_Chain_Startup.asc",
+        "Simulation/LTspice/02_LT3042_Startup.asc",
+        "Simulation/LTspice/03_Power_Ripple.asc",
+        "Simulation/LTspice/04_LT3042_PSRR.asc",
+        "Simulation/LTspice/05_AD7190_Input_Filter.asc",
+        "Simulation/LTspice/TPS61086_behav.asy",
+        "Simulation/LTspice/TPS61086_behav.sub",
+        "Simulation/LTspice/ltraw.py",
+        "Simulation/LTspice/results.md",
+        "Simulation/LTspice/run_simulations.py",
+        "kibot_resources/templates/readme.txt"
+      ]
+    },
+    {
+      "repo": "foukouda/OPEN_WEIGHT",
+      "sha": "477515e8c7c1ecc2ff976c8cb9213c52f3d8b2c4",
+      "author_date": "2026-10-08T11:21:08Z",
+      "committer_date": "2026-10-08T11:21:08Z",
+      "stats": {
+        "total": 708,
+        "additions": 651,
+        "deletions": 57
+      },
+      "url": "https://github.com/foukouda/OPEN_WEIGHT/commit/477515e8c7c1ecc2ff976c8cb9213c52f3d8b2c4",
+      "subject": "Extend the start-up simulation to 600 ms and add an FFT of the rails",
+      "files": [
+        "Images/Simulation/sim01_power_startup.png",
+        "Images/Simulation/sim03_ripple.png",
+        "Images/Simulation/sim03_spectrum.png",
+        "README.md",
+        "Simulation/LTspice/01_Power_Chain_Startup.asc",
+        "Simulation/LTspice/03_Power_Ripple.asc",
+        "Simulation/LTspice/generate_asc.py",
+        "Simulation/LTspice/ltraw.py",
+        "Simulation/LTspice/results.md",
+        "Simulation/LTspice/run_simulations.py",
+        "kibot_resources/templates/readme.txt"
+      ]
+    },
+    {
+      "repo": "MacNite/HiveHub",
+      "sha": "c7de5570fe898ab6453d87ba6676d491dbb35cbb",
+      "author_date": "2026-06-09T05:49:41Z",
+      "committer_date": "2026-06-09T05:49:41Z",
+      "stats": {
+        "total": 720,
+        "additions": 686,
+        "deletions": 34
+      },
+      "url": "https://github.com/MacNite/HiveHub/commit/c7de5570fe898ab6453d87ba6676d491dbb35cbb",
+      "subject": "added temperatur compensation",
+      "files": [
+        "docs/api.md",
+        "docs/temperature-compensation.md",
+        "server/main.py",
+        "server/migrations/006_loadcell_temp_compensation.sql",
+        "server/tempcomp.py",
+        "test-data/test_tempcomp.py"
+      ]
+    },
+    {
+      "repo": "MacNite/HiveHub",
+      "sha": "fbe35c7e93e2c42459fd3b6602dadc61e9c8cc70",
+      "author_date": "2026-06-09T10:24:00Z",
+      "committer_date": "2026-06-09T10:24:00Z",
+      "stats": {
+        "total": 89,
+        "additions": 75,
+        "deletions": 14
+      },
+      "url": "https://github.com/MacNite/HiveHub/commit/fbe35c7e93e2c42459fd3b6602dadc61e9c8cc70",
+      "subject": "replaced linear temp comp with ema",
+      "files": [
+        "server/main.py",
+        "server/tempcomp.py",
+        "test-data/test_tempcomp.py"
+      ]
+    },
+    {
+      "repo": "MacNite/HiveHub",
+      "sha": "cf2bdce816a4e302a210cb2460091be15bb3f250",
+      "author_date": "2026-06-28T13:50:12Z",
+      "committer_date": "2026-06-28T13:50:12Z",
+      "stats": {
+        "total": 126,
+        "additions": 91,
+        "deletions": 35
+      },
+      "url": "https://github.com/MacNite/HiveHub/commit/cf2bdce816a4e302a210cb2460091be15bb3f250",
+      "subject": "fix(multi-hive): larger SD line cap, bounded scale reads, NAU7802 topology accuracy (fw 0.22.6)",
+      "files": [
+        "docs/multi-hive.md",
+        "docs/wiring.md",
+        "firmware/include/config.h",
+        "firmware/src/globals.cpp",
+        "firmware/src/portal.cpp",
+        "firmware/src/scale_bus.cpp",
+        "server/main.py"
+      ]
+    },
+    {
+      "repo": "MacNite/HiveHub",
+      "sha": "d0760c00c8b97237b432ece8b1dbedf4872b8054",
+      "author_date": "2026-07-23T16:50:39Z",
+      "committer_date": "2026-07-23T16:50:39Z",
+      "stats": {
+        "total": 152,
+        "additions": 131,
+        "deletions": 21
+      },
+      "url": "https://github.com/MacNite/HiveHub/commit/d0760c00c8b97237b432ece8b1dbedf4872b8054",
+      "subject": "Make firmware measurement replay idempotent",
+      "files": [
+        "docs/api.md",
+        "docs/test-commands.md",
+        "firmware/include/config.h",
+        "firmware/src/hivehub_network.cpp",
+        "firmware/src/sensors.cpp",
+        "firmware/src/storage_power.cpp",
+        "server/db.py",
+        "server/measurements.py",
+        "server/migrations/019_measurement_id_idempotency.sql",
+        "server/schemas.py",
+        "test-data/test_measurement_id.py"
+      ]
+    },
+    {
+      "repo": "MacNite/HiveHub",
+      "sha": "dee6cf0f4376cffeb50b2161bc0c922e68717fbf",
+      "author_date": "2026-07-15T13:38:04Z",
+      "committer_date": "2026-07-15T13:38:04Z",
+      "stats": {
+        "total": 4661,
+        "additions": 2833,
+        "deletions": 1828
+      },
+      "url": "https://github.com/MacNite/HiveHub/commit/dee6cf0f4376cffeb50b2161bc0c922e68717fbf",
+      "subject": "I2C reliability + data-integrity refactor; remove wired I2C BeeCounter",
+      "files": [
+        ".github/workflows/ci.yml",
+        "README.md",
+        "docs/README.md",
+        "docs/accelerometer.md",
+        "docs/api.md",
+        "docs/docker-install.md",
+        "docs/hivetraffic-bee-counter.md",
+        "docs/insights.md",
+        "docs/multi-hive.md",
+        "docs/test-commands.md",
+        "docs/wiring.md",
+        "firmware/host_test/.gitignore",
+        "firmware/host_test/mock_i2c.h",
+        "firmware/host_test/run_tests.sh",
+        "firmware/host_test/test_i2c_hardening.cpp",
+        "firmware/include/accel.h",
+        "firmware/include/bee_counter_client.h",
+        "firmware/include/config.h",
+        "firmware/include/globals.h",
+        "firmware/include/hive_config.h",
+        "firmware/include/hivehub_network.h",
+        "firmware/include/i2c_bus.h",
+        "firmware/include/i2c_iface.h",
+        "firmware/include/nau7802_checked.h",
+        "firmware/include/scale_bus.h",
+        "firmware/include/scale_math.h",
+        "firmware/include/scale_topology.h",
+        "firmware/include/secrets.example.h",
+        "firmware/include/sensors.h",
+        "firmware/platformio.ini",
+        "firmware/src/accel.cpp",
+        "firmware/src/bee_counter_client.cpp",
+        "firmware/src/globals.cpp",
+        "firmware/src/hive_config.cpp",
+        "firmware/src/hivehub_network.cpp",
+        "firmware/src/i2c_bus.cpp",
+        "firmware/src/main.cpp",
+        "firmware/src/portal.cpp",
+        "firmware/src/scale_bus.cpp",
+        "firmware/src/sensors.cpp",
+        "firmware/src/storage_power.cpp",
+        "pcb-design/README.md",
+        "server/app_api.py",
+        "server/commands.py",
+        "server/dashboard/assets/views.js",
+        "server/firmware.py",
+        "server/insights.py",
+        "server/measurements.py",
+        "server/schemas.py",
+        "test-data/mock-server/app.py",
+        "test-data/mock-server/hive_data.py",
+        "test-data/mock-server/insights.py",
+        "website/README.md",
+        "website/assets/configurator.js",
+        "website/build.html",
+        "website/configurator.html",
+        "website/dashboard-demo/assets/views.js",
+        "website/index.html"
+      ]
+    },
+    {
+      "repo": "MacNite/HiveHub",
+      "sha": "0d4fe8aede444deff4972f4811698c8c50e57eb6",
+      "author_date": "2026-08-06T06:46:40Z",
+      "committer_date": "2026-08-06T06:46:40Z",
+      "stats": {
+        "total": 230,
+        "additions": 217,
+        "deletions": 13
+      },
+      "url": "https://github.com/MacNite/HiveHub/commit/0d4fe8aede444deff4972f4811698c8c50e57eb6",
+      "subject": "Warm the NAU7802 front end before capturing its AFE offset",
+      "files": [
+        "docs/calibration-mode.md",
+        "firmware/host_test/mock_i2c.h",
+        "firmware/host_test/test_i2c_hardening.cpp",
+        "firmware/include/config.h",
+        "firmware/include/nau7802_checked.h",
+        "firmware/include/scale_bus.h",
+        "firmware/src/globals.cpp",
+        "firmware/src/scale_bus.cpp"
+      ]
+    },
+    {
+      "repo": "hatlabs/SH-RPi-firmware",
+      "sha": "81dbc0ccbd2154322f0a2925094844a146697201",
+      "author_date": "2022-12-13T17:38:10Z",
+      "committer_date": "2022-12-13T17:38:10Z",
+      "stats": {
+        "total": 304,
+        "additions": 171,
+        "deletions": 133
+      },
+      "url": "https://github.com/hatlabs/SH-RPi-firmware/commit/81dbc0ccbd2154322f0a2925094844a146697201",
+      "subject": "Split up the monolithic request event handler",
+      "files": [
+        "src/shrpi_i2c.cpp"
+      ]
+    },
+    {
+      "repo": "hatlabs/SH-RPi-firmware",
+      "sha": "ffbb39b2c99059f90bca252fc4772abcb5432e31",
+      "author_date": "2022-12-15T10:52:58Z",
+      "committer_date": "2022-12-15T10:52:58Z",
+      "stats": {
+        "total": 6,
+        "additions": 3,
+        "deletions": 3
+      },
+      "url": "https://github.com/hatlabs/SH-RPi-firmware/commit/ffbb39b2c99059f90bca252fc4772abcb5432e31",
+      "subject": "Fix register branching logic",
+      "files": [
+        "src/shrpi_i2c.cpp"
+      ]
+    }
+  ],
+  "commit_intervals": {
+    "target": [
+      {
+        "from": "709b95cacce7b713d85f88036f07221493b14bc7",
+        "to": "3a5ce426fbf43f5276f8e7d89354ab85f35bf58d",
+        "start_utc": "2026-11-14T12:19:24Z",
+        "end_utc": "2026-11-14T18:47:37Z",
+        "seconds": 23293,
+        "message": "feat(shelf-load): add deterministic runtime replay"
+      },
+      {
+        "from": "3a5ce426fbf43f5276f8e7d89354ab85f35bf58d",
+        "to": "3f16769e77a30b208092e95992d3d13be24bed53",
+        "start_utc": "2026-11-14T18:47:37Z",
+        "end_utc": "2026-11-15T06:23:58Z",
+        "seconds": 41781,
+        "message": "feat(shelf-load): add USB export and persistence recovery"
+      },
+      {
+        "from": "3f16769e77a30b208092e95992d3d13be24bed53",
+        "to": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+        "start_utc": "2026-11-15T06:23:58Z",
+        "end_utc": "2026-11-15T08:28:44Z",
+        "seconds": 7486,
+        "message": "feat(shelf-load): add firmware conformance tooling"
+      }
+    ],
+    "sensor_and_power": [
+      {
+        "id": "AFE_SETTLING",
+        "repository": "foukouda/OPEN_WEIGHT",
+        "from_sha": "151717f479bfa1cf6247f60d294a29d648a20b1f",
+        "to_sha": "477515e8c7c1ecc2ff976c8cb9213c52f3d8b2c4",
+        "from_author_utc": "2026-09-29T17:22:27Z",
+        "from_committer_utc": "2026-09-29T17:22:27Z",
+        "to_author_utc": "2026-10-08T11:21:08Z",
+        "to_committer_utc": "2026-10-08T11:21:08Z",
+        "seconds": 755921,
+        "elapsed_calendar": "8 gün 17 saat 58 dakika 41 saniye",
+        "content": "İlk commit beş LTspice devresi, davranışsal TPS61086 modeli, sonuç okuma/çizim aracı ekliyor. İkincisi 25ms pencereyi 600ms'ye uzatıyor, ray FFT'leri ve büyük raw dosyası için işleme ekliyor; kısa ilk pencerenin LT3042 yerleşmesini kapsamadığı ortaya çıkıyor.",
+        "estimate_implication": "G1 karşılaştırmasında yalnız ilk sim sonucuna bakılmaz; yerleşme penceresi, model belirsizliği ve yürütme ortamı ayrı iş kalemidir. Bu 8+ günlük aralık aynı süre çalışıldığı anlamına gelmez.",
+        "not_active_effort": true,
+        "not_necessarily_adjacent": true,
+        "urls": [
+          "https://github.com/foukouda/OPEN_WEIGHT/commit/151717f479bfa1cf6247f60d294a29d648a20b1f",
+          "https://github.com/foukouda/OPEN_WEIGHT/commit/477515e8c7c1ecc2ff976c8cb9213c52f3d8b2c4"
+        ]
+      },
+      {
+        "id": "TEMP_LINEAR_TO_EMA",
+        "repository": "MacNite/HiveHub",
+        "from_sha": "c7de5570fe898ab6453d87ba6676d491dbb35cbb",
+        "to_sha": "fbe35c7e93e2c42459fd3b6602dadc61e9c8cc70",
+        "from_author_utc": "2026-06-09T05:49:41Z",
+        "from_committer_utc": "2026-06-09T05:49:41Z",
+        "to_author_utc": "2026-06-09T10:24:00Z",
+        "to_committer_utc": "2026-06-09T10:24:00Z",
+        "seconds": 16459,
+        "elapsed_calendar": "0 gün 4 saat 34 dakika 19 saniye",
+        "content": "İlk commit saf tempcomp.py, migration006, API/ana uygulama, belge ve testleri birlikte ekliyor; izleyen commit sıcaklığa EMA ön işleme ekleyip uygulama/testleri güncelliyor. Ağırlık düzeltmesi halen birinci dereceden doğrusaldır.",
+        "estimate_implication": "S01 için yalnız formül taşıması yeterli değildir; zaman adımı, eğitim verisi uygunluğu, sürüm/ham veri izi, hata bütçesi ve negatif test işi gerekir.",
+        "not_active_effort": true,
+        "not_necessarily_adjacent": true,
+        "urls": [
+          "https://github.com/MacNite/HiveHub/commit/c7de5570fe898ab6453d87ba6676d491dbb35cbb",
+          "https://github.com/MacNite/HiveHub/commit/fbe35c7e93e2c42459fd3b6602dadc61e9c8cc70"
+        ]
+      },
+      {
+        "id": "HOST_OFFLINE_TO_IDEMPOTENCY",
+        "repository": "MacNite/HiveHub",
+        "from_sha": "cf2bdce816a4e302a210cb2460091be15bb3f250",
+        "to_sha": "d0760c00c8b97237b432ece8b1dbedf4872b8054",
+        "from_author_utc": "2026-06-28T13:50:12Z",
+        "from_committer_utc": "2026-06-28T13:50:12Z",
+        "to_author_utc": "2026-07-23T16:50:39Z",
+        "to_committer_utc": "2026-07-23T16:50:39Z",
+        "seconds": 2170827,
+        "elapsed_calendar": "25 gün 3 saat 0 dakika 27 saniye",
+        "content": "İlk değişiklik büyük çok-kovan ölçüm JSON'ları için SD satır tavanını artırıp kısıtlı ölçek okuması ekler; sonraki değişiklik firmware'den sunucuya measurement_id taşır ve replay'i migration019 benzersiz indeks, ON CONFLICT ve testlerle idempotent yapar.",
+        "estimate_implication": "Veri büyüklüğü sınırı ile tekrar gönderme kimliği farklı hata sınıflarıdır. S01 kendi 1MiB çerçeve sınırı ve SHA zinciriyle iki sınıfı da ele almalıdır. Kaynak çok-kovan/SD/Postgres altyapısı taşınmaz.",
+        "not_active_effort": true,
+        "not_necessarily_adjacent": true,
+        "urls": [
+          "https://github.com/MacNite/HiveHub/commit/cf2bdce816a4e302a210cb2460091be15bb3f250",
+          "https://github.com/MacNite/HiveHub/commit/d0760c00c8b97237b432ece8b1dbedf4872b8054"
+        ]
+      },
+      {
+        "id": "POWER_STARTUP_REFINEMENT",
+        "repository": "MacNite/HiveHub",
+        "from_sha": "dee6cf0f4376cffeb50b2161bc0c922e68717fbf",
+        "to_sha": "0d4fe8aede444deff4972f4811698c8c50e57eb6",
+        "from_author_utc": "2026-07-15T13:38:04Z",
+        "from_committer_utc": "2026-07-15T13:38:04Z",
+        "to_author_utc": "2026-08-06T06:46:40Z",
+        "to_committer_utc": "2026-08-06T06:46:40Z",
+        "seconds": 1876116,
+        "elapsed_calendar": "21 gün 17 saat 8 dakika 36 saniye",
+        "content": "İlk commit doğrulanmış mux/kanal, tam örnek kümesi, fail-closed sonuç ve host testlerini getirir; izleyen commit Warming durumunu ekler, tüm ADC'leri önce yapılandırır, analog ısınmayı bekler, sonra AFE ofsetini kalibre eder ve ancak başarılıysa Ready yapar.",
+        "estimate_implication": "Açılışın yazılım doğruluğu analog yerleşme doğruluğundan farklıdır. S01 donanımsız olay modeli WAIT_READY ve kalibrasyon/depoda saklanan kullanıcı dara ayrımını açık tutmalıdır; 1000ms kaynaktaki bir ayardır, S01 kanıtı değildir.",
+        "not_active_effort": true,
+        "not_necessarily_adjacent": true,
+        "urls": [
+          "https://github.com/MacNite/HiveHub/commit/dee6cf0f4376cffeb50b2161bc0c922e68717fbf",
+          "https://github.com/MacNite/HiveHub/commit/0d4fe8aede444deff4972f4811698c8c50e57eb6"
+        ]
+      },
+      {
+        "id": "POWER_PROTOCOL_REGRESSION",
+        "repository": "hatlabs/SH-RPi-firmware",
+        "from_sha": "81dbc0ccbd2154322f0a2925094844a146697201",
+        "to_sha": "ffbb39b2c99059f90bca252fc4772abcb5432e31",
+        "from_author_utc": "2022-12-13T17:38:10Z",
+        "from_committer_utc": "2022-12-13T17:38:10Z",
+        "to_author_utc": "2022-12-15T10:52:58Z",
+        "to_committer_utc": "2022-12-15T10:52:58Z",
+        "seconds": 148488,
+        "elapsed_calendar": "1 gün 17 saat 14 dakika 48 saniye",
+        "content": "SH-RPi firmware request handler bölünmesinin ardından register yönlendirme bit kaydırması ve case sabitleri düzeltilir: >>4 sonrasındaki yanlış maske kaldırılır,0x10/0x20 yerine0x1/0x2 kullanılır.",
+        "estimate_implication": "Güç olayı/protokol bağlayıcısına negatif register/olay senaryosu gerektiğini gösterir; RaspberryPi güç sistemi inşa süresi değildir.",
+        "not_active_effort": true,
+        "not_necessarily_adjacent": true,
+        "urls": [
+          "https://github.com/hatlabs/SH-RPi-firmware/commit/81dbc0ccbd2154322f0a2925094844a146697201",
+          "https://github.com/hatlabs/SH-RPi-firmware/commit/ffbb39b2c99059f90bca252fc4772abcb5432e31"
+        ]
+      }
+    ],
+    "ecad": [
+      {
+        "repo": "DillanMcDonald/kicad-ci",
+        "start_sha": "f28bae2565bfe7eb1f3577b87737b446b8767d0e",
+        "end_sha": "cbe03a849ad5c745591c338cbf2bf9eb4d2e6bd9",
+        "start_utc": "2026-04-16T03:32:32Z",
+        "end_utc": "2026-04-17T04:19:40Z",
+        "elapsed_seconds": 89228,
+        "elapsed_days": 1.0327314814814814,
+        "display": "1d 0h 47m 8s"
+      },
+      {
+        "repo": "DillanMcDonald/kicad-ci",
+        "start_sha": "742f1b69f89a482dfc12c79e9c1b40446d1a1fca",
+        "end_sha": "37a903964e998fa4f675c8694abf346244f794c6",
+        "start_utc": "2026-04-16T03:38:36Z",
+        "end_utc": "2026-04-16T04:50:18Z",
+        "elapsed_seconds": 4302,
+        "elapsed_days": 0.049791666666666665,
+        "display": "0d 1h 11m 42s"
+      },
+      {
+        "repo": "INTI-CMNB/kicad_ci_test",
+        "start_sha": "b2abc75b3003c279d2a1a11c371ce5fbb08f9720",
+        "end_sha": "460225e7c84bfa0954ae871940d310fca1baf882",
+        "start_utc": "2025-02-21T12:41:36Z",
+        "end_utc": "2025-02-21T13:03:48Z",
+        "elapsed_seconds": 1332,
+        "elapsed_days": 0.015416666666666667,
+        "display": "0d 0h 22m 12s"
+      },
+      {
+        "repo": "INTI-CMNB/KiBot",
+        "start_sha": "3521348c6d73fda919072b2f63350ef4c4c5fa7c",
+        "end_sha": "df09af5173ddfd21beeebbc41d590dd4a42a6107",
+        "start_utc": "2026-04-14T11:54:23Z",
+        "end_utc": "2026-04-14T13:12:17Z",
+        "elapsed_seconds": 4674,
+        "elapsed_days": 0.05409722222222222,
+        "display": "0d 1h 17m 54s"
+      },
+      {
+        "repo": "yaqwsx/KiKit",
+        "start_sha": "e765803435ffd9ffe17bb74d5d8b4f46b0d6d883",
+        "end_sha": "054ac1a5be281e8d74052d3195ad5fb0a701a2ec",
+        "start_utc": "2026-07-23T16:47:33Z",
+        "end_utc": "2026-07-23T17:27:04Z",
+        "elapsed_seconds": 2371,
+        "elapsed_days": 0.02744212962962963,
+        "display": "0d 0h 39m 31s"
+      },
+      {
+        "repo": "yaqwsx/KiKit",
+        "start_sha": "3e4ba78e919376f6263d53f84b9a2443b1daf533",
+        "end_sha": "1baab6ae20a1fb0da7c3525f621e273f5dc48500",
+        "start_utc": "2026-04-04T19:00:13Z",
+        "end_utc": "2026-06-22T10:18:53Z",
+        "elapsed_seconds": 6794320,
+        "elapsed_days": 78.63796296296296,
+        "display": "78d 15h 18m 40s"
+      }
+    ]
+  },
+  "limitations": [
+    "No clone, build, target test execution or physical validation in this research.",
+    "README-level triage is distinct from code/diff inspection.",
+    "Estimated hours exclude hardware design, manufacturing, procurement, physical experiments, external approval and user-specific learning time.",
+    "Selected upstream change pairs need not be adjacent commits."
+  ]
+}

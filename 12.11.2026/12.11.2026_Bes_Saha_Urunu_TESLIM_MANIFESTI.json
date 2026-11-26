@@ -1,0 +1,59 @@
+{
+  "scope_date": "2026-11-12",
+  "prepared_date": "2026-11-14",
+  "products": [
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05"
+  ],
+  "test_status": "NOT_RUN",
+  "files": [
+    {
+      "name": "12.11.2026_01_Urun_Cikarimi_Bes_Saha_Urunu_v1.docx",
+      "bytes": 42182,
+      "sha256": "bf7890033b0d2bda873649fb39852eadfcba2b2cf3cfcedb32cd50ed9c5af3af"
+    },
+    {
+      "name": "12.11.2026_01_Urun_Cikarimi_Bes_Saha_Urunu_v1.pdf",
+      "bytes": 125976,
+      "sha256": "96de22889bb4114bfa8815c6a2f1ae48de284b8648d606ecb74253c6e4eb9d60"
+    },
+    {
+      "name": "12.11.2026_02_Is_Akisi_ve_Kabul_Plani_Bes_Saha_Urunu_v1.docx",
+      "bytes": 41905,
+      "sha256": "4cfe86bb5a0b158600847f66ba9b14996fef5eb8059a7895685144fe520ad401"
+    },
+    {
+      "name": "12.11.2026_02_Is_Akisi_ve_Kabul_Plani_Bes_Saha_Urunu_v1.pdf",
+      "bytes": 135450,
+      "sha256": "97cbcd273368732bf7d969993a30b4559245c3f10ce5ec4e76b70d95ef52279a"
+    },
+    {
+      "name": "12.11.2026_03_Referans_Kaynak_Yukleme_Bes_Saha_Urunu_v1.docx",
+      "bytes": 40844,
+      "sha256": "6bf6716141343fb87df13f3bee7c9711f87ace92fd8a4cf31a5bdb17ec80194d"
+    },
+    {
+      "name": "12.11.2026_03_Referans_Kaynak_Yukleme_Bes_Saha_Urunu_v1.pdf",
+      "bytes": 108216,
+      "sha256": "edab252811e195eb61be6c4acca9f24eaa70069e109a07caef67d872e29f5d9c"
+    },
+    {
+      "name": "README.txt",
+      "bytes": 451,
+      "sha256": "64e73f80e8a0e451cec4b43c2a531c60cfeee24fa717e53177873062930080e3"
+    },
+    {
+      "name": "kaynak_envanteri.csv",
+      "bytes": 2719,
+      "sha256": "aa6f4bdd21b463dbfb3313cbe6d5f9035b78d7d969a46fad306fe25c019a2182"
+    },
+    {
+      "name": "urun_test_matrisi.csv",
+      "bytes": 2954,
+      "sha256": "39ed51c9ce96225ba1d85974ce2f5508ed816da2dc25504c0c7c4d62fb3f4c0b"
+    }
+  ]
+}

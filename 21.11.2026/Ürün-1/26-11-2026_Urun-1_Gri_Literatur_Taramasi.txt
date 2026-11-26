@@ -1,0 +1,43 @@
+Ürün-1 | PCB üretim paketinin doğrulanması
+Gri literatür taraması · 26 Kasım 2026
+Model Raporları / 21.11.2026 / Ürün-1
+
+Tarama odağı
+Bir KiCad kart revizyonunun üretim ve montaj paketini denetleyen Ürün-1 için, Ekim–Kasım 2026 tarihli üretici kılavuzları ile bir tasarımcının sipariş ve doğrulama kayıtları tarandı. Dosya biçiminin anlamını ve bilinen bir hatanın düzeltildiği sürümü belirlemek için Mayıs–Temmuz 2026 tarihli birincil kaynaklara dönüldü. Aramada sensör yerleşimi, alt yüz CPL dönüşü, Gerber ve delik koordinatları, kaplamalı oval delikler ve KiCad 10 BOM/CPL çıktıları ele alındı. Kaynak seçiminde somut bir üretim dosyasına, sürüme veya ölçülebilir hataya bağlanabilen belgeler tercih edildi. Aynı tasarımcının iki yazısı tek vaka olarak değerlendirildi.
+
+1 | Alt yüzdeki sensörlerde 180° yön hatası
+GRIDDLE LX tasarımcısı, 4 Kasım 2026’da JLCPCB’ye verilen siparişi belgeliyor. Ana kartta montaj hizmetiyle dizilen bütün parçalar alt yüzde. Yazar ayrıca doğrulama aracına bilinçli bir ayna dönüşümü hatası eklediğinde kontrolün 65 yerleşimi işaretlediğini bildiriyor. 60 sensörün tamamı hatadan etkilenecek yönlerde. Ürün-1 açısından değerli olan, dönüşü kaynak tablodaki açıdan bağımsız olarak bileşen pedlerinin geometrisinden kontrol etmesi. Bu sayılar yazarın kontrollü deneyinden geliyor. Teslim edilmiş kartta bu kadar hatalı parça gözlendiği anlamına gelmiyor.
+Sipariş kaydı — https://erfi.dev/guides/jlc-4-layer-pcba-keyboard-order/
+Doğrulama ve hata ekleme deneyi — https://erfi.dev/reference/pcb-as-code-verification/
+
+Bu taramada yapılan kontrol
+Aşağıdaki sonuçlar iki formülü mod 360 karşılaştırarak hesaplandı. Birinci dönüşüm yazarın bu siparişte kullandığı dönüşüm, ikincisi deney için bozulan dönüşüm. Tabloya parça kılıfına özgü ek açı uygulanmadı.
+KiCad açısı      (180 − a) mod 360      (a + 180) mod 360      Açısal fark
+0°                       180°                    180°                0°
+90°                       90°                    270°              180°
+180°                       0°                      0°                0°
+270°                     270°                     90°              180°
+Ürün-1 için sınama önerisi. Alt yüzde yönü pin 1 ile ayırt edilen bir bileşeni 90° ve 270° olarak ekle. Pin geometrisiyle beklenen yönü doğrula. Önceki Micras sipariş örneğindeki bütün CPL satırları üst yüzde olduğu için bu örnek yeni bir durumu kapsıyor.
+
+2 | Parça referansı doğru, tedarikçi kodu yanlış olabilir
+GRIDDLE LX sipariş hazırlığında yazar, 3 Kasım’da şemada 30 pF olan bir kondansatör için seçilen LCSC kodunun 330 pF ürüne karşılık geldiğini saptamış. Parça konumu ve kılıfı bu hatayı ayırt etmiyor. Ürün-1 için aday kontrol, BOM’daki değer ve kılıfı, tam parça koduna ait tarihli katalog kaydıyla karşılaştırmak. Aynı referansın CPL’de bulunması farklı bir soruya yanıt veriyor. Bu tekil gözlem bir hata oranı tahmini sunmuyor.
+https://erfi.dev/reference/pcb-as-code-verification/
+
+3 | Üreticinin istediği dizgi dosyası
+JLCPCB’nin 10 Kasım 2026 güncellemeli KiCad 10 kılavuzu iki yüzdeki bileşenlerin tek CSV’de aktarılmasını, koordinatların mm cinsinden olmasını ve kimlik, merkez X/Y, dönüş ve yüz sütunlarının doğru eşlenmesini gösteriyor. Ürün-1’in JLCPCB profili için önce sütun ve birim, sonra parça listesi ve yön kontrolü yapılabilir. Üretici için anlamlı alanları başka dizgi makinelerine genellememek gerekir.
+https://jlcpcb.com/help/article/how-to-generate-the-bom-and-centroid-file-from-kicad
+
+4 | Bakır ve delik dosyalarının hizası
+Eurocircuits’in 28 Ekim 2026 veri hazırlama kılavuzunda delik ve Gerber dosyaları için ortak orijin ve ayırt edilebilir kaplamalı/kaplamasız delik verisi isteniyor. Ucamco’nun 19 Mayıs 2026 tarihli Gerber Layer Format 2026.05, §5.6.5’te .SameCoordinates beyanının anlamını tanımlıyor. Bir beyandan bağımsız geometri kontrolü türetilebilir. Örneğin yalnız delik dosyasını X ekseninde bilinen miktarda kaydırıp bakır ped merkezleriyle farkı ölç. Farklı revizyonlardan, aynı adlı dosyaların bir pakette karışması böylece sınanabilir. Eurocircuits’in ayrıca siparişteki tek kart/panel seçimi ile paketin aynı şeyi tarif edip etmediğini inceleyen bir CAM süreci var.
+Üretici kılavuzu — https://www.eurocircuits.com/article/how-should-i-prepare-pcb-data-for-manufacturing/
+CAM incelemesi — https://www.eurocircuits.com/Frontend-data-preparation/
+Biçim sahibinin sürümlü belgeleri — https://www.ucamco.com/en/guest/downloads/gerber-format
+
+5 | Kaplamalı oval deliğin ODB++ çıktısında kaybolması
+KiCad #24677 kaydı, Windows üzerinde 10.0.3 ile bir kılıfın bakırı ve maskesi aktarılırken kaplamalı oval deliğin ODB++ delme çıktısından düşmesini belgeliyor. Aynı örnekte yuvarlak delikler çıkıyor. KiCad 10.0.5’in 22 Temmuz 2026 tarihli sürüm notu aynı kayıt numarasıyla düzeltmeyi bildiriyor. KiCad’in regresyon testinde kaplamalı oval delik için doğrulama da bulunuyor. Ürün-1’in ODB++ karşılaştırması yapılacaksa, aynı küçük kartta hem yuvarlak hem oval PTH tanımlayıp üretilen delme geometrilerini karşılaştırmak anlamlıdır. Bu vaka güncel bir açık hata iddiası olarak kullanılamaz.
+Hata kaydı — https://gitlab.com/kicad/code/kicad/-/issues/24677
+Düzeltme — https://www.kicad.org/blog/2026/07/KiCad-10.0.5-Release/
+Regresyon testi — https://docs.kicad.org/doxygen/test__cam__backdrill_8cpp_source.html
+
+Öncelik ve kanıt sınırı
+Önce alt yüz 90°/270° örneği, ardından orijini kaydırılmış delik katmanı en düşük maliyetli iki yeni deney olur. İkisi de fiziksel kart gerektirmez. ODB++ karşılaştırması bu biçim ilgili üretici profilinin kapsamına alınırsa anlamlıdır. Bu taramada yerel olarak dört açının hesabı doğrulandı. Dış kaynakların kartları veya test takımları yeniden çalıştırılmadı. Resmî K1 kabul sonucu üretilmedi.

@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "arithmetic_only": true,
+  "test_count": 10,
+  "checks": {
+    "125 samples window": true,
+    "172.8MB geophone": true,
+    "1percent geophone": true,
+    "brake delay10": true,
+    "brake delay50": true,
+    "wheel estimated": true,
+    "camera missing": true,
+    "clock drift": true,
+    "LED thermal": true,
+    "rpm conversion": true
+  },
+  "limitations": "No real KiCad, ROS, ESP32, dataset or field execution in this package"
+}

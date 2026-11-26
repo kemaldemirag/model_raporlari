@@ -1,0 +1,87 @@
+[
+  {
+    "project": "PF-01",
+    "sources": [
+      {
+        "name": "OLIMEX kaynak kart",
+        "url": "https://github.com/OLIMEX/ESP32-S3-DevKit-LiPo",
+        "commit": null,
+        "status": "URL_REVIEWED_NOT_EXECUTED"
+      },
+      {
+        "name": "KiBot",
+        "url": "https://github.com/INTI-CMNB/KiBot",
+        "commit": null,
+        "status": "URL_REVIEWED_NOT_EXECUTED"
+      },
+      {
+        "name": "InteractiveHtmlBom",
+        "url": "https://github.com/openscopeproject/InteractiveHtmlBom",
+        "commit": null,
+        "status": "URL_REVIEWED_NOT_EXECUTED"
+      }
+    ]
+  },
+  {
+    "project": "PF-02",
+    "sources": [
+      {
+        "name": "Sensirion sürücüsü",
+        "url": "https://github.com/Sensirion/embedded-i2c-sht4x",
+        "commit": null,
+        "status": "URL_REVIEWED_NOT_EXECUTED"
+      },
+      {
+        "name": "Sürücü uygulaması",
+        "url": "https://github.com/Sensirion/embedded-i2c-sht4x/blob/master/sht4x_i2c.c",
+        "commit": null,
+        "status": "URL_REVIEWED_NOT_EXECUTED"
+      }
+    ]
+  },
+  {
+    "project": "PF-03",
+    "sources": [
+      {
+        "name": "ROS 2 IMU sürücüsü",
+        "url": "https://github.com/rt-net/rt_usb_9axisimu_driver",
+        "commit": null,
+        "status": "URL_REVIEWED_NOT_EXECUTED"
+      },
+      {
+        "name": "Cihaz ve protokol kaynağı",
+        "url": "https://github.com/rt-net/RT-USB-9AXIS-00",
+        "commit": null,
+        "status": "URL_REVIEWED_NOT_EXECUTED"
+      }
+    ]
+  },
+  {
+    "project": "PF-04",
+    "sources": [
+      {
+        "name": "LibreSolar kaynak devre",
+        "url": "https://github.com/LibreSolar/mppt-2420-hc",
+        "commit": null,
+        "status": "URL_REVIEWED_NOT_EXECUTED"
+      }
+    ]
+  },
+  {
+    "project": "PF-05",
+    "sources": [
+      {
+        "name": "Battery Data Toolkit",
+        "url": "https://github.com/ROVI-org/battery-data-toolkit",
+        "commit": null,
+        "status": "URL_REVIEWED_NOT_EXECUTED"
+      },
+      {
+        "name": "Battery domain kavram kaynağı",
+        "url": "https://github.com/emmo-repo/domain-battery",
+        "commit": null,
+        "status": "URL_REVIEWED_NOT_EXECUTED"
+      }
+    ]
+  }
+]

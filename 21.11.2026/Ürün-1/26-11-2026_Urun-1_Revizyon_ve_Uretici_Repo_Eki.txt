@@ -1,0 +1,18 @@
+Ürün-1 · Revizyon farkı ve üretici profili referansları · 26.11.2026
+
+sksat/kicadiff · v0.2.0
+Depo şema ve kart için görsel/nesne farkı, ayrıca ERC/DRC bulgu farkı üretiyor. K1-01/02/03 incelemesinde değişen öğeyi ve bulgu farkını sunmak için aday. Belgeye göre check komutu yeni ihlal ve çalıştırma hatasında sıfır dışı dönebilir. Ürün-1'de ilgili ham rapor ve çalıştırma durumu ayrı değerlendirilmelidir. v0.2.0 GitHub Marketplace ve package.json üzerinden doğrulandı.
+https://github.com/sksat/kicadiff
+https://github.com/marketplace/actions/kicadiff
+
+2AMLogic/kicad-tools
+kct mfr compare üretici kurallarını karşılaştırıyor. kct drc üretici profili alabiliyor, kct export ise Gerber, BOM ve CPL paketi belgeliyor. Silkscreen'de gözlenen PCBWay ve JLCPCB farklarını modele dökmek için profil tasarımı referansı. Araç çıktısı ve uyumluluk bu turda çalıştırılmadı; sürüm numarası doğrulanmadı.
+https://github.com/2AMLogic/kicad-tools
+
+yaqwsx/KiKit · v1.8.1 / d1957c5
+Üretici ön ayarlarıyla üretim dosyaları dışa aktarma ve panelizasyon. K1-04 için tek kartın üretim çıktısı referansı; panel dosyaları ileride ayrı karşılaştırma girdisi olabilir. K1'in tek kart kapsamı esas alınır. Sabitlenecek KiCad 10 patch sürümüyle uyum çalıştırılmadı.
+https://github.com/yaqwsx/KiKit
+https://github.com/yaqwsx/KiKit/releases
+
+Yerel çapraz kontrol
+Mevcut K1-01 KiCad 9.0.2 ham raporlarında ihlal türü + önem derecesi + sıralanmış öğe UUID'leri çokluğu karşılaştırıldı. Kusurlu kopyada 1 yeni clearance hatası, 0 giderilen bulgu, 2 aynı track_dangling uyarısı bulundu. Aynı UUID'li izin koordinatı değiştiğinde uyarı kimliği bu örnekte korundu. Bu, bağımsız bir rapor karşılaştırmasıdır. kicadiff veya diğer referans araçlar kurulmadı ve resmî K1 koşusu yapılmadı.

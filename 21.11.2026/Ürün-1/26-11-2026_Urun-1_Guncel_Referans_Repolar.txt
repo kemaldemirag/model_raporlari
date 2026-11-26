@@ -1,0 +1,23 @@
+Ürün-1 · Güncel referans repolar · 26.11.2026
+
+1. zhuangzard/pcbpilot — v0.12.11, 17.11.2026, a1137f2
+Yeni ve en yakın iş akışı referansı. v0.11.0 sürüm notları KiCad DRC için geçer / ihlal / denetlenemedi ayrımı ile şema eşliği seçeneğini belgeliyor. Ürün-1'de bu yaklaşım, örneğin K1-01'de hatalı kart ile yüklenemeyen dosyanın ayrı sonuçlara bağlanmasını karşılaştırmak için uygun. pcbpilot çıkış kodları kicad-cli ile birebir aynı sözleşme değildir. v0.12.11'in son notlarında KiCad kural değerlendirmesine ilişkin düzeltmeler var. Bu taramada araç çalıştırılmadı.
+https://github.com/zhuangzard/pcbpilot/releases/tag/v0.12.11
+https://github.com/zhuangzard/pcbpilot/releases/tag/v0.11.0
+
+2. KiCad/kicad-source-mirror — 10.0.8, e432bea
+Bu, önceki kaynak aynasının sürüm güncellemesidir. Proje duyurusu 30.10.2026, GitHub yayın kaydı 06.11.2026 tarihini gösteriyor. K1 için sabitlenebilir araç adayı. K1-02'de şema ve ERC JSON koordinatını tekrar karşılaştır; K1-01'de clearance türünü ve severity alanını denetle. Çalışma ortamındaki kicad-cli 9.0.2 olarak doğrulandı; 10.0.8 ile koşu yapılmadı.
+https://www.kicad.org/blog/2026/10/KiCad-10.0.8-Release/
+https://github.com/KiCad/kicad-source-mirror/releases
+
+3. bennymeg/Fabrication-Toolkit — v5.3.1, 642b069
+Sürüm notu KiCad 10'da yinelenen footprint ve CLI metin değişkeni düzeltmelerini kaydediyor. JLCPCB kılavuzu çıktı kümesinin Gerber ZIP, bom.csv ve positions.csv içerdiğini doğruluyor. K1-05/06 için alternatif üretici çıktısı kaynağı; örnek kontrol, BOM grupları açıldıktan sonra aynı referansın CPL'de bir kez görünmesi ve DNP/yerleştirme politikasının ayrı doğrulanması.
+https://github.com/bennymeg/Fabrication-Toolkit/releases
+https://jlcpcb.com/help/article/how-to-generate-the-bom-and-centroid-file-from-kicad
+
+4. gerbv/gerbv — v2.13.0, cf539c5
+Gerber RS-274X, Excellon ve CSV yerleştirme dosyalarını görüntüleyen bağımsız araç. K1-04'te HWDE paketi gibi örneklerde Gerber/Excellon dosyalarının okunması ve görsel incelemesi için aday. Zorunlu dosya rolleri ve birleşik delme politikası hedef üretici profilinden gelir.
+https://github.com/gerbv/gerbv/releases
+https://gerbv.github.io/
+
+Bu tur sürüm, belge ve kullanım eşlemesi araştırmasıdır. Üç yeni araç referansı ve KiCad sürüm güncellemesi kaydedildi. Bu araçlarla uçtan uca K1 koşusu yürütülmedi.

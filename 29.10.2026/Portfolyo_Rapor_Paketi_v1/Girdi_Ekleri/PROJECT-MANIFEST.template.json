@@ -1,0 +1,87 @@
+{
+  "workspace_root": "Portfolyo/29.10.2026",
+  "schema_version": 1,
+  "scope": "showcase_only",
+  "projects": [
+    {
+      "project_id": "PF-01",
+      "repo_path": "002-Proje Çıktıları/pcb-release-review-workbench",
+      "docs_path": "001-Kayıt Notları ve Dokümantasyon/PF-01",
+      "evidence_path": "003-Proje Kayıtları/PF-01",
+      "repo_mode": "new_integration_or_existing_match",
+      "remote_url": null,
+      "source_commit": null,
+      "status": "PLANNED",
+      "demo_status": "NOT_RUN",
+      "test_status": "NOT_RUN",
+      "reports": [
+        "PF-01_Is_Akisi_v1.docx",
+        "PF-01_Codex_Gorev_Plani_v1.docx"
+      ]
+    },
+    {
+      "project_id": "PF-02",
+      "repo_path": "002-Proje Çıktıları/sensor-driver-test-lab",
+      "docs_path": "001-Kayıt Notları ve Dokümantasyon/PF-02",
+      "evidence_path": "003-Proje Kayıtları/PF-02",
+      "repo_mode": "new_integration_or_existing_match",
+      "remote_url": null,
+      "source_commit": null,
+      "status": "PLANNED",
+      "demo_status": "NOT_RUN",
+      "test_status": "NOT_RUN",
+      "reports": [
+        "PF-02_Is_Akisi_v1.docx",
+        "PF-02_Codex_Gorev_Plani_v1.docx"
+      ]
+    },
+    {
+      "project_id": "PF-03",
+      "repo_path": "002-Proje Çıktıları/ros2-imu-validation-lab",
+      "docs_path": "001-Kayıt Notları ve Dokümantasyon/PF-03",
+      "evidence_path": "003-Proje Kayıtları/PF-03",
+      "repo_mode": "new_integration_or_existing_match",
+      "remote_url": null,
+      "source_commit": null,
+      "status": "PLANNED",
+      "demo_status": "NOT_RUN",
+      "test_status": "NOT_RUN",
+      "reports": [
+        "PF-03_Is_Akisi_v1.docx",
+        "PF-03_Codex_Gorev_Plani_v1.docx"
+      ]
+    },
+    {
+      "project_id": "PF-04",
+      "repo_path": "002-Proje Çıktıları/power-circuit-review-case",
+      "docs_path": "001-Kayıt Notları ve Dokümantasyon/PF-04",
+      "evidence_path": "003-Proje Kayıtları/PF-04",
+      "repo_mode": "new_integration_or_existing_match",
+      "remote_url": null,
+      "source_commit": null,
+      "status": "PLANNED",
+      "demo_status": "NOT_RUN",
+      "test_status": "NOT_RUN",
+      "reports": [
+        "PF-04_Is_Akisi_v1.docx",
+        "PF-04_Codex_Gorev_Plani_v1.docx"
+      ]
+    },
+    {
+      "project_id": "PF-05",
+      "repo_path": "002-Proje Çıktıları/battery-test-data-validator",
+      "docs_path": "001-Kayıt Notları ve Dokümantasyon/PF-05",
+      "evidence_path": "003-Proje Kayıtları/PF-05",
+      "repo_mode": "new_integration_or_existing_match",
+      "remote_url": null,
+      "source_commit": null,
+      "status": "PLANNED",
+      "demo_status": "NOT_RUN",
+      "test_status": "NOT_RUN",
+      "reports": [
+        "PF-05_Is_Akisi_v1.docx",
+        "PF-05_Codex_Gorev_Plani_v1.docx"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+ÜRÜN-1 — PCB RELEASE GATE K1 REFERANS REPOLARI
+Model Raporları / 21.11.2026 / Ürün-1
+Araştırma eki · 25.11.2026
+
+Kapsam düzeltmesi
+Güncel PCB Release Gate İş Akışı ve K1 Planı, Ürün-1'i tek bir KiCad kart revizyonuna ait üretim paketinin salt okunur denetimi olarak tanımlar. Önceki 500 SPS jeofon eşlemesi bu ürün tanımı için geçersizdir. AnyShake Explorer Ürün-2'dir ve Ürün-1 için K1 sonrasındaki ayrı holdout vakasıdır.
+https://docs.google.com/document/d/1egdmxov9A3jOvWqABOIh_fUSqEtJYOsI/edit
+https://docs.google.com/spreadsheets/d/1i290GkcBhaMOkwRMCIuWatOJWNCVaUzc/edit
+İncelenen matriste 12 test planlandı, 0 test geçti ve K1 kararı açıktı.
+
+1. KiCad kaynak aynası ve KiCad 10 CLI — K1-01/02/03/04
+CLI, üretim ve kural kontrolü için karar kaynağıdır. pcb drc JSON, şema-kart parity ve ihlal çıkış kodu seçeneklerini belgeliyor. ERC/DRC için tam KiCad patch sürümünü, komutu ve ham JSON'u sakla. İş akışında kartı kaydeden seçenekler kapalı kalır. Açık Edge.Cuts hatası hem ham DRC'de hem normalize bulguda yer alabilir, aynı kusuru iki bağımsız başarı olarak sayma. KiCad kaynak aynası upstream davranışı incelemek için referanstır. QA alt ağacı bu taramada açılmadı.
+https://github.com/KiCad/kicad-source-mirror
+https://docs.kicad.org/10.0/en/cli/cli.html
+
+2. Gerbonara — K1-04
+Gerber ve Excellon dosyalarını okumak için aday ikinci kontrol. Dosya seti ve sıfır bayt kontrolünü üretici profiliyle yap; parser eklenirse biçim okunabilirliğini ayrı çıkar. Beklenen PTH ve NPTH dosyaları profil ve kartın delik içeriğine göre belirlenir. Bu ek içinde KiCad 10 çıktısıyla parser uyumu çalıştırılmadı.
+https://github.com/jaseg/gerbonara
+
+3. KiBot ve üretici CPL belgeleri — K1-05/06
+KiBot, üretim çıktısı otomasyonu için opsiyonel ve sürümü sabitlenmiş adaptördür. Aktif varyantın yerleştirilecek BOM referansları ile CPL referanslarının iki yönlü küme farkını raporla. DNP referansının CPL'de görünmesini ayrı test et. Bulguda kaynak satırı ve varyant kimliği tutulur. Birim, orijin, taraf ve rotasyon belirlenen üretici profiline göre yorumlanır. JLCPCB belgesi örnek profil kaynağıdır; planın hedef üretici seçimini değiştirmez.
+https://github.com/INTI-CMNB/KiBot
+https://jlcpcb.com/help/article/pick-place-file-for-pcb-assembly
+
+4. in-toto Attestation Framework — K1-07/08/09/10
+Kanıt manifestinde girdileri ve çıktı özetlerini sabit araç/ortam kimliğiyle bağlamak için yapı referansı. K1 kabulü mevcut evidence-manifest.json ve SHA-256 sözleşmesiyle yürür. Temiz çalıştırma A/B ham logları ayrı tutulur, zaman ve geçici yollar normalize bulgudan çıkarılır. Karar, kural kimlikleri ve deterministik çıktı özetleri karşılaştırılır. Kaynak hashlerinin koşu öncesi ve sonrası aynı kalması ayrıca doğrulanır.
+https://github.com/in-toto/attestation
+
+AnyShake Explorer — K1 sonrası pilot dışı holdout
+Planın sabitlediği kaynak dde90ce53811f090137d9a962bde6d7408477aef. Temiz kontrol ve altı kusurlu sentetik fixture ile K1 sonucu kaydedildikten sonra bağımsız vaka olarak çalıştırılır. Holdout bulguları ayrı raporlanır ve K1 skoruna geri yazılmaz.
+https://github.com/anyshake/explorer/tree/dde90ce53811f090137d9a962bde6d7408477aef
+
+İlk uygulanabilir doğrulama
+K1-05 için temiz BOM/CPL çiftini al ve ayrı kopyada tek bir yerleştirilecek referansı CPL'den çıkar. Çıktıda BOM_CPL_REFERENCE_PARITY, eksik referans ve kanıt satırı beklenir. K1-06 için temiz çiftten yeniden başla ve yalnız bilinen bir DNP referansını CPL'ye ekle. Çıktıda VARIANT_DNP_PLACEMENT ve söz konusu varyant beklenir. DNP sızıntısı ham kümeleri de etkileyebileceği için aynı satırın iki kuralda nasıl raporlanacağını protokole yaz ve beklenen kural kimliğini açıkça sınayarak yanlış kapsama iddiasını önle.
+
+Kanıt sınırı
+Bu ek referans repo araştırmasıdır. Fixture oluşturma, KiCad koşusu, holdout veya üretim uygunluğu testi yapılmadı. K1 kararı için bağımsız inceleme planın son kapısıdır.

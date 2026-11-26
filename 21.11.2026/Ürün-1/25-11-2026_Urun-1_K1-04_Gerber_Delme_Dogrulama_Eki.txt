@@ -1,0 +1,29 @@
+Ürün-1 — K1-04 Gerber ve delme çıktıları
+25.11.2026 | Model Raporları / 21.11.2026 / Ürün-1
+
+K1-04, zorunlu Gerber veya NPTH delme çıktısı eksik ya da sıfır bayt olduğunda FAB_OUTPUT_REQUIRED bulgusu bekler. Zorunlu roller üretici profili, kartın katman yapısı ve delik tiplerinden önceden belirlenir. İhracatın ürettiği .gbrjob dosyası ek tutarlılık kanıtı olarak değerlendirilir.
+
+Gerçek CLI deneyi
+Sürüm: KiCad 9.0.2. Girdi: sistemle gelen Arduino_Uno.kicad_pcb şablonu, dört NPTH pad tanımı. Kaynak SHA-256 öncesi ve sonrası aynı: 502523f84c64aa5c696c83eb414b535f1934bc9b433db0791aa426067f0ea563.
+
+Kullanılan komutlar, GİRDİ yerine kart yolu ve OUT yerine yeni çıktı dizini verilerek tekrarlanabilir:
+kicad-cli pcb export gerbers --layers F.Cu,B.Cu,F.Mask,B.Mask,Edge.Cuts -o OUT/ GİRDİ
+kicad-cli pcb export drill --format excellon --excellon-separate-th -o OUT/ GİRDİ
+
+Gerçek çıktı: beş Gerber, ayrı PTH ve NPTH Excellon dosyaları ve bir Gerber Job dosyası. Gerber Job içindeki FilesAttributes beş Gerber’i listeliyor. İki .drl dosyası bu listede yer almıyor. Excellon başlıkları Plated ve NonPlated rollerini ayrı belirtiyor. Örnek profil bu kart ve deney için seçildi.
+
+Gerçek çıktılarla yürütülen dört kontrol
+- Temiz çıktı: beklenen eksik veya sıfır bayt dosya yok.
+- NPTH dosyası bellekteki paketten çıkarıldı: Arduino_Uno-NPTH.drl eksik.
+- Üst bakır içeriği bellekte boşaltıldı: Arduino_Uno-F_Cu.gtl sıfır bayt.
+- Kart çevresi dosyası bellekte çıkarıldı: Arduino_Uno-Edge_Cuts.gm1 eksik.
+Dört beklenti sağlandı. Bu deneyde beklenen delme adları profile açıkça eklendi. Nihai K1 uygulamasında beklenen Gerber rollerini de dışa aktarım öncesi profilde sabitle. Eksik katman iş dosyasına hiç yazılmadığında profil yine eksikliği yakalamalı. Dosya işlevi doğrulaması eklenirken Gerber X2 ve Excellon başlıkları kanıt olarak saklanabilir. Başlık içermeyen çıktı için üretici profili açık yorum kuralı sağlamalı.
+
+Referanslar
+KiCad 10 CLI: https://docs.kicad.org/10.0/en/cli/cli.html
+Ucamco Gerber Job: https://www.ucamco.com/en/gerber/gerber-job-file
+Gerbonara (ikinci okuyucu adayı): https://gerbolyze.gitlab.io/gerbonara/
+Üretici örneği: https://jlcpcb.com/help/article/how-to-generate-gerber-files-in-different-software
+
+Kanıt sınırı
+Bu çalışma KiCad 9.0.2 ile ön deneydir. Dosya seti ve boyut denetlendi. Gerber/Excellon geometrisi ayrıştırılmadı, KiCad 10 tekrarları ve resmi K1 kabul koşusu açık.

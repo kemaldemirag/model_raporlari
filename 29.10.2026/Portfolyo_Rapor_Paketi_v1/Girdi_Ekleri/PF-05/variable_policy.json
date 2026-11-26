@@ -1,0 +1,7 @@
+{
+  "integration": "trapezoidal",
+  "canonical_current_sign": "positive_charge",
+  "max_gap_s": 600,
+  "mixed_charge_discharge": "reject_v1",
+  "capacity_tolerance_Ah": 1e-09
+}

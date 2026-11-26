@@ -1,0 +1,9 @@
+{
+  "integration": "trapezoidal",
+  "canonical_current_sign": "positive_charge",
+  "max_gap_s": 1.5,
+  "mixed_charge_discharge": "reject_v1",
+  "missing_total": "null",
+  "error_rows": "physical_csv_line_including_header",
+  "capacity_tolerance_Ah": 1e-09
+}

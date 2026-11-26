@@ -1,0 +1,17 @@
+{
+  "synthetic": true,
+  "preferred_os": "Ubuntu 24.04",
+  "preferred_ros": "Jazzy",
+  "source_commit": null,
+  "protocol_format": null,
+  "fixture_status": "REQUIRES_SOURCE_VERIFICATION",
+  "cases": [
+    "complete",
+    "fragmented",
+    "incomplete",
+    "malformed",
+    "stream_stop",
+    "documented_recovery"
+  ],
+  "status": "NOT_RUN"
+}

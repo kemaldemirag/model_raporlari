@@ -1,0 +1,20 @@
+﻿kaynak_kimligi,baslik,url,urun,standart_bolum,kullanim,inceleme_siniri
+K01,Beş saha ürünü kartı,https://drive.google.com/file/d/17QdzCfpvYlGIjtKmFJMCt3jcbROXce5Q/view,U01–U05,Kayıt indeksi,Ürün kapsamı ve bağımlılıklar,"15.11.2026, kaynak PDF"
+K02,Pi ve Windows ilanının arşiv kaydı,https://docs.google.com/document/d/1jKmwONt0AX9C7JoqMFHQuLQ97qA4-eHfH8TH5uOmGw8/edit,U02,005,Ekran görüntüsündeki edinim ve Windows gereksinimi,Asıl ilan URL’si ve güncel durum bilinmiyor
+K03,Gerçek veri deney paketi,https://drive.google.com/file/d/1swb3LcnBP64Owhf0y-6dOORokWarYEX-/view,"U01, U02",Kayıt indeksi,"Betik, parametreler, girdi özetleri ve eski sonuçlar",Bu sürümde iki koşum tekrarlandı
+K04,Hologram ve perspektif deney bulguları,https://docs.google.com/document/d/1ZoRw3Z9PAUq-whYVxs_wyvASm_wHuSuyIcBaqBKVuEs/edit,"U01, U02",Kayıt indeksi,"Deney varsayımları, ölçümler ve DNG inceleme sınırı",15.11.2026 araştırma kaydı
+K05,Optik düzenek ve çevresel saha analizi,https://docs.google.com/document/d/1k4f5wBAss5AMm9mKeYVLAkR_K8yZmavUiDIT0lPDUBE/edit,U03–U05,Kayıt indeksi,Optik tekrar kurulum ve çevresel örnekleme gerekçesi,Yerel satın alma talebi doğrulanmadı
+K06,Bilardo masası için kamera ilanı,https://www.upwork.com/freelance-jobs/apply/Computer-Vision-Specialist-Camera-Calibration-Image-Dewarping_~022109702111919657022/,U01,005,Lens ve perspektif düzeltmesi ile çoklu saha ihtiyacı,"İlan kaydı, güncel başvuru durumu teyit edilmeli"
+K07,UNAL DLHM deneyleri,https://unal-optodigital.github.io/DLHM/,U02,003,"Yayımlanan hologram, referans, ayarlar ve karşılaştırma çıktısı",Windows karşılaştırması yapılmadı
+K08,HoloPy örnek veri ve parametreleri,https://holopy.readthedocs.io/en/master/tutorial/recon_tutorial.html,U02,003,Düzlem dalga örneği ve odak taraması,Örnek girdilerin SHA değerleri K03 içinde
+K09,OpenCV hedef noktaları,https://github.com/opencv/opencv_extra/blob/ebf9366b3845efe1e54bf2440cf238fd68905bab/testdata/cv/cameracalibration/chessboard_list.dat,U01,003,Yedi görünümün koordinat dosyalarını izleme,Sabit commit ve 7 dosya özeti K03 içinde
+K10,Raspberry Pi Picamera2 kılavuzu,https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf,U02,002,Çekim isteğiyle RAW ve metadata eşlemesi,Müşterinin monokrom cihazında sınanmadı
+K11,Amann ve ark. optik çözünürlük çalışması,https://doi.org/10.1038/s41598-019-47689-1,U03,002,Hedef grup ve elemanlarıyla çizgi çözünürlüğü ölçümü,Yayımdaki düzeneklere ait sonuçlar
+K12,Walcutt ve ark. deniz parçacıkları,https://doi.org/10.1002/lom3.10379,U04,002,Hacimsel sayım ve çap farkının yöntemler arası sınanması,Yerel veri veya yerel tolerans sağlamaz
+K13,UCLA c-Air saha çalışması,https://innovate.ee.ucla.edu/wp-content/uploads/2010/03/2017-airquality.pdf,U05,002,Yüzeydeki yeni parçacıklar ve eşzamanlı referans sayımı,"Yöntem dayanağı, bağımsız talep kaydı yok"
+K14,Sequoia LISST-Holo2,https://www.sequoiasci.com/product/lisst-holo/,U04,Kayıt indeksi,Benzer ticari cihazın çıktı türleri,"Üretici örneği, yerel müşteri referansı sayılamaz"
+K15,15 Kasım referans listesi,https://docs.google.com/document/d/1YaylXzmuPwOKXPJTCEiFQROy94kkvIGlSRXrypzvL0s/edit,U01–U05,Kayıt indeksi,"Repo, eğitim ve dokümantasyon adaylarının asıl listesi",Güncel sürüm ve yeniden kullanım koşulları kaynaktan alınır
+K16,15 Kasım alternatif iş fırsatları,https://docs.google.com/document/d/19PsFV_ZxszRXNS5gfRFOuHeCaN6OXRcrpzOe4b5k_4w/edit,U01–U05,005,"İlan, arşiv ve keşif kanalı türlerini ayıran kayıt",Her liste girdisi belirli bir ürüne talep göstermez
+K17,HoloBio işleme akışı videosu,https://www.youtube.com/watch?v=tdSTnbEJIGo,U02,001,Kullanıcı arayüzü akışının eğitim adayı,"K15 listesinde yer alır, video bölümleri incelenmedi"
+K18,UNAL DLHM kaynak deposu,https://github.com/unal-optodigital/DLHM,U02,003,Referans uygulama ile örneklerin sürüm ilişkisi,Kullanılacak commit ve lisans kaydedilmeli
+K19,HoloPy yayımlanmış girdi dizini,https://github.com/manoharan-lab/holopy/tree/d3f4f6c3d345be9f674bcc15c76c8cfafad1cb64/holopy/core/tests/exampledata,U02,003,Bir hologram ve üç arka plan JPEG girdisi,Sabit sürüm ve SHA kayıtları K03 içinde

@@ -1,0 +1,67 @@
+{
+  "report_date": "2026-11-15",
+  "target": "kemaldemirag/shelf-load-monitor",
+  "target_ref": "db6bdcada9cd447ad411c175115b13aac2cfcf22",
+  "files": [
+    {
+      "name": "S01_00_Ana_Rapor.pdf",
+      "bytes": 96743,
+      "sha256": "ad530f65eb1613d0c9fe20e774aceee62be252e6acb86236b3bce06db5f816db",
+      "pages": 10
+    },
+    {
+      "name": "S01_WF01_Olcum_Zinciri_G1.pdf",
+      "bytes": 55968,
+      "sha256": "b1f9b163874aa7e3eb53875499189cedc8308d217fe96584717dbf133d3f5750",
+      "pages": 3
+    },
+    {
+      "name": "S01_WF02_Sicaklik_ve_Kalibrasyon.pdf",
+      "bytes": 56013,
+      "sha256": "e19aae597016f8a84455d4eb9a1817cc1758c2023359f6faba60e2eeadbe8a6f",
+      "pages": 3
+    },
+    {
+      "name": "S01_WF03_USB_Host_ve_Arsiv.pdf",
+      "bytes": 55901,
+      "sha256": "0a71df8a7a977329c0497e9c41785241e97e6417fd26de174c9cc82047ddcee9",
+      "pages": 3
+    },
+    {
+      "name": "S01_WF04_Guc_Olaylari_ve_Durum.pdf",
+      "bytes": 55641,
+      "sha256": "7b2050c6312041dfda9b169ccaa975c221f5f6deedc7566da4b33834801bb02f",
+      "pages": 3
+    },
+    {
+      "name": "S01_WF05_Calisan_Aday_ve_Uygunluk.pdf",
+      "bytes": 56427,
+      "sha256": "3d7188f7d27c7528af79c511347af420f2ea4bde0e05fecfd3a47b0069c3bcb5",
+      "pages": 3
+    },
+    {
+      "name": "S01_WF06_Yazilim_CI_ve_Kanit.pdf",
+      "bytes": 55662,
+      "sha256": "97707ae4dbf603d40f586cd7c97b6b12b2f70ce0d95e176aa9a1a14fa843ee31",
+      "pages": 3
+    },
+    {
+      "name": "S01_WF07_ECAD_ve_Uretim_Kapisi.pdf",
+      "bytes": 55893,
+      "sha256": "3ae82c3d2ab3f0bb8247a147c5a37e692824aa144e9d4e51c12ca5034b9b9a7f",
+      "pages": 3
+    },
+    {
+      "name": "S01_08_Birlesik_Rapor.pdf",
+      "bytes": 472123,
+      "sha256": "729f6788007327bcd219a261d3331b3ef1d10e2b59ea93d99b68e3dbde831822",
+      "pages": 31
+    },
+    {
+      "name": "S01_Kanit_ve_Plan.json",
+      "bytes": 180639,
+      "sha256": "66718126e92d4845ee434391b8cc60df9b5fdb86e3ae82b73595f60e52bc6da6",
+      "pages": null
+    }
+  ]
+}

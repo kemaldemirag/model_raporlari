@@ -1,0 +1,57 @@
+# CODEX HANDOFF — Fork Ettiğim Repolar (Current)
+
+Tarih: 2026-11-01
+Liste: https://github.com/stars/kemaldemirag/lists/fork-etti%C4%9Fim-repolar-current/
+
+## Amaç
+GitHub listesindeki dört fork deposunu standart tarihli çalışma alanında, başlık uyumunu koruyarak yerel olarak klonla. Kaynak kodunu değiştirme, commit/push/PR oluşturma, yeni uzak depo açma.
+
+## Repo envanteri (liste görünümü doğrulandı)
+1. https://github.com/kemaldemirag/FPGA-UART — FPGA, UART, AXI4
+2. https://github.com/kemaldemirag/CNCU-01 — STM32F407 Ethernet-CAN
+3. https://github.com/kemaldemirag/stm32-can-modbus-gateway — STM32, RS-485/Modbus RTU, CAN, KiCad
+4. https://github.com/kemaldemirag/STM32F4-Eval-board — STM32F4, GSM, Ethernet
+
+## Dizin şeması
+01.11.2026-Fork-Ettigim-Repolar-Current/
+- 001-Kayıt Notları ve Dokümantasyon/
+  - 001-Kayıt Notları/
+  - 002-Proje Dokümantasyonu/
+  - 003-Referans Kaynaklar/
+    - 001-Oynatma Listesi İçerikleri/
+    - 002-PDF'ler/
+    - 003-Repolar/
+    - 004-Müşteri Referansları/
+    - 005-İş İlanı/
+- 002-Proje Çıktıları/
+  - 001-FPGA-UART/ (klonun kendisi)
+  - 002-CNCU-01/ (klonun kendisi)
+  - 003-STM32-CAN-Modbus-Gateway/ (klonun kendisi)
+  - 004-STM32F4-Eval-Board/ (klonun kendisi)
+- 003-Proje Kayıtları/
+  - 001-Görsel Kayıtlar/
+  - 002-Teknik Çıktı Kayıtları/
+  - 003-Video Kayıtlar/
+- README.md
+- PROJECT-MANIFEST.json
+
+## Uygulama
+1. Kullanıcının seçtiği ana çalışma dizinini tespit et; belirsizse sor. Mevcut dosyalara dokunma.
+2. GitHub liste URL'sini tekrar kontrol et; liste değiştiyse farkları raporla, sessizce kapsam değiştirme.
+3. Dizinleri oluştur. Her hedef dizin mevcutsa içeriği incele; üzerine yazma veya yeniden klonlama yapma. Gerekirse kullanıcı onayı iste.
+4. Her repoyu belirtilen hedefe `git clone https://github.com/kemaldemirag/<repo>.git '<hedef>'` ile klonla. `origin` kullanıcının forkunu göstermeli.
+5. GitHub API veya repo metadata ile her forkun gerçek `parent`/`source` bilgisini doğrula. Doğrulanmış parent varsa `git remote add upstream <parent-clone-url>`; doğrulanamazsa upstream ekleme ve raporla. Fork statüsünü yalnız liste başlığından varsayma.
+6. Her repo için `git remote -v`, `git status --short`, `git rev-parse HEAD`, varsayılan branch, ana diller, LICENSE, README, temel yapı ve bağımlılıkları salt okunur incele.
+7. `001-Kayıt Notları/` içine REPO_INDEX.md, `002-Proje Dokümantasyonu/` içine WORKSPACE_OVERVIEW.md; `003-Referans Kaynaklar/003-Repolar/` içine SOURCE_LINKS.md yaz.
+8. `003-Proje Kayıtları/002-Teknik Çıktı Kayıtları/` içine CLONE_REPORT.md ve VERIFICATION_REPORT.md yaz. Başarısız klonları, upstream belirsizliklerini, duplicate'leri açıkça kaydet.
+9. README.md ve PROJECT-MANIFEST.json oluştur. Manifest her repo için başlık, yerel yol, origin, doğrulanmış upstream (veya null), commit SHA, branch, klonlama sonucu, zaman bilgisi içermeli.
+10. Son raporda tam yolları, başarılı/başarısız repo sayılarını, çalışma ağacı durumunu ve sonraki geliştirme önerilerini belirt.
+
+## Yasaklar
+- `git push`, `gh repo create`, `gh pr create`, PR açma, force-push, branch silme, mevcut .git dizinini silme.
+- Kaynak kodu veya konfigürasyonları değiştirme, bağımlılık kurma, testleri çalıştırma (ayrı onay olmadan).
+- Yerel kopyaları bağımsız yeni GitHub repoları olarak yayınlama.
+- Forkun parent URL'sini tahmin etme.
+
+## Tamamlanma kriterleri
+Dört depo ya başarıyla doğru klasöre klonlanmış ya da nedeni belgelenmiş; origin/upstream politikası doğrulanmış; envanter, manifest ve loglar oluşturulmuş; hiçbir uzak yazma işlemi yapılmamış olmalı.

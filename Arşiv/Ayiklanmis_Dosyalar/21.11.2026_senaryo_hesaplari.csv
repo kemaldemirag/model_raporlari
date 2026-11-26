@@ -1,0 +1,16 @@
+﻿scenario_id,system,variables,result,unit,evidence_boundary
+S01-A,geophone,sample_rate=500;window=0.25,samples=125,unit:sample,source:IMG_5059
+S01-B,geophone,500SPS;4bytes;1ch;86400s,bytes=172800000,bytes,assumption:32bit
+S01-C,geophone,daily raw fraction=0.01,bytes=1728000,bytes,assumption:1percent recording
+S02-0,robot_stop,v=0.5;a=0.5;delay=0,distance=0.250,m,ideal model
+S02-10,robot_stop,v=0.5;a=0.5;delay=0.010,distance=0.255,m,ideal model
+S02-50,robot_stop,v=0.5;a=0.5;delay=0.050,distance=0.275,m,ideal model
+S03-90,wheel,physical=0.09;firmware=0.144;actual=10,estimated=16,m,conditional
+S03-120,wheel,physical=0.12;firmware=0.144;actual=10,estimated=12,m,conditional
+S04-FRAMES,sensor,fps=60;duration=120;loss=0.01,missing=72,frame,hypothetical
+S04-DRIFT,sensor,ppm=50;duration=120,offset=0.006,s,constant relative drift
+S05-2,LED thermal,ambient=35;R=10;P=2,T=55,degC,hypothetical
+S05-3,LED thermal,ambient=35;R=10;P=3,T=65,degC,hypothetical
+S05-5,LED thermal,ambient=35;R=10;P=5,T=85,degC,hypothetical
+S06,IEC104 Modbus,poll=500ms;process=20ms;network=80ms,upper_bound=600,ms,hypothetical no congestion
+S07,bearing motor speed,rpm=1500,omega=157.079633,rad/s,unit conversion

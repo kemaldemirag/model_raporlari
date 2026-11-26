@@ -1,0 +1,41 @@
+ÜRÜN-2 — REFERANS REPOLAR
+Model Raporları / 21.11.2026 / Ürün-2
+Araştırma eki · 25.11.2026
+
+Arşivdeki Ürün-2, AnyShake Explorer yeniden üretim planıdır. Hedef, tek IMU ve tek GNSS varyantıyla E-C111G benzeri bir demonstratör ve Observer veri akışıdır. Kayıtlı Explorer kaynak sabiti dde90ce53811f090137d9a962bde6d7408477aef, planın release referansı git-dde90ce. Plan 50/100/200/250 SPS çıkış ve dört UART baud ayarını kapsar.
+Plan: https://docs.google.com/document/d/17Irdo74DGT9j1hr3qqwnybzs57vNLzc6b4qx8XVoh8s/edit
+
+P0 — AnyShake Explorer: tek yetkili tasarım referansı
+Sabit kaynak ağacındaki hardware/, firmware/, bootloader/, dfu-tool/ ve CI yapılandırması birbirine bağlanır. Standalone ve bootloader yerleşimli dosyalar ayrı kimliklerle izlenir. PCB baskı revizyonu, derleme revizyon seçicisi ve GNSS ailesi ayrı alanlarda kaydedilir. Planın release ve CI kimlikleri bu taramada bağımsız okunamadı.
+https://github.com/anyshake/explorer/tree/dde90ce53811f090137d9a962bde6d7408477aef
+Sabit committeki COMMERCIAL_LICENSE.txt, lisans sahibinin ticari lisans koşullarını özetler. Ticari kullanım kararı için yazılı lisans kapsamı proje gereksinimidir.
+https://github.com/anyshake/explorer/blob/dde90ce53811f090137d9a962bde6d7408477aef/COMMERCIAL_LICENSE.txt
+
+P0 — AnyShake Observer: seri paket ve arşiv uyumu
+Explorer paketini alan, canlı dalga biçimi sunan ve MiniSEED arşivi üreten eşlikçi repo. Explorer planında Observer için ayrı commit kilidi açık. Önce sabit bir Observer sürümü seçilip sentetik seri kayıt için kanal sırası, zaman damgası ve örnek sayısı karşılaştırılmalı. Ardından MiniSEED geri okuma denenebilir.
+https://github.com/anyshake/observer
+
+P0 — KiBot: üretim paketi çıktılarının otomasyonu
+KiCad çıktıları tekrarlanabilir ve komutla üretilebilir. Sabit KiCad ve KiBot sürümleriyle Gerber, delik, BOM ve yerleşim dosyalarını ilişkilendir. ERC/DRC raporları ve kaynak hashleri ayrı kanıt olarak saklanabilir. Explorer kartında KiCad 10 uyumluluğu çalıştırılarak sınanmayı bekliyor.
+https://github.com/INTI-CMNB/KiBot/blob/master/README.md
+
+P0 — PlatformIO ST STM32: derleme bağımlılıklarının sabitlenmesi
+platform.json, STM32 platformunu ve paket tanımlarını gösteriyor. İncelenen içerikte 20.0.0 sürümü görüldü. Explorer planındaki sürüm ve çözümlenen alt paketler manifestte birlikte tutulabilir. Sabit kaynakla iki temiz derlemenin boyut ve hash karşılaştırması yapılabilir.
+https://github.com/platformio/platform-ststm32/blob/develop/platform.json
+
+P1 — TI Precision ADC Examples: ADS1262 register karşılaştırması
+Üreticinin ADS1262/ADS1263 örneği, register adresleri ve yapılandırma dizisini gözden geçirmek için bağımsız referans. Ürün-2 sürücüsünün SPI akışı ve ADC ayarları değişmeden önce yapılandırma tablosuna dönüştürülebilir.
+https://github.com/TexasInstruments/precision-adc-examples/blob/main/devices/ads1262/ads1263.c
+
+P1 — EarthScope libmseed: bağımsız dosya okuma
+Observer çıktısını ikinci bir okuyucuyla kontrol et. Kanal kimliği, örnek adedi, başlangıç zamanı ve örnekleme hızını giriş kaydıyla karşılaştır. Kullanılacak MiniSEED sürümü ve kodlaması testte açıkça belirtilmeli.
+https://github.com/EarthScope/libmseed
+
+P2 — AnyShake Nexus: SeisComP entegrasyonu
+README, AnyShake–SeisComP bağlantısını tanımlıyor. Temel Observer kabulü sonrasında merkezi istasyon entegrasyonu için değerlendirilebilir.
+https://github.com/anyshake/nexus
+
+İlk donanımsız doğrulama önerisi
+Tek sabit Explorer/Observer eşleşmesi için üç seri kayıt hazırla: geçerli paket, XOR kontrolü hatalı paket ve kesilmiş paketi izleyen geçerli paket. Geçerli örneklerin kanal sırasını ve zaman stampalarını kontrol et. Hatalı kayıtların örnek üretmemesini ve ayrıştırıcının bir sonraki geçerli pakette toparlanmasını sınayacak beklentileri yaz. Observer arşivlemesi açıldığında geçerli örnekleri libmseed ile geri oku.
+
+Bu ek kaynak incelemesidir. Derleme, devre üretimi, seri entegrasyon, HIL ve metroloji testleri bu çalışma kapsamında yürütülmedi.

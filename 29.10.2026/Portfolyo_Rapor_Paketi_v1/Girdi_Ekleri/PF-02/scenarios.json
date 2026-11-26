@@ -1,0 +1,15 @@
+{
+  "synthetic": true,
+  "max_attempts": 3,
+  "stale_at_ms": 5000,
+  "policy_owner": "portfolio_wrapper",
+  "cases": [
+    "valid",
+    "crc_error",
+    "communication_error",
+    "stale_4999_5000",
+    "recover_after_error"
+  ],
+  "raw_protocol_fixture_status": "REQUIRES_SOURCE_VERIFICATION",
+  "status": "NOT_RUN"
+}

@@ -1,0 +1,21 @@
+Ürün-1 · Gerçek kart ve üretim paketi referansları · 26.11.2026
+
+1. pjcau/esp32-emu-turbo — K1-05/06 sonrası montaj karşılaştırması
+Üreticiye ayrılan release_jlcpcb klasöründe Gerber ZIP, BOM ve CPL belgeleniyor. R14 tasarım gereği DNP. SW17 tedarik için BOM'a alınmış ve CPL dışında bırakılmış. Ayrıca elle lehimlenen SPK1 ve fiducial referansları var. Önerilen kontrol: aktif varyant ve yerleştirme politikasına göre makineye takılacak, DNP ve elle takılacak referansları ayır. SW17 için sahte eksik, kasıtlı R14 CPL eklemesi için DNP sızıntısı üretip üretmediğini ayrı kontrollerle sınamak mümkün. Mevcut dosyalar değiştirilmeden çalışılır; kasıtlı hatalar ayrı kopyada oluşturulur.
+https://github.com/pjcau/esp32-emu-turbo
+https://pjcau.github.io/esp32-emu-turbo/docs/design/pcb
+
+2. greatscottgadgets/cynthion-hardware — K1-04/05 sonrası sürüm arşivi
+İlk üretim sürümü r1.4.0 ve kısa commit 13aa71c. Yayın notu ZIP içinde şema PDF, montaj çizimleri, BOM, bileşen konum dosyası ve Gerber listeliyor. Arşiv içeriğinin listelenen dosyalarla eşleşmesi, sürüm kaynaklarının pinlenmesi ve aynı revizyondan yeniden üretilen çıktılarla rol bazında karşılaştırılması için aday. Delme dosyalarının ayrı varlığı bu taramada açılarak doğrulanmadı.
+https://github.com/greatscottgadgets/cynthion-hardware/releases/tag/r1.4.0
+
+3. TinyTapeout/pcb-files — K1 sonrası üretim partisi karşılaştırması
+Proje, üretim partilerinde kullanılan kart ve montaj dosyalarını arşivlemek için ayrı depo tutuyor. Demo kartı veya breakout kartında bir parti seçip üretim arşivini onu üreten kaynak etiketiyle eşlemek, kaynak sürümü ile teslim paketi arasındaki izlenebilirliği sınamak için aday. Arşiv politikası README düzeyinde doğrulandı. Tekil parti dosyaları bu turda açılmadı.
+https://github.com/TinyTapeout/pcb-files
+
+4. punkfab/pcb-corpus — K1 sonrası DRC örnek havuzu
+Depo, 235 gerçek KiCad kartı için kart, proje ayarları ve varsa özel kural dosyası sağladığını belirtiyor. SOURCE.json kaynak commit ve lisansı, manifest.json ise ref_drv ile hata düzeyi DRC sayısını bildiriyor. Depoya göre 77 kartta ref_drv sıfır. Bir sıfır ve bir pozitif örneğin sabit KiCad sürümünde kendi kurallarıyla yeniden koşulması önerilir. Depodaki sayaç, Ürün-1 için doğrulanmış beklenen sonuç veya tüm üretim paketi kapsamı sayılmaz.
+https://github.com/punkfab/pcb-corpus
+
+Karar
+Montaj kurallarını sınamak için ilk ek vaka ESP32 Emu Turbo. Cynthion sürüm paketi ve Tiny Tapeout parti arşivi üretim dosyası izlenebilirliğini, pcb-corpus ise farklı proje kuralları altında DRC davranışını sınar. Önceden planlanan AnyShake Explorer harici vakası korunur. Bu belge kaynak incelemesidir. Yeni depo üzerinde yerel KiCad koşusu, arşiv içeriği taraması veya resmî K1 puanlaması yapılmadı.

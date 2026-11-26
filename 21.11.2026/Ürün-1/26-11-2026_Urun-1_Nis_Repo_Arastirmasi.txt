@@ -1,0 +1,20 @@
+Ürün-1 · Niş repo araştırması · 26.11.2026
+
+1. timschmidt/hyperdrc — Ürün-1'e en yakın paket denetimi referansı
+Cargo.toml: v0.3.0. Gerber, KiCad, Excellon, IPC-D-356 ve üretim paketlerini birlikte okuyabilen bir ön kontrol aracı. Her seçili kural için çalıştırma durumunu raporlar; belirsiz, kapsam dışı ve politika ile atlanan kontroller görünür. JSON/SARIF ve waiver/baseline yaklaşımı, Ürün-1'in kanıt sözleşmesi ve farklılaştırma araştırmasına doğrudan girdi. K1-04 için ilk aday deney: aynı HWDE ZIP üzerinde kart çevresi mevcut/eksik ve delme sınıfı açık/belirsiz durumlarının raporlanışını karşılaştırmak.
+https://github.com/timschmidt/hyperdrc
+https://github.com/timschmidt/hyperdrc/blob/main/Cargo.toml
+
+2. hauksbee-dev/hauksbee / crates/hauksbee-extract — K1-04 delik türü ve ayrıştırma
+Excellon modülü 0.1.0-beta.6 belgelerinde birimler, sıfır bastırma, takım çapı, G85 ve frezelenen slotlar açıklanıyor. Kaplama bilgisi için Plated ve NonPlated başlıkları belgelenmiş, aksi durumda çağıranın dosya adından çıkarımına dayanılabiliyor. MixedPlating için yayımlanan kaynakta ayrı bir adlandırılmış dal bulunamadı. Önceki turda okunan STM32 Blinky ZIP'i bu etiketi taşıyor. Bu nedenle birleşik dosyanın açılması, PTH ve NPTH'nin ayrı ayrı doğrulandığı anlamına gelmez. Ucamco XNC standardı karışık kaplamalı dosyaları desteklemediğini belirtir; bu sınır genel Excellon kabul politikasıyla karıştırılmaz.
+https://github.com/hauksbee-dev/hauksbee
+https://docs.rs/hauksbee-extract/latest/src/hauksbee_extract/gerber/excellon.rs.html
+https://www.ucamco.com/files/downloads/file_en/452/xnc-format-specification-revision-2021-11_en.pdf
+
+3. IntelligentElectron/test-fixtures — IPC-2581 ayrıştırma için gerçek test girdileri
+Depo, pcb-lens için IPC-2581 test kartlarını indirme betiğini ve universal-netlist için bağlantı ayrıştırma örneklerini belgeliyor. Referans, Ürün-1'de IPC-2581 okuma deneyi için kaynak olabilir. KiCad netlist ayrıştırıcısı README'de geliştirme aşamasında. IPC-2581 ve IPC-D-356 ayrı formatlardır; IPC-2581 test verisi D-356 veya mevcut şema–PCB eşliği kanıtı sayılamaz.
+https://github.com/IntelligentElectron/test-fixtures
+https://github.com/IntelligentElectron/pcb-lens/releases
+
+Öncelik: HyperDRC, rekabet/işlev örtüşmesi ve belirsiz kontrol durumu; Hauksbee Excellon, ayrıştırıcı sınırlarını sınamak; IntelligentElectron, ileride format kapsamı genişletilirse gerçek veri sağlamak.
+Bu tur kaynak kodu, proje belgeleri ve önceki gerçek ZIP bulgusunun çapraz incelemesidir. Araç kurulumu, entegrasyon koşusu ve K1 kabul kararı yapılmadı.

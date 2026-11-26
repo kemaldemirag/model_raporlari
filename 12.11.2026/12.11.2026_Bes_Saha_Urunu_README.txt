@@ -1,0 +1,8 @@
+12.11.2026 Beş Saha Ürünü Model Raporları
+Hazırlanma: 14.11.2026
+
+01 Ürün çıkarımı ve sayısal saha hedefleri
+02 İş akışı, standart çalışma alanı ve kabul testleri
+03 Referans kaynak yükleme ve devir sözleşmesi
+
+DOCX düzenlenebilir asıl rapor; PDF okunabilir kopyadır. CSV ekleri kaynak ve test izlenebilirliği içindir. Önceki U01–U04 raporları bu setle değiştirilmez. Bütün ürün testleri NOT_RUN durumundadır.

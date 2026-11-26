@@ -1,0 +1,16 @@
+﻿product_id,repo_proposal,test_id,procedure,acceptance,status
+S01,shelf-load-monitor,S01-T01,"0, 10, 25, 50 kg noktalarında artan ve azalan yük",Her noktada referans yük farkı ≤100 g; referans ağırlığın belirsizliği kaydedilir.,NOT_RUN
+S01,shelf-load-monitor,S01-T02,"Merkez ve dört köşe yüklemesi; 10, 25, 40 °C",Kararlı ölçümde toplam hata sınırı korunur; bekleme süresi prosedürde sabitlenir.,NOT_RUN
+S01,shelf-load-monitor,S01-T03,Enerji kes ve yeniden başlat,Dara kendiliğinden değişmez; kalibrasyon katsayıları ve ham sayımlar izlenebilir.,NOT_RUN
+S02,recorder-power-backup,S02-T01,300 mA yükte haricî kaynağı tak ve çıkar,"Osiloskop dalga biçiminde çıkış 4,75–5,25 V; bant genişliği, prob ve zaman tabanı kaydedilir.",NOT_RUN
+S02,recorder-power-backup,S02-T02,300 mA taban yüke 600 mA toplam yük darbesi uygula,100 ms darbe boyunca çıkış aralık içinde; kaydedicide reset veya kayıt kaybı yok.,NOT_RUN
+S02,recorder-power-backup,S02-T03,25 °C ortamda tam doludan sürekli 300 mA yük,En az 4 saat; hücre ve bileşen sıcaklıkları seçilen üretici sınırlarını aşmaz.,NOT_RUN
+S03,greenhouse-solar-power,S03-T01,25 °C ortamda tanımlı 48 Wh/gün yük profili ve PV yokluğu,24 saat boyunca çıkış 12 V ±%5; başlangıç SOC ve akü kapasite durumu belgeli.,NOT_RUN
+S03,greenhouse-solar-power,S03-T02,Akü gerilimini alt eşiğe indir ve yeniden yükselt,Yük ayırma ve geri bağlama eşikleri arasında tanımlı histerezis; açma kapama salınımı yok.,NOT_RUN
+S03,greenhouse-solar-power,S03-T03,PV değişimi ve 1 A sürekli ile 2 A bir saniye yük,Şarj akımı/gerilimi üretici profili içinde; çıkış hedefi korunur; MPPT davranışı ayrı ölçülür.,NOT_RUN
+S04,pump-room-modbus-io,S04-T01,"4, 8, 12, 16, 20 mA; 18, 24, 30 V besleme; sıcaklık sınırları",Her kanalda hata ≤32 µA; kaynak ve referans ölçerin belirsizliği kaydedilir.,NOT_RUN
+S04,pump-room-modbus-io,S04-T02,"100 m kablo, iki uç sonlandırma ve tanımlı ana cihaz sorguları","İki kanal ve kontak verisinin yaşı ≤500 ms; CRC, zaman aşımı ve kayıp sayıları raporlanır.",NOT_RUN
+S04,pump-room-modbus-io,S04-T03,"3,5 ve 21,5 mA uygula; iletişimi kes",Aralık dışı ve bayat veri bayrakları doğru; kopukluk sıfır fiziksel ölçüm gibi sunulmaz.,NOT_RUN
+S05,motor-pump-vibration-daq,S05-T01,Ortak sinüsü dört kanala uygula; 100 Hz–2 kHz tarama,Kalibre referansa göre kanal kazanç hatası ≤%2; genlik ve ölçüm belirsizliği raporlu.,NOT_RUN
+S05,motor-pump-vibration-daq,S05-T02,Ortak zaman referanslı işaretle kanalları karşılaştır,Kanallar arası örnekleme farkı ≤1 µs; kaynak ve ölçüm düzeninin zaman belirsizliği belirtilir.,NOT_RUN
+S05,motor-pump-vibration-daq,S05-T03,Dört kanal tam hızda USB kaydı 30 dakika,"Kanal başına 46080000 örnek; sıra numarası boşluğu, tampon taşması ve kayıp örnek yok.",NOT_RUN

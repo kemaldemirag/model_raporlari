@@ -1,0 +1,28 @@
+Ürün-1 · Erişilebilir üretim paketleri · 26.11.2026
+
+1. ihsan-sa/hwde-boards / PCB-0001-A_stm32-blinky/fab
+GitHub üzerinden gerçek BOM, CPL ve Gerber ZIP dosyaları okundu. BOM'da 20 benzersiz referans, CPL'de aynı 20 referans ve tekrar yok. ZIP CRC denetimi başarılı. 9 Gerber, bir Gerber Job, bir Excellon dosyası. Gerber X2 başlığı kart çevresini Profile olarak tanımlıyor. Excellon başlığında MixedPlating yazıyor; ayrı PTH ve NPTH dosyası bulunmuyor. Bu, üretici profili izin verince birleşik delme dosyasının kapsama girip girmediğini test etmek için iyi bir gerçek vaka. Bu dosyanın fiziksel delik içeriğinin üreticiye uygunluğu değerlendirilmedi.
+
+Bellekte üç kontrollü değişiklik sınandı: CPL'den C1 çıkarılınca tek eksik C1; ZIP envanterinden dış sınır çıkarılınca eksik dosya; dış sınır girdisi boşaltılınca sıfır bayt sonucu. Bunlar K1-04 ve K1-05 için ön kontroldür.
+
+Kaynak dosya ve GitHub blob SHA kayıtları:
+BOM.csv 3956fe7b02ff100cfb4c032e7747967e92e66086
+CPL.csv 064afa8740602234f0377b733bfe185f0f0fd5e9
+PCB-0001-A_stm32-blinky_gerbers.zip a68ec69c174304878d56c6df11356a4d964b1ab6
+https://github.com/ihsan-sa/hwde-boards/tree/main/PCB-0001-A_stm32-blinky/fab
+
+2. iandchasse/silkscreen-pcb / production
+Dört gerçek CSV'de gruplanmış BOM designator alanları açıldı ve tekil CPL referanslarıyla karşılaştırıldı. İki profilde de CPL'ye özgü fazlalık veya tekrar yok.
+JLCPCB: 78 BOM satırı, 177 benzersiz referans, 166 CPL, 11 yalnız BOM. Farkların nedenleri bu karşılaştırmayla sınıflandırılmadı.
+PCBWay: 67 BOM satırı, 166 benzersiz referans, 154 CPL. Yalnız BOM'daki 12 referansın tamamı BOM'da THT olarak etiketli. Bunların inceleme kararı otomatik yerleştirme kapsamına göre verilmelidir.
+Ortak referanslarda iki dosyanın sayısal rotasyonu 92 kayıtta farklı. C1 örneğinde JLCPCB 180°, PCBWay 0°. X değeri 4 ve Y değeri 2 kayıtta değişiyor. Doğruluk kararı için üreticiye özgü dönüşüm, orijin ve footprint sözleşmesi gerekir. Bu ölçüm ham dosya farkıdır.
+
+Dosya ve GitHub blob SHA kayıtları:
+production/jlc_bom.csv 30a0dc2d09bb758692cf6b68a60380a99f1a3c7d
+production/positions.csv f1afc82b9b845f4937b44b7c7c913d15a9f8b202
+production/other_fabs/pcbway_bom.csv 10c63a701d9d846902d1b2cd1dd73eca5392531d
+production/other_fabs/placement_bottom_kicad.csv c7229878bfcbd1da6d1b97f657e608526fbe39da
+https://github.com/iandchasse/silkscreen-pcb
+https://github.com/iandchasse/silkscreen-pcb/blob/master/fabrication/README.md
+
+Bu çalışma mevcut çıktı dosyalarını karşılaştırır. Yeniden KiCad çıktısı alınmadı ve resmî K1 matrisi doğrulanmadı.

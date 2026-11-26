@@ -1,0 +1,17 @@
+PORTFOLYO RAPOR PAKETİ
+29.10.2026 — v1.0
+
+Kök: Portfolyo/29.10.2026. Amaç: beş küçük gösterilebilir çıktı.
+
+1. Önce 00_Codex_Handoff_Portfolyo_Calisma_Alani_v1 belgesini kullan.
+2. Seçilen PF kodunun İş Akışı raporunu oku.
+3. Aynı kodun Codex Görev Planını uygula.
+4. Girdi_Ekleri içindeki ilgili dosyaları birlikte ver.
+
+11 ayrı rapor DOCX ve PDF biçimindedir. Uygulama repoları, fiziksel testler ve portföy demoları henüz üretilmiş değildir. Paket yalnız kurulum/geliştirme raporları ve açıkça etiketlenmiş başlangıç girdileri sağlar.
+
+PF-01 PCB teslimi
+PF-02 Sensör sürücü testleri
+PF-03 ROS 2 IMU doğrulaması
+PF-04 Güç devresi incelemesi
+PF-05 Batarya veri raporlama

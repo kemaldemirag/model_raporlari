@@ -23,24 +23,4 @@
 Tüm Sprint-1 raporları planlama aşamasındadır: NOT_RUN. Hiçbir repo oluşturulmadı, kod yazılmadı veya test yürütülmedi.
 
 ## İçerik
-
-### Standart raporlar
-
-- [01 Codex Handoff](01_Codex_Handoff.md)
-- [02 İş Akışı](02_Is_Akisi.md)
-- [03 Görev Planlama](03_Gorev_Planlama.md)
-- [04 Claude Araştırma](04_Claude_Arastirma.md)
-- [05 Doğrulama Matrisi](05_Dogrulama_Matrisi.md)
-
-### Sprint 1 raporları
-
-- [01 ecad quality gate](Sprint_1_01_ecad-quality-gate.md)
-- [02 i2c register validation bench](Sprint_1_02_i2c-register-validation-bench.md)
-- [03 motor control verification](Sprint_1_03_motor-control-verification.md)
-- [04 numerical dynamics validation](Sprint_1_04_numerical-dynamics-validation.md)
-- [05 engineering evidence kit](Sprint_1_05_engineering-evidence-kit.md)
-- [06 analog audio afe reference](Sprint_1_06_analog-audio-afe-reference.md)
-- [07 sensor estimation pipeline](Sprint_1_07_sensor-estimation-pipeline.md)
-- [08 embedded protocol conformance](Sprint_1_08_embedded-protocol-conformance.md)
-
-Özgün DOCX dosyaları aynı klasörde korunmuştur.
+01 Codex Handoff; 02 İş Akışı; 03 Görev Planlama; 04 Claude Araştırma; 05 Doğrulama Matrisi; Sprint-1 x8.

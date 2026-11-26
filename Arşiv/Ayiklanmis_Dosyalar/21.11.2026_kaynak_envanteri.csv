@@ -1,0 +1,32 @@
+﻿source_id,description,url,source_kind,usage,access_note
+R01,21.11.2026 Araştırma Kayıtları ek sentezi,https://docs.google.com/document/d/1hRVpn_PhNCfz601_M8P_dVYaxtIoTmQumMrvN0tByfQ/edit,Drive record,planning/not independently executed,2026-11-22 report context
+R02,Portfolyo ve Ürün Araştırması v1.2.0 / Güncel karar,https://docs.google.com/document/d/1hgzsde5gfaWtietPOG5GDwDMBrQCh-RI/edit,Drive record,planning/not independently executed,2026-11-22 report context
+R03,Portfolyo ve Ürün Araştırması / 04_Yeniden_Inceleme,https://drive.google.com/drive/folders/1ncEPUAnESpwbX8bhwI0CGcdbsSPdk65R,Drive record,planning/not independently executed,2026-11-22 report context
+R04,22.11.2026 PCB Release Package Review,https://docs.google.com/document/d/1tSpTacewfeY9DNg2ydRodQ3sHQBbTSzv6JqTnXv8ZWM/edit,Drive record,planning/not independently executed,2026-11-22 report context
+R05,22.11.2026 Referans Listeler ek araştırması,https://docs.google.com/document/d/1PNeSfpnOIpCBnkVZhPcF7V7hTPZE2qApFUJCLcDe_U8/edit,Drive record,planning/not independently executed,2026-11-22 report context
+R06,22.11.2026 İş İlanları ek araştırması,https://docs.google.com/document/d/1iq9uOYoU1dTIeBx2NqxtRiYF8f9xo3OpAkJR8cFXvrs/edit,Drive record,planning/not independently executed,2026-11-22 report context
+R07,22.11.2026 Motor Kontrol / ROS 2 notu,https://docs.google.com/document/d/1uRf3rff0h8HJju9tNCNCLrNMHlPbtcRV/edit,Drive record,planning/not independently executed,2026-11-22 report context
+R08,22.11.2026 Sinir Ağları / Motor Arızası notu,https://docs.google.com/document/d/18d2CY1KhSuU9EFk_XEvYr29Os-HcaoXQ/edit,Drive record,planning/not independently executed,2026-11-22 report context
+R09,21.11.2026 Referans Listeler temel belge,https://docs.google.com/document/d/1HbPRyROK2FRwRzkFe8H3RnCDbUrJYssf6rG1QM2NPRw/edit,Drive record,planning/not independently executed,2026-11-22 report context
+R10,21.11.2026 İş İlanları robotik / veri QC,https://docs.google.com/document/d/18TaHGVJb4qanClGZ6TJ19CeJLiaM89sIvKSAG9yg_VM/edit,Drive record,planning/not independently executed,2026-11-22 report context
+T01,KiCad 10 komut satırı arayüzü,https://docs.kicad.org/10.0/en/cli/cli.html,External reference,planning/not independently executed,2026-11-22 report context
+T02,JLCPCB BOM/CPL rehberi,https://jlcpcb.com/help/article/advice-for-bom-and-cpl-files-preparation,External reference,planning/not independently executed,2026-11-22 report context
+T03,KiBot üretim çıktı otomasyonu,https://kibot.readthedocs.io/en/latest/configuration/outputs.html,External reference,planning/not independently executed,2026-11-22 report context
+T04,ESP-IDF core dump,https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-guides/core_dump.html,External reference,planning/not independently executed,2026-11-22 report context
+T05,ESP-IDF OTA,https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/system/ota.html,External reference,planning/not independently executed,2026-11-22 report context
+T06,ROS 2 / Gazebo kontrol entegrasyonu,https://github.com/ros-controls/gz_ros2_control,External reference,planning/not independently executed,2026-11-22 report context
+T07,ROSNavBench,https://github.com/riotu-lab/ROSNavBench,External reference,planning/not independently executed,2026-11-22 report context
+T08,Paderborn rulman veri merkezi,https://mb.uni-paderborn.de/en/kat/research/bearing-datacenter,External reference,planning/not independently executed,2026-11-22 report context
+T09,ROSBag Doctor sınırlamalar,https://github.com/sylvesterkaczmarek/rosbag-doctor/blob/main/docs/limitations.md,External reference,planning/not independently executed,2026-11-22 report context
+T10,Dört motor kontrol kartı firmware,https://github.com/jonathanrandall/four_motor_controller/blob/main/firmware/esp32_bridge/src/main.cpp,External reference,planning/not independently executed,2026-11-22 report context
+T11,JLCPCB/PCB üretim raporu alternatifleri - KiKit,https://github.com/yaqwsx/KiKit,External reference,planning/not independently executed,2026-11-22 report context
+T12,Kamera-IMU kalibrasyonu OpenMVIS,https://github.com/openmvis/openmvis,External reference,planning/not independently executed,2026-11-22 report context
+T13,Motor modelleri motulator,https://github.com/Aalto-Electric-Drives/motulator,External reference,planning/not independently executed,2026-11-22 report context
+T14,Paderborn veri çalışma koşulları,https://mb.uni-paderborn.de/en/kat/research/bearing-datacenter/operating-conditions,External reference,planning/not independently executed,2026-11-22 report context
+T15,KiCad/Firmware Group Netlist,https://github.com/DLR-RY/kicad_firmware_generation,External reference,planning/not independently executed,2026-11-22 report context
+T16,agni PCB inceleme,https://github.com/panyam/agni,External reference,planning/not independently executed,2026-11-22 report context
+T17,ZapTrace PCB kanıt sistemi,https://github.com/oaslananka/zaptrace,External reference,planning/not independently executed,2026-11-22 report context
+T18,RobotPerf,https://github.com/robotperf/benchmarks,External reference,planning/not independently executed,2026-11-22 report context
+T19,Pytest-embedded,https://docs.espressif.com/projects/pytest-embedded/en/latest/,External reference,planning/not independently executed,2026-11-22 report context
+T20,Renode Testing,https://renode.readthedocs.io/en/latest/introduction/testing.html,External reference,planning/not independently executed,2026-11-22 report context
+T21,İlk saha ekran kaydı,https://drive.google.com/file/d/1He5IOXeSJFJrVwTefchEUZ1qREg8_vcj/view,External reference,planning/not independently executed,2026-11-22 report context

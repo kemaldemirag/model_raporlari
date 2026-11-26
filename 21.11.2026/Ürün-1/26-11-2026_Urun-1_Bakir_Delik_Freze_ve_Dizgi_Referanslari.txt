@@ -1,0 +1,77 @@
+Ürün-1 | PCB üretim dosyalarını doğrulama
+26 Kasım 2026 · 21.11.2026 araştırma kayıtları
+
+1. Gerber bakırı, kaplamalı delik ve elektriksel bağlantı
+studio-edul/pcb-layout-skill · 17.10.2026 · 62921624db3dffdb0afa097f6b270f68acde3c4d
+İncelenen Python aracı Gerber bakırını piksellere dönüştürüyor, kaplamalı deliklerle katmanlar arasında bağlantı kuruyor ve sonuçları IPC-D-356’daki beklenen ağlarla karşılaştırıyor. Varsayılan çözünürlük 0,02 mm/piksel. Bu araçta kör ve gömülü via’lar boydan boya delik gibi ele alınıyor. İncelenen IPC okuyucusu 317 ve 327 kayıtlarını işliyor. Karma kaplamalı delik dosyalarını ve özel katman yapılarını bu deney kapsamıyor.
+https://github.com/studio-edul/pcb-layout-skill/blob/62921624db3dffdb0afa097f6b270f68acde3c4d/skills/pcb-layout-design/scripts/gerber_check.py
+
+Yerel deney. İki bakır katmanı, iki ağ, beş IPC test noktası ve bir kaplamalı delik tanımlandı. Aynı test noktaları ve koordinat başlangıcı dört dosya paketinde korundu. Bakır koptuğunda veya delik kaybolduğunda da her bir test noktasında bakır bulunuyor. Ölçüt bu noktalar arasında elektriksel süreklilik.
+Paket                         Kısa    Kopuk    Bakıra değmeyen nokta    Eksik delik    Çıkış
+Sağlam                           0        0                0                  0            0
+Alt yolda 1 mm kesinti           0        1                0                  0            1
+A ile B arasında bakır köprü     1        0                0                  0            1
+Kaplamalı deliğin silinmesi      0        1                0                  1            1
+
+TP1 deliği (10,00 mm, 5,00 mm) kaldırıldığında kontrol hem A ağındaki kopukluğu hem eksik deliği bildirdi. Bu, tek fiziksel değişikliğin iki ilişkili bulgusudur. Ürün-1 için kanıt olarak fiziksel konumu, etkilenen ağı ve değiştirilen katmanı birlikte kaydetmek uygun. Bu çalışma sentetik üretim dosyalarıyla gerçekleştirildi. Resmî K1 sonucu ve fiziksel kart ölçümü ayrı çalışmalardır.
+
+2. Bileşen için gereken freze boşluğunun üretim paketinde kaybolması
+mfgs-us/pcb-dfm · 10.08.2026 · b94d0f7a39f4a743de736906f74f9973d74b989d
+İncelenen test dosyasında 24 test işlevi var. Bileşen kılıfı içindeki Edge.Cuts şekli ile üretim konturunu karşılaştırıyor. Bu örneğin ayırt edici özelliği, bakılan dosyaların revizyonu. Şema ve kart güncel olsa bile pakete eski dış hat konursa gereken kesit kaybolabilir. Örnek testler, açılı ve içbükey kesitleri, yanlış yerde frezeyi, kendi kesiti üzerine tasarlanmış pedleri ve kesit bildirmeyen kılıfı kapsıyor. Ürün-1 için önerilen deney, tek bir konnektör kesiti içeren kartın güncel ve eski profilini aynı kaynak PCB’ye karşı denemek.
+https://github.com/mfgs-us/pcb-dfm/blob/b94d0f7a39f4a743de736906f74f9973d74b989d/tests/test_cutout_checks.py
+
+3. Bir üretim siparişinin yerleştirme listesiyle karşılaştırma
+Team-Micras/jlcpick · 22.10.2026 · 6403c2ab8b20e574b165d68f02dbf6600646f6d8
+10973279A numarasıyla depoda saklanan Altium CPL dosyasında 144 veri satırı sayıldı. Hepsi TopLayer. Depodaki test BOM’dan beklenen parça referanslarını, CPL’den bunların açılarını alıyor. İki dosyanın orijin farkını medyan X/Y kaymasıyla giderdikten sonra koordinat farklarını 0,05 mm ile karşılaştırıyor ve önceden açıklanmış merkez farklarını ayrıca kaydediyor. Bu tolerans testin tercihi. Ürün-1 için alt yüz aynalama ayrı bir örnek gerektiriyor. İlgili testler incelendi, burada yeniden çalıştırılan denetim birinci maddedeki Gerber deneyidir.
+https://github.com/Team-Micras/jlcpick/blob/6403c2ab8b20e574b165d68f02dbf6600646f6d8/tests/test_fab.py
+https://github.com/Team-Micras/jlcpick/blob/6403c2ab8b20e574b165d68f02dbf6600646f6d8/tests/fixtures/10973279A_cpl.csv
+
+4. Belirli bir dizgi makinesinde besleyici yönü
+znuh/kicad-chm36 · 23.03.2025 · fd80de850322fbed11adf65cec89c31a98d83434
+CharmHigh CHM-T36VA için KiCad yerleşiminden makine dosyası üretiyor. README, besleyiciye göre bileşenin referans yönünü ve kullanılacak nozulu tanımlıyor. Aynı kart açısı, malzemenin tepside veya bantta duruşuna göre farklı makine komutuna dönüşebiliyor. Depo örnek DPV dosyası sağlıyor. Bu davranışa üretici/makine profiliyle bakılmalı. Alt yüz doğrulaması ve fiziksel dizgi bu kayıtta test edilmedi.
+https://github.com/znuh/kicad-chm36/blob/fd80de850322fbed11adf65cec89c31a98d83434/README.md
+https://github.com/znuh/kicad-chm36/blob/fd80de850322fbed11adf65cec89c31a98d83434/examples/reference_example.dpv
+
+Yeniden çalıştırma eki
+Birinci kaynağın sabitlenmiş sürümündeki gerber_check.py dosyasını ve aşağıdaki replay.py içeriğini boş bir klasöre yerleştirin. Python, NumPy, SciPy ve Pillow kurulu ortamda “python replay.py” dört paketi üretir, denetimi çalıştırır ve beklenen bulgu sayılarını ve çıkış kodunu karşılaştırır. Bu koşuda NumPy 2.3.5, SciPy 1.17.0 ve Pillow 13.0.0 kullanıldı. gerber_check.py Git blob kimliği 9a80a2a25e37abf023b38893a24767e4ffd94640.
+
+--- replay.py ---
+from pathlib import Path
+import re
+import subprocess
+import sys
+
+root = Path(__file__).resolve().parent
+def layer(side, commands):
+    return "\n".join(["%FSLAX24Y24*%", "%MOMM*%", f"%TF.FileFunction,Copper,{side}*%", "%ADD10C,0.600*%", "D10*", *commands, "M02*"]) + "\n"
+
+def point(x, y, d):
+    return f"X{x*10000:06d}Y{y*10000:06d}D{d}*"
+
+def line(x1, y1, x2, y2):
+    return [point(x1,y1,"02"), point(x2,y2,"01")]
+
+def pad(code, net, ref, x, y, access):
+    return f"{code}{net:<14}   {ref:<6}-{'1':<4} {'D0300P' if code=='317' else '      '}A{access:02d}X{x*1000:+07d}Y{y*1000:+07d}X0600Y0600"
+
+ipc = ["P  UNITS CUST 1", pad("327","A","J1",5,5,1), pad("317","A","TP1",10,5,0), pad("327","A","J2",15,5,2), pad("327","B","J3",5,8,1), pad("327","B","J4",15,8,1), "999"]
+(root / "board.ipc").write_text("\n".join(ipc) + "\n")
+
+cases = {"clean": (0,0,0,0), "open": (0,1,0,0), "short": (1,0,0,0), "missing_drill": (0,1,0,1)}
+for name, expected in cases.items():
+    folder = root / name
+    folder.mkdir(exist_ok=True)
+    top = line(5,5,10,5) + line(5,8,15,8)
+    if name == "short":
+        top += line(8,5,8,8)
+    bot = line(10,5,15,5) if name != "open" else line(10,5,12,5) + line(13,5,15,5)
+    (folder / "top.gtl").write_text(layer("L1,Top", top))
+    (folder / "bottom.gbl").write_text(layer("L2,Bot", bot))
+    drill = ["M48","METRIC,TZ","T01C0.300","%","T01"]
+    if name != "missing_drill":
+        drill.append("X10.000Y5.000")
+    (folder / "PTH.drl").write_text("\n".join(drill + ["M30"])+"\n")
+    run = subprocess.run([sys.executable, str(root / "gerber_check.py"), "netcheck", str(folder), "--ipc", str(root / "board.ipc"), "--no-auto"],capture_output=True,text=True)
+    print(name, run.returncode, run.stdout, run.stderr)
+    summary = re.search(r"SUMMARY shorts (\d+), opens (\d+), pads without copper (\d+), undrilled (\d+)",run.stdout)
+    assert summary and tuple(map(int,summary.groups())) == expected and run.returncode == int(any(expected))

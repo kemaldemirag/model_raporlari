@@ -1,0 +1,9 @@
+{
+  "source_url": "https://github.com/LibreSolar/mppt-2420-hc",
+  "candidate_block": "high-side load switch",
+  "commit": null,
+  "schematic_page": null,
+  "component_references": [],
+  "thermal_conditions": null,
+  "engineering_review": "NOT_RUN"
+}

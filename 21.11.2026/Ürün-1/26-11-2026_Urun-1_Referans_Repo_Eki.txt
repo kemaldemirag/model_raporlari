@@ -1,0 +1,19 @@
+Ürün-1 · Referans depo araştırması eki · 26.11.2026
+
+1. KiCad kaynak deposu / resources/schemas/drc.v1.json — K1-01/02/03 ve K1-10
+Yayımlanan DRC şeması, kaynak dosya, araç sürümü, rapor zamanı ve ihlal yapısının makine tarafından doğrulanmasına temel sağlar. Ham araç raporuna bu şema, Ürün-1 findings ve evidence-manifest dosyalarına kendi şemaları uygulanır. İlk entegrasyon testi, sabitlenen KiCad sürümünün gerçek çıktısını, okunamayan veya yapısı bozuk raporla birlikte sınamaktır. K1-01 ön testinde her iki kartın --severity-all kodu 5 olduğu için karar, clearance ihlalinin türü, şiddeti ve nesne kanıtıyla bağlanır. İncelenen şema bağlantısı belirli bir kaynak commit'ine ait. K1'in seçilecek sürümüyle birebir uyum çalıştırılmadı.
+https://gitlab.com/kicad/code/kicad/-/blob/6fd26c3126ab342aa49dac7de8de36f187c6c08f/resources/schemas/drc.v1.json
+
+2. actions-for-kicad/kicad-actions — K1-04 ve K1-09
+README, ERC/DRC, Gerber ve delme üretimi, jobset çalıştırma ve artefakt yüklemeyi örnekliyor. Aynı denetimin CI'ya taşınması için referans. K1'in yerel komutu ve karar kuralları esas kalır. Örnek v2-k10.0 etiketi kesin patch veya imaj digest kaydı yerine geçmez. Eksik NPTH ve sıfır bayt vakalarının kararı üretici profilindeki zorunlu rollere bağlanır.
+https://github.com/actions-for-kicad/kicad-actions/blob/main/README.md
+
+3. Bouni/kicad-jlcpcb-tools — K1-05 ve K1-06
+JLCPCB biçiminde BOM ve CPL üretir. README, DNP ve BOM/POS dışında bırakılan parçaların atlandığını belirtir. Bu davranış ve çıktı biçimi örnek üretici profiline girdi sağlar. Aynı aktif varyantta yerleştirilecek bir referansı CPL'den silme ve DNP bir referansı CPL'ye ekleme, iki ayrı kontrollü deneydir. Yetkili DNP/varyant kaydı ayrıca saklanır.
+https://github.com/Bouni/kicad-jlcpcb-tools
+
+4. markhakansson/kirin — K1-01/03 ve inceleme çıktısı
+KiCad revizyonlarını tek sayfalık statik görsel raporda karşılaştırır. PCB katmanlarında Edge.Cuts bağlamını gösterir ve parçaları UUID üzerinden eşler. Aynı kartın temiz ve kusurlu kopyasını insan incelemesi için gösterebilecek bir referans. BLOCK kararı, KiCad DRC ve Ürün-1 kuralıyla bağlanır.
+https://github.com/markhakansson/kirin
+
+Önceki ek KiBot, Gerbonara, in-toto ve AnyShake Explorer kaynaklarını kapsıyor. Bu ek, ilk ekin üzerine rapor şeması, CI akışı, montaj dosyası örneği ve görsel inceleme referansı ekler. Repoların belgeleri incelendi. Kurulum, entegrasyon koşusu ve resmî K1 puanlaması bu taramada yapılmadı.

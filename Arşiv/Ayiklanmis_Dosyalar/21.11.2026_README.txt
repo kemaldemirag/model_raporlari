@@ -1,0 +1,11 @@
+21.11.2026 Model Raporları v1.0 — düzenleme 22.11.2026
+
+01 Ürün Çıkarımı — geçerli v1.2 ürün/hizmet kararları ve yeni hipotez kuyruğu.
+02 İş Akışı ve Kabul Planı — K0–K4, K1/K2 testleri, WIP=1 ve yerel çalışma alanı sınırları.
+03 Referans Kaynak Yükleme — standart 001–005 eşlemesi, lisans, sürüm ve hash kuralları.
+04 Senaryo Modelleri ve Hesaplar — jeofon, robot, tekerlek, video/IMU, LED, protokol ve rulman.
+
+DOCX düzenlenebilir dosyadır. PDF okuma kopyasıdır. CSV UTF-8 BOM kullanır.
+Bu raporlar kaynak destekli planlama ve aritmetik modellerdir; yeni K1 native test veya fiziksel ölçüm değildir.
+Kanonik v1.2 karar: https://docs.google.com/document/d/1hgzsde5gfaWtietPOG5GDwDMBrQCh-RI/edit
+Araştırma ek raporu: https://docs.google.com/document/d/1hRVpn_PhNCfz601_M8P_dVYaxtIoTmQumMrvN0tByfQ/edit

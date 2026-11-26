@@ -1,0 +1,23 @@
+Ürün-1 · IPC-D-356 ve bakır bağlantı referansları · 26.11.2026
+
+1. trace-boardviewer/trace-boardviewer — dosya okuyucusu için karşılaştırma protokolü
+İncelenen SUPPORT.md, KiCad 9.0.9 ile 38 kart üzerinde 26.220 pad kaydının IPC-D-356 ile, 5.164 parça konumunun da yerleştirme çıktısıyla karşılaştırıldığını bildiriyor. Bu rakamlar depo sahibinin test ölçümleri. KiCad kaynak ve dışa aktarma okuyucularını çapraz karşılaştırmak için iyi bir yöntem örneği. Bu belge, Gerber geometrisinden bağımsız bakır grafiği çıkarıldığını göstermiyor. GitHub yayımlanmış v1.3.3 etiketi 242cc17. SUPPORT.md ana daldan incelendi.
+https://github.com/trace-boardviewer/trace-boardviewer/blob/main/docs/SUPPORT.md
+https://github.com/trace-boardviewer/trace-boardviewer/releases
+
+2. Delta-Proto/delta-gerber — ortak ayrıştırma katmanı
+Java kitaplığı Gerber RS-274X, Excellon, IPC-D-356A test noktaları ve X2/X3 özniteliklerini belgeliyor. Aynı paketin katman rolü, test noktası ve konum verisi için ikinci okuyucu adayı. Ürün-1 uçtan uca bir açık/kısa devre karşılaştırması çalıştırmadan bu kütüphaneye o kapsam atfedilmemeli.
+https://github.com/Delta-Proto/delta-gerber
+
+3. Hauksbee Extract — bir önceki delme taramasının bağlantı katmanı
+Aynı modele KiCad PCB, şema netlisti, IPC-D-356 ve Gerber + yerleştirme girdileri sağlanabiliyor. Ürün-1 için aday deney, Gerber ve delmeden çıkarılan fiziksel bağlantı gruplarını bağımsız IPC-D-356 ile eşlemek. Açık bağlantı, birleşmiş ağ ve eşlenemeyen test noktası ayrı olaylar olmalı. Bu içeriğin uygulama ve K1 uyumu çalıştırılmadı.
+https://docs.rs/hauksbee-extract/latest/hauksbee_extract/
+
+Yerel ön deney — KiCad 9.0.2
+Komut: kicad-cli pcb export ipcd356 -o <çıktı.d356> <kart.kicad_pcb>
+Kurulumla gelen Arduino Uno şablonu 32 adet 317 ve dört adet 367 kaydı üretti.
+K1-01'in yalnız iki bakır iz içeren temiz/kusurlu kopyaları ise test kaydı içermeyen, birbirine bayt düzeyinde eşit dört satırlık IPC-D-356 dosyaları üretti. Bu örnekte açıklık kusuru DRC'den okunur. IPC-D-356 bağlantı kıyası için test edilebilir pad/terminal içeren ayrı vaka gerekir.
+Bu deney yalnız KiCad dışa aktarımıdır. Gerber geometrisinden bağlantı çıkarımı ve resmî K1 kabulü çalıştırılmadı.
+063c1e33de7e889513e16f406c12457ec5d82a4c3443ab2c5ce89ce5bfd950da  /tmp/u1-ipc-check/uno.d356
+5d67f656023d0735623240d4cf3fba095242c4133bc889133c3c543c7bcd71b0  /tmp/u1-ipc-check/trace-clean.d356
+5d67f656023d0735623240d4cf3fba095242c4133bc889133c3c543c7bcd71b0  /tmp/u1-ipc-check/trace.d356

@@ -1,0 +1,29 @@
+Ürün-1 · K1-02 ERC ön doğrulaması
+21.11.2026 Model Raporları / Ürün-1 · 26.11.2026
+
+Deney
+Aynı sentetik şemada VCC sembolü ve TP1 test noktası bir telle bağlı. Temiz şemaya PWR_FLAG ekli. Kusurlu kopyada tek değişiklik bu sembol örneğinin kaldırılması. PWR_FLAG, fiziksel güç ölçümü yerine KiCad ERC'ye şebekenin sürüldüğü bilgisini verir.
+
+A/B sonuçları · KiCad 9.0.2
+Temiz şema — çıkış kodu 0 / 0, sıfır ihlal.
+PWR_FLAG kaldırılmış şema — kod 5 / 5, tek power_pin_not_driven hatası.
+Ham ERC JSON, kök sayfayı (/) ve #PWR01 pin 1'i UUID ile belirledi. İki çalıştırmada farklı çıktı, yapılandırma ve cache dizinleri kullanıldı. Zaman alanı çıkarıldığında A/B JSON raporları eşleşti. Kaynak şemalar ve sembol tablo dosyalarının SHA-256 özetleri koşu öncesi ve sonrası eşleşti.
+
+Konum bulgusu
+Kaynak şema ve metin raporu pini (50,80; 50,80) mm olarak gösteriyor. Ham ERC JSON, coordinate_units alanı mm olmasına rağmen (0,508; 0,508) yazdı. Aynı 100 kat sapma KiCad hata kaydı #25582'de 10.0.5 ve 10.0.6 için de raporlanıyor. Sabitlenen KiCad 10 patch sürümünde bu fixture ile ölçüm tekrarlanmalı. Sürüm davranışı doğrulanana kadar HTML konumu için sayfa ve UUID bağı ile çapraz doğrulanmış konum kullanılmalı. Ham JSON korunmalı ve koşulsuz ×100 düzeltmesi uygulanmamalı.
+https://gitlab.com/kicad/code/kicad/-/work_items/25582
+
+K1-02 eşlemesi
+power_pin_not_driven / error → SCH_ERC_REQUIRED / BLOCK.
+Kanıt bağı: sayfa UUID yolu → pin UUID → ham ERC JSON ve metin raporu → review.html.
+İlk koşu denemesinde ortamın sembol kayıt tablosu boştu ve lib_symbol_issues uyarıları üretildi. Tekrarlama betiği, KiCad'in kurulu sembol ve footprint kitaplık tablolarını izole ayarlarda hazırlar. Her iki son koşuda bu uyarılar ortadan kalktı.
+
+Yeniden çalıştırma
+Kanıt ZIP'ini aç. Linux, Python 3 ve KiCad sembol/footprint kaynakları gerekli.
+python3 reproduce.py rerun
+Farklı bir kurulumda KICAD_FP_TABLE, dağıtımla gelen fp-lib-table dosyasına işaret edebilir. A ve B klasörleri çalıştırılmış sonuçları, review.html ise insan tarafından okunabilir kanıt görünümünü içerir.
+
+Kapsam
+Bu, sentetik ERC ön doğrulamasıdır. Şema–PCB eşliği çalıştırılmadı. Resmî K1 matrisi Planlandı durumunda. Sabit KiCad 10 patch sürümü ve proje kabul kartıyla tam paket koşusu ayrıca gerekir.
+https://docs.google.com/spreadsheets/d/1i290GkcBhaMOkwRMCIuWatOJWNCVaUzc/edit
+https://docs.kicad.org/10.0/en/cli/cli.html

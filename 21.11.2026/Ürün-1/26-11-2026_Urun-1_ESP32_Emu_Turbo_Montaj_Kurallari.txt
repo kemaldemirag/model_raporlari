@@ -1,0 +1,30 @@
+Ürün-1 · ESP32 Emu Turbo montaj kuralları · 26.11.2026
+
+Kaynak belgede 99 BOM referansı, 98 CPL yerleşimi bildiriliyor.
+SW17 BOM tablosunda yer alıyor ve makine montajı istenmiyor. R14 tasarım gereği DNP.
+Proje PCB belgesi ayrıca elle lehimlenen SPK1 ve fiducial öğelerini ayrı tarif ediyor.
+BOM sayfası yayımlanan tablonun üretim BOM CSV'sinden üretildiğini belirtiyor.
+Ham BOM ve CPL için GitHub dosya erişimi 404 döndü. Tam referans kümesi farkı ve konumlar doğrulanmadı.
+
+K1 eşlemesi
+Makineye yerleştirilecek küme BOM ve yetkili montaj politikasından türetilir.
+SW17'nin CPL dışında kalması K1-05 eksik parça bulgusu üretmez.
+R14 CPL'ye sızarsa K1-06 DNP bulgusu beklenir.
+SW17 CPL'ye eklenirse makine yerleştirme yasağı ihlal edilir. Belge, bunu R14 ile aynı tasarım DNP sınıfına zorlamayı gerektirmez.
+Üretici veya varyant politikası eksikse uygunluk sonucu için kanıt eksikliği raporlanır.
+
+Dokümana dayalı küçültülmüş örnek
+BOM = [R1, SW17], makineye takılmayacak = [SW17], tasarım DNP = [R14].
+R1 burada sentetik bir yerleştirilecek parça. Tam üretim CSV'sinin temsili değildir.
+Dört örnek için küme karşılaştırması çalıştırıldı:
+Kontrol → {"missing":[],"dnp":[],"noPlace":[]}
+R1 CPL'den silindi → {"missing":["R1"],"dnp":[],"noPlace":[]}
+R14 CPL'ye eklendi → {"missing":[],"dnp":["R14"],"noPlace":[]}
+SW17 CPL'ye eklendi → {"missing":[],"dnp":[],"noPlace":["SW17"]}
+
+Proje ayrıca doğrulama kontrollerini kusurlu kopyalarla sınayan bir gate-coverage akışı belgeliyor. Bu Ürün-1 için örnek süreçtir. Yerel KiCad koşusu ve resmî K1 doğrulaması yapılmadı.
+
+Kaynaklar
+https://pjcau.github.io/esp32-emu-turbo/docs/design/pcb
+https://pjcau.github.io/esp32-emu-turbo/docs/design/components
+https://github.com/pjcau/esp32-emu-turbo/blob/main/.claude/skills/release/SKILL.md

@@ -1,0 +1,39 @@
+{
+  "format_a": {
+    "status": "VALID",
+    "sample_count": 1801,
+    "duration_s": 1800,
+    "capacity_Ah": 0.5
+  },
+  "format_b": {
+    "status": "VALID",
+    "capacity_Ah": 0.5
+  },
+  "missing_unit": {
+    "status": "INVALID",
+    "capacity_Ah": null
+  },
+  "backward_time": {
+    "status": "INVALID",
+    "capacity_Ah": null
+  },
+  "nonfinite_current": {
+    "status": "INVALID",
+    "capacity_Ah": null
+  },
+  "conflicting_duplicate": {
+    "status": "INVALID",
+    "capacity_Ah": null
+  },
+  "gap": {
+    "status": "INCOMPLETE",
+    "capacity_Ah": null,
+    "observed_capacity_Ah": 0.49944444444444447
+  },
+  "variable_current": {
+    "status": "VALID",
+    "capacity_Ah": 0.5833333333333334,
+    "policy": "variable_policy.json"
+  },
+  "verification_note": "Expected values are analytical references, not application test results."
+}

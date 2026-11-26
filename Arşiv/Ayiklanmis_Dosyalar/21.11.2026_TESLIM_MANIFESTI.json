@@ -1,0 +1,78 @@
+{
+  "archive_date": "2026-11-21",
+  "prepared_date": "2026-11-22",
+  "model_reports_version": "1.0",
+  "canonical_research_version": "1.2.0",
+  "readiness": "Research/planning; native KiCad K1 not run in this package",
+  "files": [
+    {
+      "file": "21.11.2026_01_Urun_Cikarimi_v1.docx",
+      "size_bytes": 43495,
+      "sha256": "f77e27f79c82a3a19c1af4ee587277628168156dc6d4da61e74fc926a2a5ae8e"
+    },
+    {
+      "file": "21.11.2026_01_Urun_Cikarimi_v1.pdf",
+      "size_bytes": 115273,
+      "sha256": "db081726866afdc098e70d9cad89d57796054510f470de01b7109c6438c266b6",
+      "pages": 3
+    },
+    {
+      "file": "21.11.2026_02_Is_Akisi_ve_Kabul_Plani_v1.docx",
+      "size_bytes": 43389,
+      "sha256": "64606d6dfda0e454d354500054cc9e403431e63e2530d912d812c5763a8d81cf"
+    },
+    {
+      "file": "21.11.2026_02_Is_Akisi_ve_Kabul_Plani_v1.pdf",
+      "size_bytes": 133177,
+      "sha256": "c863f7f80d4172f2c3996d38f7a53b31cf0059d5cbcc4091a99527cbb471e980",
+      "pages": 3
+    },
+    {
+      "file": "21.11.2026_03_Referans_Kaynak_Yukleme_v1.docx",
+      "size_bytes": 43264,
+      "sha256": "03837c403b33a815b557c1797bc19eb9967e940d6714dce1c7863fc3f6dc4ae4"
+    },
+    {
+      "file": "21.11.2026_03_Referans_Kaynak_Yukleme_v1.pdf",
+      "size_bytes": 133980,
+      "sha256": "1057d04b6cbc6f18a7c8c58c2a1642f7c3d8ffe3cddb10858ed91642bcc7b1a7",
+      "pages": 3
+    },
+    {
+      "file": "21.11.2026_04_Senaryo_Modelleri_ve_Hesaplar_v1.docx",
+      "size_bytes": 43922,
+      "sha256": "3d9ae37a259b9b5f453d6f18ed0e7c4a34557e7fe8266e3bc5e6af2821fca193"
+    },
+    {
+      "file": "21.11.2026_04_Senaryo_Modelleri_ve_Hesaplar_v1.pdf",
+      "size_bytes": 138753,
+      "sha256": "e2d8bd7820f9175a0f77d2c5dad9ee0957a2b6818fe1423562a2ed564c33563d",
+      "pages": 3
+    },
+    {
+      "file": "21.11.2026_README.txt",
+      "size_bytes": 858,
+      "sha256": "95b440789b64ee582de47d2c9a14dd33ee3b48d40d8aa14c8d74c00f151af317"
+    },
+    {
+      "file": "21.11.2026_aritmetik_kontrol.json",
+      "size_bytes": 459,
+      "sha256": "667061235d22313244b45812a8ee0546b6230140b7b402842af451dc42e855f6"
+    },
+    {
+      "file": "21.11.2026_kaynak_envanteri.csv",
+      "size_bytes": 5745,
+      "sha256": "430ad083c0777ab9c4bd97083df51a04a5b1ea1ad912fdff5c4d5a14c502ef0f"
+    },
+    {
+      "file": "21.11.2026_senaryo_hesaplari.csv",
+      "size_bytes": 1206,
+      "sha256": "acad5845d4eede9f0c240a0861f1bb7c30fed88f7746d61c8771f898a22e2f77"
+    },
+    {
+      "file": "21.11.2026_urun_test_matrisi.csv",
+      "size_bytes": 1231,
+      "sha256": "4a3708e6778ddeca0a9b238262621ca496a7ec1057f6a3c8c11657fc927fc1b7"
+    }
+  ]
+}

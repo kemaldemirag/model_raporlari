@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "source": {
+    "url": "https://github.com/OLIMEX/ESP32-S3-DevKit-LiPo",
+    "commit": null,
+    "schematic_path": null,
+    "pcb_path": null,
+    "status": "UNVERIFIED"
+  },
+  "required_roles": [
+    "gerber_set",
+    "drill_set",
+    "bom_csv",
+    "placement_csv",
+    "assembly_html",
+    "findings_json",
+    "release_manifest"
+  ],
+  "single_variant": true,
+  "dnp_policy": "MUST_BE_DEFINED",
+  "negative_cases": [
+    "missing_drill",
+    "unknown_bom_reference"
+  ],
+  "demo_status": "NOT_RUN"
+}

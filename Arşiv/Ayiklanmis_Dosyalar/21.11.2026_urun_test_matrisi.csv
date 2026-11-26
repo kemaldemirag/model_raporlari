@@ -1,0 +1,16 @@
+﻿test_id,initiative,scenario,acceptance_rule,evidence_level,current_status,source_id
+PCB-K1-01,PCB Release,6 seeded faults,6/6 recognized,K1,not_run_native,R02
+PCB-K1-02,PCB Release,source unchanged,0 mutations,K1,not_run_native,R04
+PCB-K1-03,PCB Release,single command,repeatable outputs,K1,not_run_native,R04
+PCB-K2-01,PCB Release,holdout defective 20,>=18/20,K2,plan,R02
+PCB-K2-02,PCB Release,holdout clean 5,5/5 pass,K2,plan,R02
+PCB-K2-03,PCB Release,same version 2x,equal normalized findings,K2,plan,R02
+SEN-K1-01,SentryNode,planned crash,dump+SHA+ELF matches,K1,requires_real_esp32,R02
+SEN-K2-01,SentryNode,crash TWDT OTA,15/15 classification,K2,plan,R02
+ROS-K1-01,rt-control-bench,baseline fixed world,goal reached; 0 contacts,K1,not_run,R02
+ROS-K1-02,rt-control-bench,bad commit,predeclared gate fails,K1,not_run,R02
+ROS-K2-01,rt-control-bench,20x2x2,80 complete bundles,K2,plan,R02
+TRC-K1-01,TraceWing,tamper and missing file,both rejected,K1,not_run,R02
+BRG-R01,Bearing,split identity leakage,no shared bearing IDs,Research,not_run,R08
+GEO-C01,Geophone,500 SPS 0.25s,125 samples/window,Calculated,arithmetic_only,R06
+QC-C01,Sensor QC,60fps 120s 1percent,72 missing frames,Calculated,arithmetic_only,R01

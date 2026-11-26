@@ -1,0 +1,39 @@
+Ürün-1 | Gri literatür taraması ve üç üretim dosyası deneyi
+26 Kasım 2026 • Model Raporları / 21.11.2026 / Ürün-1
+
+Özet
+Dört katmanlı küçük bir KiCad kartından CSV yerleştirme, Gerber bakır ve Excellon delme dosyaları üretildi. Üç hata ayrı paketlere uygulandı. Temiz örneklerin tamamında sıfır bulgu çıktı. Ayna dönüşümü hatasında U2 ve U4 için 180° sapma, yalnız delikleri kaydıran dosyada H1, H2 ve H3 için (+1,000 mm, 0,000 mm) fark, yalnız dış katmanları seçen dışa aktarmada L2 ve L3 eksikliği bulundu.
+
+1. Sensör yönünü hangi işaretten okumalı?
+JLCPCB, 9 Eylül 2026 tarihli montaj SSS’sinde önizlemedeki kırmızı noktayı bileşen yön işareti olarak tanımlıyor. Gerçek pin 1 ve sıfır yönü için parça belgesine ve bant yerleşimine bakılmasını öneriyor. Eurocircuits’in Gerber X3 açıklamasında bileşen katmanında konum, pin konumu ve pin kimliğinin taşınabildiği gösteriliyor. Bu deneyde pin konumları KiCad’in bakır katmanlarındaki TO.P öznitelikleri ve D03 bakır ped merkezlerinden okundu.
+https://jlcpcb.com/help/article/pcb-assembly-faqs-part-2
+https://www.eurocircuits.com/technical-guidelines/gerber-format/gerber-x3/
+
+Kasım ayının somut ürün örneği GRIDDLE LX klavyedeki MT9102ET Hall sensörü. Sipariş günlüğü parçayı bu tam kodla tanımlıyor. MagnTek’in MT910X Rev. 1.9 veri sayfasının 1. sayfası, Şekil 1 ve hemen üstündeki tablo, SOT-23 üstten görünüşte pin 1’i VCC, pin 2’yi OUT, pin 3’ü GND olarak gösteriyor. Aynı belgedeki TO-92S paketinin pin sırası farklı. Bu nedenle ürün profiline tam sipariş kodu, paket ve bakış yüzü birlikte yazılmalı.
+https://erfi.dev/guides/jlc-4-layer-pcba-keyboard-order/
+https://www.magntek.com.cn/upload/pdf/202404/%E7%A3%81%E6%80%A7%E7%94%B5%E6%B5%81-%E7%BA%BF%E6%80%A7%E9%9C%8D%E5%B0%94%E8%8A%AF%E7%89%87MT9103%E4%BA%A7%E5%93%81%E8%A7%84%E6%A0%BC%E4%B9%A6.pdf
+
+Deneyde ticari MT9102ET kılıfı yerine yönü ayırt edilebilen sentetik, üç pedli Sensor3 kullanıldı. Kontrolün beklenen açısı ped 2’den ped 1’e giden vektörden ve bakır yüzünden elde edildi. Karşılaştırılan yerleştirme açısı ayrı olarak KiCad CSV’sinden hesaplandı. Açı sıfırı bu örnek için tanımlı. Üreticinin gerçek bant yönü veya fiziksel dizgi doğrulanmadı.
+Alt yüzde tasarım açıları 0°, 90°, 180°, 270° olan U1–U4 ve üst yüzde 0° olan kontrol U5 kullanıldı. Hatalı dönüşüm yalnız U2 (90°) ve U4 (270°) için 180° fark üretti. Temiz dosyada beş yerleşimin tamamı geometrik beklentiyle uyuştu.
+
+2. Üç deliğin ortak koordinat kayması
+Temiz Excellon çıktısındaki üç kaplamalı deliğin merkezleri, iki dış bakır katmandaki H1/H2/H3 pedlerinin merkezleriyle aynıydı. Yalnız delik dosyasının X koordinatlarına 1,000 mm eklenince üç merkez için de (+1,000 mm, 0,000 mm) ölçüldü. Delik sayısı ve 0,800 mm çap sabit kaldı. Deney düzeninde noktalar birbirinden yeterince uzak ve eşleşme bire bir kontrol ediliyor. Burada kullanılan tam eşitlik yalnız sayısal test girdisine ait. Üretim toleransı belirlenmedi.
+Eurocircuits üretim verisi kılavuzu — https://www.eurocircuits.com/article/how-should-i-prepare-pcb-data-for-manufacturing/
+
+3. Dört katmanlı karta ait iki iç bakır katmanın kaybolması
+GRIDDLE LX saha günlüğünde üreticinin dört katmanlı kartı iki katman olarak algıladığı bildiriliyor. Yazar, ihracatta iki iç güç düzleminin atlandığını anlatıyor. JLCPCB’nin 16 Kasım 2026 güncellemeli Gerber hazırlama rehberi iç katmanların üretim setinde nasıl tanımlanacağını gösteriyor. Üretici ayrıca siparişe verilen Gerber dosyaları ile üreticinin bunlardan hazırladığı üretim dosyasını ayrı tanımlıyor.
+https://erfi.dev/guides/jlc-4-layer-pcba-keyboard-order/
+https://jlcpcb.com/help/article/gerber-files-preparation
+https://jlcpcb.com/help/article/how-to-confirm-the-production-file
+
+Aynı kaynak PCB’den bir kez dört bakır katman, bir kez yalnız F.Cu ve B.Cu dışa aktarıldı. İkinci komut başarıyla tamamlandı. İkinci pakette Gerber dosyalarının içindeki FileFunction değerleri L1/Top ve L4/Bot olarak kaldı. Denetim bunları dört katmanlı test kartının beklenen listesiyle karşılaştırıp L2 ve L3’ü eksik bildirdi. Ürün-1’de aynı beklenti kart revizyonundan veya onaylı katman tablosundan alınabilir.
+
+Tekrar çalıştırma
+ZIP paketini boş bir klasöre açın. Python 3 ile “python check.py” komutu, paketteki ham dışa aktarımları okur, hatalı yerleştirme ve delme dosyalarını yeniden üretir ve sonuçları denetler. Bu işlem için KiCad kurulumu gerekmez. results.json bizim koşumuzun çıktısıdır. check.py yalnız bu örneğin milimetrik, ondalık Excellon ve sabit 4.6 gösterimli Gerber çıktılarını okur. Genel bir CAM ayrıştırıcısı olarak kullanılmaz.
+KiCad ile baştan üretmek için paket içindeki sensor.kicad_pcb kullanılabilir. Komutları klasör içinde çalıştırın.
+kicad-cli pcb export gerbers --layers F.Cu,In1.Cu,In2.Cu,B.Cu --no-protel-ext -o gerbers sensor.kicad_pcb
+kicad-cli pcb export gerbers --layers F.Cu,B.Cu --no-protel-ext -o outer_only sensor.kicad_pcb
+kicad-cli pcb export pos --units mm --format csv --smd-only -o pos.csv sensor.kicad_pcb
+kicad-cli pcb export drill --format excellon --excellon-units mm -o drill sensor.kicad_pcb
+python check.py
+Kaynak kartı yeniden inşa etmeye yarayan make_fixture.py ayrıca KiCad 9 pcbnew Python modülünü kullanır. Doğrulanan yerel sürüm KiCad 9.0.2. Her bir karşılaştırma tanımlanan kusura yönelik. Ürün-1 planındaki KiCad 10 resmî K1 kabulü ve üretici/atölye onayı bu çalışmada gerçekleştirilmedi.
